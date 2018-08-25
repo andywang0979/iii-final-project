@@ -168,6 +168,13 @@ ADD CONSTRAINT FK_OrderDetails_Products FOREIGN KEY (ProductID)
 ;
 GO
 
+ALTER TABLE OrderDetails
+ADD CONSTRAINT FK_OrderDetails_Orders FOREIGN KEY (OrderID)
+    REFERENCES Orders (OrderID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+;
+GO
 
 
 --刪除表
@@ -189,14 +196,28 @@ GO
 SET IDENTITY_INSERT UserRoles ON;  
 GO
 INSERT INTO UserRoles (UserRoleID, UserRoleName, UserRoleDescription)
-VALUES(0, 'dummy', '');
+VALUES(0, 'dummy', 'this role can not do anything, just for a default value');
 SET IDENTITY_INSERT UserRoles OFF;  
 GO
 
 -- 需要增加其他角色：顧客、上架人員、客服人員
 
 INSERT INTO UserRoles (UserRoleName, UserRoleDescription)
-VALUES('customer', 'customer');
+VALUES('customer-nonmember', 'customers who do not login in yet');
+
+
+--
+
+
+-- 這個員工帳號無法做任何事，只是用來當成預設值，像是Opinion中的EmployeeId的預設值為0，就是這個帳號。
+
+SET IDENTITY_INSERT Employees ON;  
+GO
+INSERT INTO Employees(EmployeeID, EmployeeLoginName, EmployeePassword, EmployeeRole)
+VALUES(0, 'nobody', 'nobody', 0)
+SET IDENTITY_INSERT Employees OFF;  
+GO
+
 
 
 --
@@ -204,6 +225,13 @@ VALUES('customer', 'customer');
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry)
 VALUES('Abc','John','abc@yahoo.com','12345','09123456','台中市南屯區公益路二段51號','123','TW')
 GO
+
+
+
+
+
+
+
 
 --測試刪除表中資料
 --DELETE FROM Customers
