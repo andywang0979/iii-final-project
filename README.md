@@ -1,2 +1,2 @@
 # iii-final-project
-the last co-op project at the end of iii's .net curriculum
+## 期末專題報告： 智慧寵物屋選購系統
