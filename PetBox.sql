@@ -1,4 +1,4 @@
-CREATE DATABASE PetBox
+﻿CREATE DATABASE PetBox
 GO
 
 USE PetBox
@@ -35,6 +35,8 @@ OpinionTitle NVARCHAR(255),
 OpinionContent NVARCHAR(1000),
 OpinionStatus INT NOT NULL DEFAULT 0,
 OpinionDateTime CHAR(16),
+OpinionFeedback NVARCHAR(1000) DEFAULT '',
+OpinionFeedbackTime CHAR(16) DEFAULT ''
 )
 GO
 
@@ -189,6 +191,37 @@ GO
 
 
 
+--
+
+
+
+
+
+
+--
+
+
+
+--類別名 說明 圖片位子
+
+SET IDENTITY_INSERT Categories ON;  
+GO
+INSERT INTO Categories(CategoryID , CategoryName, CategoryDescription)
+VALUES(0, 'dummy product category', 'for dummy products')
+SET IDENTITY_INSERT Categories OFF;  
+GO
+
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES(N'鏡頭', N'各種監控用鏡頭，包含一般光線、近紅外線等等…','C:\img')
+
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES(N'感測器', N'感測目標的溫度、溼度、壓力、光線等環境參數','C:\img')
+
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES(N'餵食器', N'各種尺寸、各種動物專用餵食器','C:\img')
+GO
+
+--用戶角色名子 說明
 
 -- to set UserRoleID explicitly, I have to turn the IDENTITY_INSERT ON, and OFF.
 -- dummy 這個角色值並不能登入使用網站，只是用來處理
@@ -200,14 +233,39 @@ VALUES(0, 'dummy', 'this role can not do anything, just for a default value');
 SET IDENTITY_INSERT UserRoles OFF;  
 GO
 
--- 需要增加其他角色：顧客、上架人員、客服人員
 
 INSERT INTO UserRoles (UserRoleName, UserRoleDescription)
 VALUES('customer-nonmember', 'customers who do not login in yet');
 
+INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
+VALUES('customer-member','member')
 
---
+INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
+VALUES('shelf','shelf people')
 
+INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
+VALUES('customer service','customer service people')
+GO
+
+--帳號 姓名 信箱 密碼 手機 地址 郵遞區號 國家
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry, CustomerRole)
+VALUES('dung', N'鄧元','abc@yahoo.com','dungPass','0912987445', N'台中市南屯區公益路二段51號', '123', 'TW', 2)
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('wang', N'王大為','abc@yahoo.com','wangPass','0933340056', N'台中市南屯區公益路二段51號', '200', 'TW', 2)
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('li', N'李小弟','aaa@yahoo.com','liPass','0935112334', N'Blake Gerold 128 N 37th St.', '300', 'USA', 2)
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('cheng', N'陳得峰','bcd@yahoo.com','chengPass','0906567332', N'神奈川県横浜市泉区白百合2-10-14', '400', 'JP', 2)
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('lai', N'賴國徽','cvb@yahoo.com','laiPass','0956887452', N'台北市忠孝北路三段2號', '450', 'TW', 2)
+GO
+
+--帳號 密碼 角色
 
 -- 這個員工帳號無法做任何事，只是用來當成預設值，像是Opinion中的EmployeeId的預設值為0，就是這個帳號。
 
@@ -218,114 +276,88 @@ VALUES(0, 'nobody', 'nobody', 0)
 SET IDENTITY_INSERT Employees OFF;  
 GO
 
-
-
---
-
-INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry)
-VALUES('Abc','John','abc@yahoo.com','12345','09123456','台中市南屯區公益路二段51號','123','TW')
-GO
-
---類別名 說明 圖片位子
-INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
-VALUES('鏡頭','監控用','C:\img')
-
-INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
-VALUES('溫濕度感測器','溫度調節','C:\img')
-
-INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
-VALUES('自動餵食器','定時餵食','C:\img')
-GO
-
---用戶角色名子 說明
-
-INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
-VALUES('Customer-member','member')
-
-INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
-VALUES('Shelf','Shelf People')
-
-INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
-VALUES('Customer service','Customer service People')
-GO
-
---帳號 姓名 信箱 密碼 手機 地址 郵遞區號 國家
-INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('abc','John','abc@yahoo.com','xyz',09123456,'台中市南屯區公益路二段51號',200,'TW',2)
-
-INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('aaa','Tom','aaa@yahoo.com','jqk',408-321-3333,'Blake Gerold 128 N 37th St.',300,'USA',3)
-
-INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('bcd','Pan','bcd@yahoo.com','xyz',819-064-75321,'神奈川県横浜市泉区白百合2-10-14',400,'JP',4)
-
-INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('cvb','Max','cvb@yahoo.com','tyu',0977817442,'台北市忠孝北路三段2號',450,'TW',5)
-GO
-
---帳號 密碼 角色
 INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
-VALUES('xyz','wxyz',4)
+VALUES('shelfa','shelfa',3)
 
 INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
-VALUES('jkl','hjkl',4)
+VALUES('shelfb','shelfb',3)
 
 INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
-VALUES('asd','asdf',5)
+VALUES('service','service',4)
+GO
+
+
+
+--產品代碼 產品名子 產品說明 類別ID 產品圖片位子 產品數量 產品單位 產品價格
+
+SET IDENTITY_INSERT Products ON;  
+GO
+INSERT INTO Products(ProductID , ProductCode, ProductName, ProductDescription, CategoryID)
+VALUES(0, 'dummy', 'dummy product', 'use as a default value', 0)
+SET IDENTITY_INSERT Products OFF;  
+GO
+
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('Cam10', N'磁性廣角鏡頭', N'強力的磁性底盤，可以吸附於各種角度，隨鏡頭附贈吸盤，提供更多元的安裝方式',1,'C:\img',10, N'台',250)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('HumiTemp01', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',2,'C:\img',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('Feeder01', N'小型動物自動餵食器', N'擁有定時功能，適合倉鼠等小型動物。',3,'C:\img',20, N'組',180)
 GO
 
 --顧客ID 員工ID 產品ID 意見標題 內容 狀況 時間
-INSERT INTO Opinions(CustomerID,EmployeeID,ProductID,OpinionTitle,OpinionContent,OpinionStatus,OpinionDateTime)
-VALUES(1,3,1,'到貨時間?','什時到貨','','20180825 12:00')
+INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
+VALUES(1, N'到貨時間?', N'我今天買了溫溼度感應器，請問什麼時後到貨？', '20180825 12:00')
 
-INSERT INTO Opinions(CustomerID,EmployeeID,ProductID,OpinionTitle,OpinionContent,OpinionStatus,OpinionDateTime)
-VALUES(2,3,2,'產品怎麼操作?','有沒有教學','','20180826 15:00')
+INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
+VALUES(2, N'產品怎麼操作?', N'我收到了貴公司的產品，可是沒有操作手冊，請問網站有沒有教學文件？', '20180826 15:00')
 
-INSERT INTO Opinions(CustomerID,EmployeeID,ProductID,OpinionTitle,OpinionContent,OpinionStatus,OpinionDateTime)
-VALUES(3,3,3,'要求退貨?','買錯商品','','20180827 11:00')
+INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
+VALUES(3, N'要求退貨?', N'不好意思，我買錯商品，想要退貨，請問貴公司的退貨手續怎麼辦理？', '20180827 11:00')
 GO
 
---產品代碼 產品名子 產品說明 類別ID 產品圖片位子 產品數量 產品單位 產品價格
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('1','監控鏡頭','監控畫面',1,'C:\img',10,'台',250)
-
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('2','溫濕度感測器','調節溫度',2,'C:\img',15,'個',100)
-
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('3','自動餵食器','定時餵食',3,'C:\img',20,'組',180)
+INSERT INTO Opinions(CustomerID, EmployeeID, OpinionTitle, OpinionContent, OpinionDateTime, OpinionStatus, OpinionFeedback, OpinionFeedbackTime)
+VALUES(4, 3, N'已回答範例', N'我想要退貨，請問要怎麼退？', '20180827 16:00', 1, N'謝謝您購買本公司產品，在本公司網站的最下方有FAQ，裏面第1項有提供相關訊息，謝謝您。', '20180828 09:30')
 GO
 
---訂單ID 產品ID 數量 折扣
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(1,1,10)
-
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(2,2,18)
-
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(3,3,12)
-
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(4,1,15)
-GO
 
 --顧客ID 訂單日期時間 訂單地址 訂單明細編號 訂單明細國家
 INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
-VALUES(1,'20180820 12:00','台中市南屯區公益路二段51號','100','TW')
+VALUES(1,'20180820 12:00', N'台中市南屯區公益路二段51號','100','TW')
 
 INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
-VALUES(2,'20180821 13:30','Blake Gerold 128 N 37th St.','101','US')
+VALUES(2,'20180821 13:30', N'Blake Gerold 128 N 37th St.','101','US')
 
 INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
-VALUES(3,'20180823 15:20','神奈川県横浜市泉区白百合2-10-14','102','JP')
+VALUES(3,'20180823 15:20', N'神奈川県横浜市泉区白百合2-10-14','102','JP')
 
 INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
-VALUES(4,'20180824 11:20','台北市忠孝北路三段2號','103','TW')
+VALUES(4,'20180824 11:20', N'台北市忠孝北路三段2號','103','TW')
 GO
 
 
+--訂單ID 產品ID 數量 折扣
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(1, 1, 2)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(1, 2, 1)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(1, 3, 3)
 
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(2, 2, 4)
+
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(3, 2, 1)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(3, 3, 1)
+
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(4, 1, 4)
+GO
 
 
 
