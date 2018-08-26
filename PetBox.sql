@@ -226,6 +226,103 @@ INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassw
 VALUES('Abc','John','abc@yahoo.com','12345','09123456','台中市南屯區公益路二段51號','123','TW')
 GO
 
+--類別名 說明 圖片位子
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES('鏡頭','監控用','C:\img')
+
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES('溫濕度感測器','溫度調節','C:\img')
+
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES('自動餵食器','定時餵食','C:\img')
+GO
+
+--用戶角色名子 說明
+
+INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
+VALUES('Customer-member','member')
+
+INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
+VALUES('Shelf','Shelf People')
+
+INSERT INTO UserRoles(UserRoleName,UserRoleDescription)
+VALUES('Customer service','Customer service People')
+GO
+
+--帳號 姓名 信箱 密碼 手機 地址 郵遞區號 國家
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('abc','John','abc@yahoo.com','xyz',09123456,'台中市南屯區公益路二段51號',200,'TW',2)
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('aaa','Tom','aaa@yahoo.com','jqk',408-321-3333,'Blake Gerold 128 N 37th St.',300,'USA',3)
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('bcd','Pan','bcd@yahoo.com','xyz',819-064-75321,'神奈川県横浜市泉区白百合2-10-14',400,'JP',4)
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
+VALUES('cvb','Max','cvb@yahoo.com','tyu',0977817442,'台北市忠孝北路三段2號',450,'TW',5)
+GO
+
+--帳號 密碼 角色
+INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
+VALUES('xyz','wxyz',4)
+
+INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
+VALUES('jkl','hjkl',4)
+
+INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
+VALUES('asd','asdf',5)
+GO
+
+--顧客ID 員工ID 產品ID 意見標題 內容 狀況 時間
+INSERT INTO Opinions(CustomerID,EmployeeID,ProductID,OpinionTitle,OpinionContent,OpinionStatus,OpinionDateTime)
+VALUES(1,3,1,'到貨時間?','什時到貨','','20180825 12:00')
+
+INSERT INTO Opinions(CustomerID,EmployeeID,ProductID,OpinionTitle,OpinionContent,OpinionStatus,OpinionDateTime)
+VALUES(2,3,2,'產品怎麼操作?','有沒有教學','','20180826 15:00')
+
+INSERT INTO Opinions(CustomerID,EmployeeID,ProductID,OpinionTitle,OpinionContent,OpinionStatus,OpinionDateTime)
+VALUES(3,3,3,'要求退貨?','買錯商品','','20180827 11:00')
+GO
+
+--產品代碼 產品名子 產品說明 類別ID 產品圖片位子 產品數量 產品單位 產品價格
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('1','監控鏡頭','監控畫面',1,'C:\img',10,'台',250)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('2','溫濕度感測器','調節溫度',2,'C:\img',15,'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('3','自動餵食器','定時餵食',3,'C:\img',20,'組',180)
+GO
+
+--訂單ID 產品ID 數量 折扣
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(1,1,10)
+
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(2,2,18)
+
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(3,3,12)
+
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(4,1,15)
+GO
+
+--顧客ID 訂單日期時間 訂單地址 訂單明細編號 訂單明細國家
+INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
+VALUES(1,'20180820 12:00','台中市南屯區公益路二段51號','100','TW')
+
+INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
+VALUES(2,'20180821 13:30','Blake Gerold 128 N 37th St.','101','US')
+
+INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
+VALUES(3,'20180823 15:20','神奈川県横浜市泉区白百合2-10-14','102','JP')
+
+INSERT INTO Orders(CustomerID,OrderDateTime,OrderShipAddress,OrderShipPostalCode,OrderShipCountry)
+VALUES(4,'20180824 11:20','台北市忠孝北路三段2號','103','TW')
+GO
 
 
 
