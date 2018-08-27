@@ -308,22 +308,22 @@ GO
 
 --訂單ID 產品ID 數量 折扣
 INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(1, 1, 2)
+VALUES(1, 2, 2)
 INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(1, 2, 1)
+VALUES(1, 3, 1)
 INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(1, 3, 3)
+VALUES(1, 4, 3)
 
 INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(2, 2, 4)
+VALUES(2, 3, 4)
 
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(3, 2, 1)
 INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
 VALUES(3, 3, 1)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
+VALUES(3, 4, 1)
 
 INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(4, 1, 4)
+VALUES(4, 2, 4)
 GO
 
 
