@@ -20,7 +20,7 @@ CustomerMobilePhone NVARCHAR(24),
 CustomerAddress NVARCHAR(255),
 CustomerPostalCode NVARCHAR(10),
 CustomerCountry NVARCHAR(50),
-CustomerRole INT DEFAULT 1
+CustomerRole INT DEFAULT 2
 )
 GO
 
@@ -29,8 +29,8 @@ GO
 CREATE TABLE Opinions(
 OpinionID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 CustomerID INT NOT NULL,
-EmployeeID INT DEFAULT 0,
-ProductID INT NOT NULL DEFAULT 0,
+EmployeeID INT DEFAULT 1,
+ProductID INT NOT NULL DEFAULT 1,
 OpinionTitle NVARCHAR(255),
 OpinionContent NVARCHAR(1000),
 OpinionStatus INT NOT NULL DEFAULT 0,
@@ -49,7 +49,7 @@ CREATE TABLE Products (
 	CategoryID INT NOT NULL,
 	ProductImageLocation VARCHAR(255),
 	ProductQuantity INT,
-	Productunit NVARCHAR(50),
+	ProductUnit NVARCHAR(50),
 	ProductPrice INT
 ); 
 
@@ -74,7 +74,7 @@ CREATE TABLE Employees (
     EmployeeID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	EmployeeLoginName VARCHAR(20) NOT NULL,
 	EmployeePassword VARCHAR(20) NOT NULL,
-	EmployeeRole INT DEFAULT 0
+	EmployeeRole INT DEFAULT 1
 );
 
 
@@ -179,37 +179,16 @@ ADD CONSTRAINT FK_OrderDetails_Orders FOREIGN KEY (OrderID)
 GO
 
 
---刪除表
---DROP DATABASE Customers
 
---搜尋
---select * from Customers
---GO
 
 --這個區塊是增加資料
 
 
 
-
---
-
-
-
-
-
-
---
-
-
-
 --類別名 說明 圖片位子
 
-SET IDENTITY_INSERT Categories ON;  
-GO
-INSERT INTO Categories(CategoryID , CategoryName, CategoryDescription)
-VALUES(0, 'dummy product category', 'for dummy products')
-SET IDENTITY_INSERT Categories OFF;  
-GO
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES(N'dummy product category', N'for dummy products','C:\img')
 
 INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
 VALUES(N'鏡頭', N'各種監控用鏡頭，包含一般光線、近紅外線等等…','C:\img')
@@ -226,13 +205,9 @@ GO
 -- to set UserRoleID explicitly, I have to turn the IDENTITY_INSERT ON, and OFF.
 -- dummy 這個角色值並不能登入使用網站，只是用來處理
 
-SET IDENTITY_INSERT UserRoles ON;  
-GO
-INSERT INTO UserRoles (UserRoleID, UserRoleName, UserRoleDescription)
-VALUES(0, 'dummy', 'this role can not do anything, just for a default value');
-SET IDENTITY_INSERT UserRoles OFF;  
-GO
 
+INSERT INTO UserRoles (UserRoleName, UserRoleDescription)
+VALUES('dummy', 'this role can not do anything, just for a default value');
 
 INSERT INTO UserRoles (UserRoleName, UserRoleDescription)
 VALUES('customer-nonmember', 'customers who do not login in yet');
@@ -250,62 +225,54 @@ GO
 --帳號 姓名 信箱 密碼 手機 地址 郵遞區號 國家
 
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry, CustomerRole)
-VALUES('dung', N'鄧元','abc@yahoo.com','dungPass','0912987445', N'台中市南屯區公益路二段51號', '123', 'TW', 2)
+VALUES('dung', N'鄧元','abc@yahoo.com','dungPass','0912987445', N'台中市南屯區公益路二段51號', '123', 'TW', 3)
 
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('wang', N'王大為','abc@yahoo.com','wangPass','0933340056', N'台中市南屯區公益路二段51號', '200', 'TW', 2)
+VALUES('wang', N'王大為','abc@yahoo.com','wangPass','0933340056', N'台中市南屯區公益路二段51號', '200', 'TW', 3)
 
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('li', N'李小弟','aaa@yahoo.com','liPass','0935112334', N'Blake Gerold 128 N 37th St.', '300', 'USA', 2)
+VALUES('li', N'李小弟','aaa@yahoo.com','liPass','0935112334', N'Blake Gerold 128 N 37th St.', '300', 'USA', 3)
 
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('cheng', N'陳得峰','bcd@yahoo.com','chengPass','0906567332', N'神奈川県横浜市泉区白百合2-10-14', '400', 'JP', 2)
+VALUES('cheng', N'陳得峰','bcd@yahoo.com','chengPass','0906567332', N'神奈川県横浜市泉区白百合2-10-14', '400', 'JP', 3)
 
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
-VALUES('lai', N'賴國徽','cvb@yahoo.com','laiPass','0956887452', N'台北市忠孝北路三段2號', '450', 'TW', 2)
+VALUES('lai', N'賴國徽','cvb@yahoo.com','laiPass','0956887452', N'台北市忠孝北路三段2號', '450', 'TW', 3)
 GO
 
 --帳號 密碼 角色
 
 -- 這個員工帳號無法做任何事，只是用來當成預設值，像是Opinion中的EmployeeId的預設值為0，就是這個帳號。
 
-SET IDENTITY_INSERT Employees ON;  
-GO
-INSERT INTO Employees(EmployeeID, EmployeeLoginName, EmployeePassword, EmployeeRole)
-VALUES(0, 'nobody', 'nobody', 0)
-SET IDENTITY_INSERT Employees OFF;  
-GO
+INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
+VALUES('nobody','nobody',1)
 
 INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
-VALUES('shelfa','shelfa',3)
+VALUES('shelfa','shelfa',4)
 
 INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
-VALUES('shelfb','shelfb',3)
+VALUES('shelfb','shelfb',4)
 
 INSERT INTO Employees(EmployeeLoginName,EmployeePassword,EmployeeRole)
-VALUES('service','service',4)
+VALUES('service','service',5)
 GO
 
 
 
 --產品代碼 產品名子 產品說明 類別ID 產品圖片位子 產品數量 產品單位 產品價格
 
-SET IDENTITY_INSERT Products ON;  
-GO
-INSERT INTO Products(ProductID , ProductCode, ProductName, ProductDescription, CategoryID)
-VALUES(0, 'dummy', 'dummy product', 'use as a default value', 0)
-SET IDENTITY_INSERT Products OFF;  
-GO
-
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('Cam10', N'磁性廣角鏡頭', N'強力的磁性底盤，可以吸附於各種角度，隨鏡頭附贈吸盤，提供更多元的安裝方式',1,'C:\img',10, N'台',250)
+VALUES('dummy', N'dummy product', N'use as a default value',1,'',0, N'',0)
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('HumiTemp01', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',2,'C:\img',15, N'個',100)
+VALUES('Cam10', N'磁性廣角鏡頭', N'強力的磁性底盤，可以吸附於各種角度，隨鏡頭附贈吸盤，提供更多元的安裝方式',2,'C:\img',10, N'台',250)
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('Feeder01', N'小型動物自動餵食器', N'擁有定時功能，適合倉鼠等小型動物。',3,'C:\img',20, N'組',180)
+VALUES('HumiTemp01', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',3,'C:\img',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('Feeder01', N'小型動物自動餵食器', N'擁有定時功能，適合倉鼠等小型動物。',4,'C:\img',20, N'組',180)
 GO
 
 --顧客ID 員工ID 產品ID 意見標題 內容 狀況 時間
@@ -320,7 +287,7 @@ VALUES(3, N'要求退貨?', N'不好意思，我買錯商品，想要退貨，�
 GO
 
 INSERT INTO Opinions(CustomerID, EmployeeID, OpinionTitle, OpinionContent, OpinionDateTime, OpinionStatus, OpinionFeedback, OpinionFeedbackTime)
-VALUES(4, 3, N'已回答範例', N'我想要退貨，請問要怎麼退？', '20180827 16:00', 1, N'謝謝您購買本公司產品，在本公司網站的最下方有FAQ，裏面第1項有提供相關訊息，謝謝您。', '20180828 09:30')
+VALUES(4, 4, N'已回答範例', N'我想要退貨，請問要怎麼退？', '20180827 16:00', 1, N'謝謝您購買本公司產品，在本公司網站的最下方有FAQ，裏面第1項有提供相關訊息，謝謝您。', '20180828 09:30')
 GO
 
 
