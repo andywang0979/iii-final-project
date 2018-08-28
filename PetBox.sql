@@ -43,11 +43,11 @@ GO
 
 CREATE TABLE Products (
     ProductID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    ProductCode VARCHAR(10),
+    ProductCode VARCHAR(100),
     ProductName NVARCHAR(100),
 	ProductDescription NVARCHAR(500),
 	CategoryID INT NOT NULL,
-	ProductImageLocation VARCHAR(255),
+	ProductImageLocation VARCHAR(250),
 	ProductQuantity INT,
 	ProductUnit NVARCHAR(50),
 	ProductPrice INT
