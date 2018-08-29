@@ -43,7 +43,8 @@ GO
 
 CREATE TABLE Products (
     ProductID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    ProductCode VARCHAR(100),
+    ProductCode VARCHAR(100) NOT NULL,
+    CONSTRAINT AK_ProductCode UNIQUE(ProductCode),
     ProductName NVARCHAR(100),
 	ProductDescription NVARCHAR(500),
 	CategoryID INT NOT NULL,
@@ -88,6 +89,7 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE OrderDetails (
+    OrderDetailID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     OrderID INT NOT NULL,
 	ProductID INT NOT NULL,
 	Quantity INT NOT NULL,
@@ -95,6 +97,33 @@ CREATE TABLE OrderDetails (
 );
 
 
+CREATE TABLE OptionalItemImages (
+    OptionalItemImageID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    ProductID INT NOT NULL,
+    ProductCode VARCHAR(100) NOT NULL,
+    OptionalItemImageLocation VARCHAR(250),
+    OptionalItemImageWidth INT,
+    OptionalItemImageTop INT,
+    OptionalItemImageLeft INT
+);
+
+ALTER TABLE OptionalItemImages
+ADD CONSTRAINT FK_OptionalItemImages_Products_ID FOREIGN KEY (ProductID)
+    REFERENCES Products (ProductID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+;
+GO
+
+--because it will cause may cause cycles or multiple cascade paths. set `NO ACTION` here
+
+ALTER TABLE OptionalItemImages
+ADD CONSTRAINT FK_OptionalItemImages_Products_ProductCode FOREIGN KEY (ProductCode)
+    REFERENCES Products (ProductCode)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+;
+GO
 
 -- create forign key
 
