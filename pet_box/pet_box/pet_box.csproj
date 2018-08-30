@@ -166,6 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +229,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Sale\Shelf.cshtml" />
+    <Content Include="Views\Sale\AddItem.cshtml" />
+    <Content Include="Views\Sale\DeleteItem.cshtml" />
+    <Content Include="Views\Sale\EditItem.cshtml" />
+    <Content Include="Views\Service\Management.cshtml" />
+    <Content Include="Views\Service\Workdistinction.cshtml" />
+    <Content Include="Views\Service\Customerservice.cshtml" />
+    <Content Include="Views\Service\Customerservice2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
