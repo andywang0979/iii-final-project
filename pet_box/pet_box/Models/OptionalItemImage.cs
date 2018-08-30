@@ -12,15 +12,16 @@ namespace pet_box.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class OptionalItemImage
     {
-        public int OrderDetailID { get; set; }
-        public int OrderID { get; set; }
+        public int OptionalItemImageID { get; set; }
         public int ProductID { get; set; }
-        public int Quantity { get; set; }
-        public Nullable<float> Discount { get; set; }
+        public string OptionalItemImageLocation { get; set; }
+        public Nullable<int> OptionalItemImageWidth { get; set; }
+        public Nullable<int> OptionalItemImageTop { get; set; }
+        public Nullable<int> OptionalItemImageLeft { get; set; }
+        public Nullable<int> OptionalItemImageZ { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }
 }

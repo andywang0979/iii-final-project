@@ -18,6 +18,7 @@ namespace pet_box.Models
         public Product()
         {
             this.Opinions = new HashSet<Opinion>();
+            this.OptionalItemImages = new HashSet<OptionalItemImage>();
             this.OrderDetails = new HashSet<OrderDetail>();
         }
     
@@ -34,6 +35,8 @@ namespace pet_box.Models
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Opinion> Opinions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OptionalItemImage> OptionalItemImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

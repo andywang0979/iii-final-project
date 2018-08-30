@@ -13,10 +13,10 @@ namespace pet_box.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PetBoxEntities : DbContext
+    public partial class PetBoxEntities3 : DbContext
     {
-        public PetBoxEntities()
-            : base("name=PetBoxEntities")
+        public PetBoxEntities3()
+            : base("name=PetBoxEntities3")
         {
         }
     
@@ -29,9 +29,10 @@ namespace pet_box.Models
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Opinion> Opinions { get; set; }
+        public virtual DbSet<OptionalItemImage> OptionalItemImages { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

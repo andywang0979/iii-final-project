@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PetBoxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PetBoxMode3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -53,14 +53,23 @@
           <Property Name="OpinionFeedback" Type="nvarchar" MaxLength="1000" />
           <Property Name="OpinionFeedbackTime" Type="char" MaxLength="16" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OptionalItemImages">
+          <Key>
+            <PropertyRef Name="OptionalItemImageID" />
+          </Key>
+          <Property Name="OptionalItemImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="OptionalItemImageLocation" Type="varchar" MaxLength="250" />
+          <Property Name="OptionalItemImageWidth" Type="int" />
+          <Property Name="OptionalItemImageTop" Type="int" />
+          <Property Name="OptionalItemImageLeft" Type="int" />
+          <Property Name="OptionalItemImageZ" Type="int" />
+        </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
-            <PropertyRef Name="OrderID" />
-            <PropertyRef Name="ProductID" />
-            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="OrderDetailID" />
           </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
@@ -82,7 +91,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductCode" Type="varchar" MaxLength="100" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
           <Property Name="ProductDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
@@ -161,6 +170,20 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OptionalItemImages_Products_ID">
+          <End Role="Products" Type="Self.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OptionalItemImages" Type="Self.OptionalItemImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OptionalItemImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderDetails_Orders">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -217,22 +240,16 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PetBoxModelStoreContainer">
+        <EntityContainer Name="PetBoxMode3StoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Opinions" EntityType="Self.Opinions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OptionalItemImages" EntityType="Self.OptionalItemImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [OrderDetails].[OrderID] AS [OrderID], 
-    [OrderDetails].[ProductID] AS [ProductID], 
-    [OrderDetails].[Quantity] AS [Quantity], 
-    [OrderDetails].[Discount] AS [Discount]
-    FROM [dbo].[OrderDetails] AS [OrderDetails]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Customers_UserRoles" Association="Self.FK_Customers_UserRoles">
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="Customers" EntitySet="Customers" />
@@ -252,6 +269,10 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
           <AssociationSet Name="FK_Opinions_Products" Association="Self.FK_Opinions_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Opinions" EntitySet="Opinions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OptionalItemImages_Products_ID" Association="Self.FK_OptionalItemImages_Products_ID">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OptionalItemImages" EntitySet="OptionalItemImages" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
             <End Role="Orders" EntitySet="Orders" />
@@ -274,7 +295,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PetBoxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PetBoxMode3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -332,6 +353,31 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
           <NavigationProperty Name="Employee" Relationship="Self.FK_Opinions_Employees" FromRole="Opinions" ToRole="Employees" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Opinions_Products" FromRole="Opinions" ToRole="Products" />
         </EntityType>
+        <EntityType Name="OptionalItemImage">
+          <Key>
+            <PropertyRef Name="OptionalItemImageID" />
+          </Key>
+          <Property Name="OptionalItemImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="OptionalItemImageLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OptionalItemImageWidth" Type="Int32" />
+          <Property Name="OptionalItemImageTop" Type="Int32" />
+          <Property Name="OptionalItemImageLeft" Type="Int32" />
+          <Property Name="OptionalItemImageZ" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OptionalItemImages_Products_ID" FromRole="OptionalItemImages" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Single" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderID" />
@@ -350,7 +396,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
@@ -360,6 +406,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
           <Property Name="ProductPrice" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="Opinions" Relationship="Self.FK_Opinions_Products" FromRole="Products" ToRole="Opinions" />
+          <NavigationProperty Name="OptionalItemImages" Relationship="Self.FK_OptionalItemImages_Products_ID" FromRole="Products" ToRole="OptionalItemImages" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Products" FromRole="Products" ToRole="OrderDetails" />
         </EntityType>
         <EntityType Name="UserRole">
@@ -371,19 +418,6 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
           <Property Name="UserRoleDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_UserRoles" FromRole="UserRoles" ToRole="Customers" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_UserRoles" FromRole="UserRoles" ToRole="Employees" />
-        </EntityType>
-        <EntityType Name="OrderDetail">
-          <Key>
-            <PropertyRef Name="OrderID" />
-            <PropertyRef Name="ProductID" />
-            <PropertyRef Name="Quantity" />
-          </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Discount" Type="Single" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
         </EntityType>
         <Association Name="FK_Products_Categories">
           <End Role="Categories" Type="Self.Category" Multiplicity="1">
@@ -475,6 +509,20 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OptionalItemImages_Products_ID">
+          <End Role="Products" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OptionalItemImages" Type="Self.OptionalItemImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OptionalItemImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderDetails_Orders">
           <End Role="Orders" Type="Self.Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -503,15 +551,16 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PetBoxEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PetBoxEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Opinions" EntityType="Self.Opinion" />
+          <EntitySet Name="OptionalItemImages" EntityType="Self.OptionalItemImage" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
@@ -540,6 +589,10 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             <End Role="Products" EntitySet="Products" />
             <End Role="Opinions" EntitySet="Opinions" />
           </AssociationSet>
+          <AssociationSet Name="FK_OptionalItemImages_Products_ID" Association="Self.FK_OptionalItemImages_Products_ID">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OptionalItemImages" EntitySet="OptionalItemImages" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
@@ -554,9 +607,9 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PetBoxModelStoreContainer" CdmEntityContainer="PetBoxEntities">
+        <EntityContainerMapping StorageEntityContainer="PetBoxMode3StoreContainer" CdmEntityContainer="PetBoxEntities3">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="PetBoxModel.Category">
+            <EntityTypeMapping TypeName="PetBoxMode3.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -566,7 +619,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="PetBoxModel.Customer">
+            <EntityTypeMapping TypeName="PetBoxMode3.Customer">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="CustomerLoginName" ColumnName="CustomerLoginName" />
@@ -582,7 +635,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="PetBoxModel.Employee">
+            <EntityTypeMapping TypeName="PetBoxMode3.Employee">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="EmployeeLoginName" ColumnName="EmployeeLoginName" />
@@ -592,7 +645,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Opinions">
-            <EntityTypeMapping TypeName="PetBoxModel.Opinion">
+            <EntityTypeMapping TypeName="PetBoxMode3.Opinion">
               <MappingFragment StoreEntitySet="Opinions">
                 <ScalarProperty Name="OpinionID" ColumnName="OpinionID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -607,8 +660,32 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OptionalItemImages">
+            <EntityTypeMapping TypeName="PetBoxMode3.OptionalItemImage">
+              <MappingFragment StoreEntitySet="OptionalItemImages">
+                <ScalarProperty Name="OptionalItemImageID" ColumnName="OptionalItemImageID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OptionalItemImageLocation" ColumnName="OptionalItemImageLocation" />
+                <ScalarProperty Name="OptionalItemImageWidth" ColumnName="OptionalItemImageWidth" />
+                <ScalarProperty Name="OptionalItemImageTop" ColumnName="OptionalItemImageTop" />
+                <ScalarProperty Name="OptionalItemImageLeft" ColumnName="OptionalItemImageLeft" />
+                <ScalarProperty Name="OptionalItemImageZ" ColumnName="OptionalItemImageZ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="PetBoxMode3.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="PetBoxModel.Order">
+            <EntityTypeMapping TypeName="PetBoxMode3.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -620,7 +697,7 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="PetBoxModel.Product">
+            <EntityTypeMapping TypeName="PetBoxMode3.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
@@ -635,21 +712,11 @@ warning 6002: The table/view 'PetBox.dbo.OrderDetails' does not have a primary k
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="PetBoxModel.UserRole">
+            <EntityTypeMapping TypeName="PetBoxMode3.UserRole">
               <MappingFragment StoreEntitySet="UserRoles">
                 <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
                 <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />
                 <ScalarProperty Name="UserRoleDescription" ColumnName="UserRoleDescription" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="PetBoxModel.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

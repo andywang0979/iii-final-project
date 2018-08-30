@@ -97,10 +97,12 @@ CREATE TABLE OrderDetails (
 );
 
 
+-- entity framework 6.x does not support use foriegn key refer to 
+-- a UNIQUE column in another table. So no ProductCode column here.
+
 CREATE TABLE OptionalItemImages (
     OptionalItemImageID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     ProductID INT NOT NULL,
-    ProductCode VARCHAR(100) NOT NULL,
     OptionalItemImageLocation VARCHAR(250),
     OptionalItemImageWidth INT,
     OptionalItemImageTop INT,
@@ -201,13 +203,13 @@ GO
 
 --because it will cause may cause cycles or multiple cascade paths. set `NO ACTION` here
 
-ALTER TABLE OptionalItemImages
-ADD CONSTRAINT FK_OptionalItemImages_Products_ProductCode FOREIGN KEY (ProductCode)
-    REFERENCES Products (ProductCode)
-	ON DELETE NO ACTION
-	ON UPDATE NO ACTION
-;
-GO
+--ALTER TABLE OptionalItemImages
+--ADD CONSTRAINT FK_OptionalItemImages_Products_ProductCode FOREIGN KEY (ProductCode)
+--    REFERENCES Products (ProductCode)
+--	ON DELETE NO ACTION
+--	ON UPDATE NO ACTION
+--;
+--GO
 
 
 
@@ -376,13 +378,13 @@ GO
 
 
 
-INSERT INTO OptionalItemImages(ProductID, ProductCode, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
-VALUES(2, 'cam_wide', '/product_images/optional_items/cam_wide.png', 90, 70, 250 )
+INSERT INTO OptionalItemImages(ProductID, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
+VALUES(2, '/product_images/optional_items/cam_wide.png', 90, 70, 250 )
 
-INSERT INTO OptionalItemImages(ProductID, ProductCode, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
-VALUES(5, 'sensor_humi_temp', '/product_images/optional_items/sensor_humi_temp.png', 30, 50, 30 )
+INSERT INTO OptionalItemImages(ProductID, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
+VALUES(5, '/product_images/optional_items/sensor_humi_temp.png', 30, 50, 30 )
 
-INSERT INTO OptionalItemImages(ProductID, ProductCode, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
-VALUES(7, 'feeder_small', '/product_images/optional_items/feeder_small.png', 90, 140, 190 )
+INSERT INTO OptionalItemImages(ProductID, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
+VALUES(7, '/product_images/optional_items/feeder_small.png', 90, 140, 190 )
 
 GO
