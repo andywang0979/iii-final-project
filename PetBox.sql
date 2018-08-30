@@ -43,11 +43,12 @@ GO
 
 CREATE TABLE Products (
     ProductID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    ProductCode VARCHAR(10),
+    ProductCode VARCHAR(100) NOT NULL,
+    CONSTRAINT AK_ProductCode UNIQUE(ProductCode),
     ProductName NVARCHAR(100),
 	ProductDescription NVARCHAR(500),
 	CategoryID INT NOT NULL,
-	ProductImageLocation VARCHAR(255),
+	ProductImageLocation VARCHAR(250),
 	ProductQuantity INT,
 	ProductUnit NVARCHAR(50),
 	ProductPrice INT
@@ -88,6 +89,7 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE OrderDetails (
+    OrderDetailID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     OrderID INT NOT NULL,
 	ProductID INT NOT NULL,
 	Quantity INT NOT NULL,
@@ -95,6 +97,16 @@ CREATE TABLE OrderDetails (
 );
 
 
+CREATE TABLE OptionalItemImages (
+    OptionalItemImageID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    ProductID INT NOT NULL,
+    ProductCode VARCHAR(100) NOT NULL,
+    OptionalItemImageLocation VARCHAR(250),
+    OptionalItemImageWidth INT,
+    OptionalItemImageTop INT,
+    OptionalItemImageLeft INT,
+    OptionalItemImageZ INT DEFAULT 2
+);
 
 -- create forign key
 
@@ -178,6 +190,24 @@ ADD CONSTRAINT FK_OrderDetails_Orders FOREIGN KEY (OrderID)
 ;
 GO
 
+
+ALTER TABLE OptionalItemImages
+ADD CONSTRAINT FK_OptionalItemImages_Products_ID FOREIGN KEY (ProductID)
+    REFERENCES Products (ProductID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+;
+GO
+
+--because it will cause may cause cycles or multiple cascade paths. set `NO ACTION` here
+
+ALTER TABLE OptionalItemImages
+ADD CONSTRAINT FK_OptionalItemImages_Products_ProductCode FOREIGN KEY (ProductCode)
+    REFERENCES Products (ProductCode)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+;
+GO
 
 
 
@@ -266,13 +296,31 @@ INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,Produ
 VALUES('dummy', N'dummy product', N'use as a default value',1,'',0, N'',0)
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('Cam10', N'磁性廣角鏡頭', N'強力的磁性底盤，可以吸附於各種角度，隨鏡頭附贈吸盤，提供更多元的安裝方式',2,'C:\img',10, N'台',250)
+VALUES('cam_wide', N'磁性廣角鏡頭', N'強力的磁性底盤，可以吸附於各種角度，隨鏡頭附贈吸盤，提供更多元的安裝方式',2,'/product_images/site_product/cam_wide.png',10, N'台',250)
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('HumiTemp01', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',3,'C:\img',15, N'個',100)
+VALUES('cam_Normal', N'普通鏡頭', N'鏡頭附贈吸盤，可安裝於平滑表面',2,'C:\img',10, N'台',250)
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('Feeder01', N'小型動物自動餵食器', N'擁有定時功能，適合倉鼠等小型動物。',4,'C:\img',20, N'組',180)
+VALUES('cam_rf', N'紅外線鏡頭', N'可於夜晚時清楚地拍攝物體',2,'C:\img',10, N'台',250)
+
+
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_humi_temp', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',3,'/product_images/site_product/sensor_humi_temp.png',15, N'個',100)
+
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_weight', N'壓力感測', N'可以感受五公斤以下重量',3,'C:\img',15, N'個',100)
+
+
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('feeder_small', N'小型動物自動餵食器', N'擁有定時功能，適合一隻倉鼠等小型動物。',4,'/product_images/site_product/feeder_small.png',20, N'組',180)
+GO
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('feeder_median', N'中型動物自動餵食器', N'擁有定時功能，適合兩隻左右倉鼠。',4,'C:\img',20, N'組',180)
 GO
 
 --顧客ID 員工ID 產品ID 意見標題 內容 狀況 時間
@@ -328,15 +376,13 @@ GO
 
 
 
+INSERT INTO OptionalItemImages(ProductID, ProductCode, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
+VALUES(2, 'cam_wide', '/product_images/optional_items/cam_wide.png', 90, 70, 250 )
 
---測試刪除表中資料
---DELETE FROM Customers
---WHERE CustomerID = 1
---GO
+INSERT INTO OptionalItemImages(ProductID, ProductCode, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
+VALUES(5, 'sensor_humi_temp', '/product_images/optional_items/sensor_humi_temp.png', 30, 50, 30 )
 
---測試新增欄位 刪除欄位
---ALTER TABLE Customers ADD ABC varchar(10)
---GO
+INSERT INTO OptionalItemImages(ProductID, ProductCode, OptionalItemImageLocation, OptionalItemImageWidth ,OptionalItemImageTop, OptionalItemImageLeft)
+VALUES(7, 'feeder_small', '/product_images/optional_items/feeder_small.png', 90, 140, 190 )
 
---alter table Customers drop column ABC
---GO
+GO
