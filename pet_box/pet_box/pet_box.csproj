@@ -146,6 +146,17 @@
     <Content Include="product_images\optional_items\cube.jpg" />
     <Content Include="product_images\optional_items\feeder_small.png" />
     <Content Include="product_images\optional_items\sensor_humi_temp.png" />
+    <Content Include="product_images\site_product\cover\a.jpg" />
+    <Content Include="product_images\site_product\cover\b.jpg" />
+    <Content Include="product_images\site_product\cover\c.jpg" />
+    <Content Include="product_images\site_product\index2\11.jpg" />
+    <Content Include="product_images\site_product\index2\12.jpg" />
+    <Content Include="product_images\site_product\index3\21.jpg" />
+    <Content Include="product_images\site_product\index3\22.jpg" />
+    <Content Include="product_images\site_product\index3\23.jpg" />
+    <Content Include="product_images\site_product\index\1.png" />
+    <Content Include="product_images\site_product\index\2.jpg" />
+    <Content Include="product_images\site_product\index\3.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -166,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -237,6 +249,16 @@
     <Content Include="Views\Service\Workdistinction.cshtml" />
     <Content Include="Views\Service\Customerservice.cshtml" />
     <Content Include="Views\Service\Customerservice2.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\Customer\Index2.cshtml" />
+    <Content Include="Views\Customer\Index3.cshtml" />
+    <Content Include="Views\Customer\OrderCompleted.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\Customer\SignOut.cshtml" />
+    <Content Include="Views\Customer\SignOut1.cshtml" />
+    <Content Include="Views\Customer\SignOut2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,7 +10,7 @@
 </head>
 <body>
     @*top*@
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:blanchedalmond">
+    <div class="navbar navbar-default navbar-fixed-top" style="background-color:blanchedalmond">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,12 +22,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("註冊", "Register", "Home")</li>
-                    <li>@Html.ActionLink("登入", "Login", "Home")</li>
 
-                    @*<li><a href="/Home/Index">登入</a></li>
-                        <li><a href="/Home/Page2">註冊</a></li>
-                        <li><a href="/Home/Page3">P</a></li>*@
+                    <li>@Html.ActionLink("產品列表", "Index", "Home")</li>
+                    <li>@Html.ActionLink("購物車", "ShoppingCar", "Home")</li>
+                    <li>@Html.ActionLink("訂單", "OrderList", "Home")</li>
+                    <li>@Html.ActionLink("登出", "Logout", "Home")</li>
+                    <li><a href="#">@Session["Welcome"]</a></li>
+
+                    @*<li><a href="/Home/Index">Welcome! Andy 登出</a></li>
+                                    <li><a href="/Home/Index">登入</a></li>
+                        <li><a href="/Home/Page2">註冊</a></li>*@
+                    @*<li><a href="/Home/Page3">P</a></li>*@
 
 
                 </ul>
