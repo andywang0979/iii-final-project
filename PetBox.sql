@@ -257,6 +257,11 @@ GO
 --帳號 姓名 信箱 密碼 手機 地址 郵遞區號 國家
 
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry, CustomerRole)
+VALUES('customer-nonmember', N'','','customer-nonmemberPass','', N'', '', '', 2)
+
+
+
+INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry, CustomerRole)
 VALUES('dung', N'鄧元','abc@yahoo.com','dungPass','0912987445', N'台中市南屯區公益路二段51號', '123', 'TW', 3)
 
 INSERT INTO Customers(CustomerLoginName,CustomerName,CustomerEmail,CustomerPassword,CustomerMobilePhone,CustomerAddress,CustomerPostalCode,CustomerCountry,CustomerRole)
