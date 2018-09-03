@@ -1,187 +1,138 @@
 ﻿@{
-    ViewBag.Title = "Index2";
+    ViewBag.Title = "Login";
 }
 
-<!-- Page Content -->
+<script>
+
+    $(function () {
+        $('.button-checkbox').each(function () {
+            var $widget = $(this),
+                $button = $widget.find('button'),
+                $checkbox = $widget.find('input:checkbox'),
+                color = $button.data('color'),
+                settings = {
+                    on: {
+                        icon: 'glyphicon glyphicon-check'
+                    },
+                    off: {
+                        icon: 'glyphicon glyphicon-unchecked'
+                    }
+                };
+
+            $button.on('click', function () {
+                $checkbox.prop('checked', !$checkbox.is(':checked'));
+                $checkbox.triggerHandler('change');
+                updateDisplay();
+            });
+
+            $checkbox.on('change', function () {
+                updateDisplay();
+            });
+
+            function updateDisplay() {
+                var isChecked = $checkbox.is(':checked');
+                // Set the button's state
+                $button.data('state', (isChecked) ? "on" : "off");
+
+                // Set the button's icon
+                $button.find('.state-icon')
+                    .removeClass()
+                    .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+                // Update the button's color
+                if (isChecked) {
+                    $button
+                        .removeClass('btn-default')
+                        .addClass('btn-' + color + ' active');
+                }
+                else {
+                    $button
+                        .removeClass('btn-' + color + ' active')
+                        .addClass('btn-default');
+                }
+            }
+            function init() {
+                updateDisplay();
+                // Inject the icon if applicable
+                if ($button.find('.state-icon').length == 0) {
+                    $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+                }
+            }
+            init();
+        });
+    });
+
+</script>
+
+<style>
+    .colorgraph {
+        height: 5px;
+        border-top: 0;
+        background: #c4e17f;
+        border-radius: 5px;
+        background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    }
+</style>
+
 <div class="container">
-
-    <div class="row">
-
-        <div class="col-md-3">
-            <p class="lead">智慧寵物屋選購系統</p>
-            <div class="list-group">
-                @*<a href="#" class="list-group-item"> 監控系統</a>
-                    <a href="#" class="list-group-item">定時餵送飼料系統</a>
-                    <a href="#" class="list-group-item">溫濕度控制系統</a>*@
-                <div style="background-color:aquamarine"><a href="http://localhost:49732/Customer/Index#" @*class="list-group-item"*@> 監控系統</a> </div>
-                <div style="background-color:aliceblue"><a href="http://localhost:49732/Customer/Index2" @*class="list-group-item"*@> 定時餵送飼料系統</a> </div>
-                <div style="background-color:khaki"><a href="http://localhost:49732/Customer/Index3" @*class="list-group-item"*@> 溫濕度控制系統</a> </div>
-            </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form role="form" method="post">
+                <fieldset>
+                    <h2>登入</h2>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        <input type="email" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="CustomerPassword" id="CustomerPassword" class="form-control input-lg" placeholder="Password">
+                    </div>
+                    <div><h4 style="color:red">@ViewBag.Message</h4></div>
+                    <span class="button-checkbox">
+                        @*<button type="button" class="btn" data-color="info">Remember Me</button>*@
+                        <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+                        <a href="" class="btn btn-link pull-right">Forgot Password?</a>
+                    </span>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="登入">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <a href="" class="btn btn-lg btn-primary btn-block">註冊</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-
-        <div class="col-md-9">
-
-            <div class="row carousel-holder">
-
-                <div class="col-md-12">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                @*<img class="slide-image" src="~/image/a.jpg" alt="" style="width:800;height:300;">*@
-                                <img src="~/product_images/site_product/cover/a.jpg" alt="" style="width:825px;height:300px;">
-                            </div>
-                            <div class="item">
-                                @*<img class="slide-image" src="http://placehold.it/800x300" alt="">*@
-                                @*<img class="slide-image" src="~/image/b.jpg" alt="" style="width:800;height:300;">*@
-                                <img src="~/product_images/site_product/cover/b.jpg" alt="" style="width:825px;height:300px;">
-
-                            </div>
-                            <div class="item">
-                                @*<img class="slide-image" src="http://placehold.it/800x300" alt="">*@
-                                <img src="~/product_images/site_product/cover/c.jpg" alt="" style="width:825px;height:300px;">
-
-                            </div>
-                        </div>
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/product_images/site_product/index2/11.jpg" alt="" style="width:325px;height:110px;">
-                        <div class="caption">
-                            <h4 class="pull-right">$83.99</h4>
-                            <h4>
-                                <a href="#">複合式定時器</a>
-                            </h4>
-                            <p>時間顯示與定時</p>
-                        </div>
-                        <div class="ratings">
-                            @*<p class="pull-right">15 reviews</p>*@
-                            <p>
-                                <button type="button" class="btn btn-primary">購買</button>
-                                @*<button type="button" class="btn btn-primary">加入購物車</button>*@
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/product_images/site_product/index2/12.jpg" alt="" style="width:325px;height:110px;">
-                        <div class="caption">
-                            <h4 class="pull-right">$64.99</h4>
-                            <h4>
-                                <a href="#">自動飼料餵食器</a>
-                            </h4>
-                            <p>儲料餵料功能</p>
-                        </div>
-                        <div class="ratings">
-                            @*<p class="pull-right">12 reviews</p>*@
-                            <p>
-                                <button type="button" class="btn btn-primary">購買</button>
-                                @*<button type="button" class="btn btn-primary">加入購物車</button>*@
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                @*<div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$84.99</h4>
-                                <h4>
-                                    <a href="#">Fourth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4>
-                                    <a href="#">Fifth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4>
-                            <a href="#">Like this template?</a>
-                        </h4>
-                        <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
-                    </div>*@
-
-            </div>
-
-        </div>
-
     </div>
-
 </div>
-<!-- /.container -->
 
-<div class="container">
 
-    <hr>
 
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+
+@*<div class="container">
+        <h2>登入</h2>
+        <form action="/action_page.php">
+
+            <div class="form-group">
+                <label for="name">姓名:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
             </div>
-        </div>
-    </footer>
-
-</div>
-<!-- /.container -->
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+            <div class="form-group">
+                <label for="email">信箱:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">密碼:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+            </div>
+            <div class="checkbox">
+                    <label><input type="checkbox" name="remember"> Remember me</label>
+                </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>*@

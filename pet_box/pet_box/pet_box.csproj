@@ -256,9 +256,6 @@
     <Content Include="Views\Customer\Index3.cshtml" />
     <Content Include="Views\Customer\OrderCompleted.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
-    <Content Include="Views\Customer\SignOut.cshtml" />
-    <Content Include="Views\Customer\SignOut1.cshtml" />
-    <Content Include="Views\Customer\SignOut2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
