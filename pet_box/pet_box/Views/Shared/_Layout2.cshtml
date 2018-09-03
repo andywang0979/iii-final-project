@@ -22,16 +22,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                
 
-                    <li>@Html.ActionLink("產品列表", "Index", "Home")</li>
-                    <li>@Html.ActionLink("購物車", "ShoppingCar", "Home")</li>
-                    <li>@Html.ActionLink("訂單", "OrderList", "Home")</li>
-                    <li>@Html.ActionLink("登出", "Logout", "Home")</li>
-                    <li><a href="#">@Session["Welcome"]</a></li>
+                    @*格式(1.顯示的名字 || 2.控制器裡面的Action || 3.控制器名稱) *@
+                    <li>@Html.ActionLink("客製化", "Index", "Customer")</li>
+                    <li>@Html.ActionLink("產品列表", "Index", "Customer")</li>
+                    <li>@Html.ActionLink("購物車", "ShoppingCar", "Customer")</li>
+                    <li>@Html.ActionLink("訂單", "OrderCompleted", "Customer")</li>
+                    <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
+
 
                     @*<li><a href="/Home/Index">Welcome! Andy 登出</a></li>
-                                    <li><a href="/Home/Index">登入</a></li>
-                        <li><a href="/Home/Page2">註冊</a></li>*@
+                        <li><a href="/Home/Index">登入</a></li>
+            <li><a href="/Home/Page2">註冊</a></li>*@
                     @*<li><a href="/Home/Page3">P</a></li>*@
 
 
@@ -39,6 +42,10 @@
             </div>
         </div>
     </div>
+
+        <a href="#">@Session["Welcome"]</a>
+        <a href="#">@Session["CustomerID"]</a>
+
 
     <div class="container body-content">
         @RenderBody()
