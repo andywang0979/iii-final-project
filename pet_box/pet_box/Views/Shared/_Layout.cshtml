@@ -22,8 +22,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+
+                    <li>@Html.ActionLink("購物車", "ShoppingCar", "Customer")</li>
                     <li>@Html.ActionLink("註冊", "Register", "Customer")</li>
                     <li>@Html.ActionLink("登入", "Login", "Customer")</li>
+                    <li><a href="#">@Session["CustomerID"]</a> </li>
 
                     @*<li><a href="/Home/Index">登入</a></li>
                         <li><a href="/Home/Page2">註冊</a></li>
@@ -34,8 +37,6 @@
             </div>
         </div>
     </div>
-
-    <a href="#">@Session["CustomerID"]</a>
 
     <div class="container body-content">
         @RenderBody()

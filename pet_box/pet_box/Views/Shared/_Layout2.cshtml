@@ -30,7 +30,8 @@
                     <li>@Html.ActionLink("購物車", "ShoppingCar", "Customer")</li>
                     <li>@Html.ActionLink("訂單", "OrderCompleted", "Customer")</li>
                     <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
-
+                    <li><a href="#">@Session["Welcome"]</a> </li> 
+                    <li><a href="#">@Session["CustomerID"]</a> </li>
 
                     @*<li><a href="/Home/Index">Welcome! Andy 登出</a></li>
                         <li><a href="/Home/Index">登入</a></li>
@@ -43,8 +44,7 @@
         </div>
     </div>
 
-        <a href="#">@Session["Welcome"]</a>
-        <a href="#">@Session["CustomerID"]</a>
+        
 
 
     <div class="container body-content">
