@@ -178,6 +178,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\OptionalItemController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>PetBoxModel3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryProductModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>PetBoxModel3.tt</DependentUpon>
     </Compile>
@@ -227,6 +229,7 @@
       <DependentUpon>PetBoxModel3.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\OptionalItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -256,6 +259,7 @@
     <Content Include="Views\Customer\Index3.cshtml" />
     <Content Include="Views\Customer\OrderCompleted.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\OptionalItem\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
