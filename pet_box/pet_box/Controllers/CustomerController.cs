@@ -92,14 +92,10 @@ namespace pet_box.Controllers
                 ViewBag.Message2 = "請填寫密碼";
                 return View("Register", cus);
             }
-            if(cus.CustomerEmail != null)
-            {
-                ViewBag.Message3 = "信箱已重複";
-                return View("Register", cus);
-            }
+
             db.Customers.Add(cus);
             db.SaveChanges();
-            return RedirectToAction("Login",cus);
+            return RedirectToAction("Login");
         }
 
         public ActionResult OrderCompleted()
