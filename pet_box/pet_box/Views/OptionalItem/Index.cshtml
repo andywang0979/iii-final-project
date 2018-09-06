@@ -89,31 +89,31 @@
                                 <div class="col-sm-6">
                                     <fieldset>
 
-                                        <legend>@Model.CategoryProductModelDic["categoryId02"].CategoryName</legend>
-                                        @foreach (var item in Model.CategoryProductModelDic["categoryId02"].Products) {
-
-                                            <div>
-                                                <input type="checkbox"
-                                                       id=@item.ProductID
-                                                       name="boxItem"
-                                                       value=@item.ProductID
-                                                       data-productCode=@item.ProductCode
-                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                <label for="catFeader">@item.ProductName</label>
-                                            </div>
-                                        }
-
-
-                                    </fieldset>
-                                </div>
-                                <div class="col-sm-6"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <fieldset>
-
                                         <legend>@Model.CategoryProductModelDic["categoryId03"].CategoryName</legend>
-                                        @foreach (var item in @Model.CategoryProductModelDic["categoryId03"].Products) {
+                                        @foreach (var item in Model.CategoryProductModelDic["categoryId03"].Products) {
+
+                                            <div>
+                                                <input type="checkbox"
+                                                       id=@item.ProductID
+                                                       name="boxItem"
+                                                       value=@item.ProductID
+                                                       data-productCode=@item.ProductCode
+                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                <label for="catFeader">@item.ProductName</label>
+                                            </div>
+                                        }
+
+
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-6"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <fieldset>
+
+                                        <legend>@Model.CategoryProductModelDic["categoryId04"].CategoryName</legend>
+                                        @foreach (var item in @Model.CategoryProductModelDic["categoryId04"].Products) {
 
                                             <div>
                                                 <input type="checkbox"
@@ -133,8 +133,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <fieldset>
-                                        <legend>@Model.CategoryProductModelDic["categoryId04"].CategoryName</legend>
-                                        @foreach (var item in Model.CategoryProductModelDic["categoryId04"].Products) {
+                                        <legend>@Model.CategoryProductModelDic["categoryId05"].CategoryName</legend>
+                                        @foreach (var item in Model.CategoryProductModelDic["categoryId05"].Products) {
 
                                             <div>
                                                 <input type="checkbox"
@@ -160,8 +160,9 @@
                                 <div class="form-group">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-8">
+                                        <button id="button2id" name="okOrCancel" class="btn btn-info" value="continue"><span class="glyphicon glyphicon-arrow-left"></span> 回購物頁</button>
                                         <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確定</button>
-                                        <button id="button2id" name="okOrCancel" class="btn btn-danger" value="cancel">取消</button>
+                                        
                                     </div>
                                 </div>
 

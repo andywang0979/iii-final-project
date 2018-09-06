@@ -51,7 +51,7 @@ CREATE TABLE Products (
 	ProductImageLocation VARCHAR(250),
 	ProductQuantity INT,
 	ProductUnit NVARCHAR(50),
-	ProductPrice INT
+	ProductPrice MONEY NOT NULL
 ); 
 
 CREATE TABLE Categories (
@@ -93,6 +93,7 @@ CREATE TABLE OrderDetails (
     OrderID INT NOT NULL,
 	ProductID INT NOT NULL,
 	Quantity INT NOT NULL,
+	UnitPrice MONEY NOT NULL,
 	Discount REAL DEFAULT 0
 );
 
@@ -223,6 +224,10 @@ INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
 VALUES(N'dummy product category', N'for dummy products','C:\img')
 
 INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
+VALUES(N'寵物屋', N'各種大小，型式的寵物屋','C:\img')
+
+
+INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
 VALUES(N'鏡頭', N'各種監控用鏡頭，包含一般光線、近紅外線等等…','C:\img')
 
 INSERT INTO Categories(CategoryName,CategoryDescription,CategoryPictureLocation)
@@ -303,32 +308,38 @@ INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,Produ
 VALUES('dummy', N'dummy product', N'use as a default value',1,'',0, N'',0)
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('cam_wide', N'磁性廣角鏡頭', N'強力的磁性底盤，可以吸附於各種角度，隨鏡頭附贈吸盤，提供更多元的安裝方式',2,'/product_images/site_product/cam_wide.png',10, N'台',250)
-
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('cam_Normal', N'普通鏡頭', N'鏡頭附贈吸盤，可安裝於平滑表面',2,'C:\img',10, N'台',250)
-
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('cam_rf', N'紅外線鏡頭', N'可於夜晚時清楚地拍攝物體',2,'C:\img',10, N'台',250)
-
-
-
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('sensor_humi_temp', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',3,'/product_images/site_product/sensor_humi_temp.png',15, N'個',100)
-
-
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('sensor_weight', N'壓力感測', N'可以感受五公斤以下重量',3,'C:\img',15, N'個',100)
-
-
-
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('feeder_small', N'小型動物自動餵食器', N'擁有定時功能，適合一隻倉鼠等小型動物。',4,'/product_images/site_product/feeder_small.png',20, N'組',180)
+VALUES('box_small', N'小型動物專用透明寵物屋', N'適合敘利亞倉鼠等小型動物',2,'C:\img',20, N'組',180)
 GO
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('feeder_median', N'中型動物自動餵食器', N'擁有定時功能，適合兩隻左右倉鼠。',4,'C:\img',20, N'組',180)
+VALUES('cam_wide', N'磁性廣角鏡頭', N'強力的磁性底盤，可以吸附於各種角度，隨鏡頭附贈吸盤，提供更多元的安裝方式',3,'/product_images/site_product/cam_wide.png',10, N'台',250)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('cam_Normal', N'普通鏡頭', N'鏡頭附贈吸盤，可安裝於平滑表面',3,'C:\img',10, N'台',250)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('cam_rf', N'紅外線鏡頭', N'可於夜晚時清楚地拍攝物體',3,'C:\img',10, N'台',250)
+
+
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_humi_temp', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',4,'/product_images/site_product/sensor_humi_temp.png',15, N'個',100)
+
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_weight', N'壓力感測', N'可以感受五公斤以下重量',4,'C:\img',15, N'個',100)
+
+
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('feeder_small', N'小型動物自動餵食器', N'擁有定時功能，適合一隻倉鼠等小型動物。',5,'/product_images/site_product/feeder_small.png',20, N'組',180)
 GO
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('feeder_median', N'中型動物自動餵食器', N'擁有定時功能，適合兩隻左右倉鼠。',5,'C:\img',20, N'組',180)
+GO
+
+
 
 --顧客ID 員工ID 產品ID 意見標題 內容 狀況 時間
 INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
@@ -362,23 +373,23 @@ GO
 
 
 --訂單ID 產品ID 數量 折扣
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(1, 2, 2)
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(1, 3, 1)
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(1, 4, 3)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity, UnitPrice)
+VALUES(1, 2, 2, 200)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity, UnitPrice)
+VALUES(1, 3, 1, 200)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity, UnitPrice)
+VALUES(1, 4, 3, 200)
 
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(2, 3, 4)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity, UnitPrice)
+VALUES(2, 3, 4, 200)
 
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(3, 3, 1)
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(3, 4, 1)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity, UnitPrice)
+VALUES(3, 3, 1, 200)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity, UnitPrice)
+VALUES(3, 4, 1, 200)
 
-INSERT INTO OrderDetails(OrderID,ProductID,Quantity)
-VALUES(4, 2, 4)
+INSERT INTO OrderDetails(OrderID,ProductID,Quantity, UnitPrice)
+VALUES(4, 2, 4, 200)
 GO
 
 

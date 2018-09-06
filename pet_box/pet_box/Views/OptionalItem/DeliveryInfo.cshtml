@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "DeliveryInfo";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@model pet_box.Models.Customer
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+
+    <form class="form-horizontal" method="post">
+        <input type="hidden" name="CustomerID" value="@Model.CustomerID" />
+        <input id="CustomerID" name="CustomerID" type="hidden" value="@Model.CustomerID">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>收件人聯絡資訊</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <div class="col-md-4">
+                    <input id="textinput" name="CustomerName" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerName" required>
+                    <span class="help-block">姓名</span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <div class="col-md-4">
+                    <input id="textinput" name="CustomerAddress" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerAddress" required>
+                    <span class="help-block">地址</span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <div class="col-md-4">
+                    <input id="textinput" name="CustomerMobilePhone" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerMobilePhone" required>
+                    <span class="help-block">聯絡電話</span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <div class="col-md-4">
+                    <input id="textinput" name="CustomerEmail" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerEmail" required>
+                    <span class="help-block">電子郵件</span>
+                </div>
+            </div>
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="button1id">Double Button</label>
+                <div class="col-md-8">
+                    <button id="button2id" name="okOrCancel" class="btn btn-primary" value="backToshoppingCart" formnovalidate="formnovalidate"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</button>
+                    <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確認</button>
+
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+
+
+
+
+
+
+
+</body>
+
+

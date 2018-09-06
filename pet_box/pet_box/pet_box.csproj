@@ -132,15 +132,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\PetBoxModel3.Context.tt">
+    <Content Include="Models\PetBoxModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PetBoxModel3.edmx</DependentUpon>
-      <LastGenOutput>PetBoxModel3.Context.cs</LastGenOutput>
+      <DependentUpon>PetBoxModel.edmx</DependentUpon>
+      <LastGenOutput>PetBoxModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\PetBoxModel3.tt">
+    <Content Include="Models\PetBoxModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PetBoxModel3.edmx</DependentUpon>
-      <LastGenOutput>PetBoxModel3.cs</LastGenOutput>
+      <DependentUpon>PetBoxModel.edmx</DependentUpon>
+      <LastGenOutput>PetBoxModel.cs</LastGenOutput>
     </Content>
     <Content Include="product_images\optional_items\cam_wide.png" />
     <Content Include="product_images\optional_items\cube.jpg" />
@@ -162,12 +162,12 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="product_images\site_product\README.md" />
-    <EntityDeploy Include="Models\PetBoxModel3.edmx">
+    <EntityDeploy Include="Models\PetBoxModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PetBoxModel3.Designer.cs</LastGenOutput>
+      <LastGenOutput>PetBoxModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\PetBoxModel3.edmx.diagram">
-      <DependentUpon>PetBoxModel3.edmx</DependentUpon>
+    <Content Include="Models\PetBoxModel.edmx.diagram">
+      <DependentUpon>PetBoxModel.edmx</DependentUpon>
     </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -186,50 +186,55 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryProductModel.cs" />
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Opinion.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OptionalItemImage.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderDetail.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PetBoxModel3.Context.cs">
+    <Compile Include="Models\PartialListItemModel.cs" />
+    <Compile Include="Models\PartialListModel.cs" />
+    <Compile Include="Models\PetBoxModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PetBoxModel3.Context.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PetBoxModel3.cs">
+    <Compile Include="Models\PetBoxModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PetBoxModel3.Designer.cs">
+    <Compile Include="Models\PetBoxModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PetBoxModel3.edmx</DependentUpon>
+      <DependentUpon>PetBoxModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShoppingCartObjectModel.cs" />
     <Compile Include="Models\UserRole.cs">
-      <DependentUpon>PetBoxModel3.tt</DependentUpon>
+      <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DeliveryInfoViewModel.cs" />
     <Compile Include="ViewModels\OptionalItemViewModel.cs" />
+    <Compile Include="ViewModels\SingleBuyViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -260,6 +265,9 @@
     <Content Include="Views\Customer\OrderCompleted.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\OptionalItem\Index.cshtml" />
+    <Content Include="Views\OptionalItem\ShoppingCart.cshtml" />
+    <Content Include="Views\OptionalItem\DeliveryInfo.cshtml" />
+    <Content Include="Views\OptionalItem\OrderSuccess.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
