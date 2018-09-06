@@ -11,7 +11,8 @@ namespace pet_box.Controllers
     {
         // GET: Sale
 
-        PetBoxEntities3 db = new PetBoxEntities3();
+        PetBoxEntities1 db = new PetBoxEntities1();
+ 
 
         public ActionResult Shelf()
         {

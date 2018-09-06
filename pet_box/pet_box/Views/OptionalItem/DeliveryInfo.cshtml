@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-@model pet_box.Models.Customer
 
 
+@model pet_box.ViewModels.DeliveryInfoViewModel
 
 
 <head>
@@ -14,11 +14,38 @@
 </head>
 
 <body>
-
+    <div class="container">
+        <h2>Striped Rows</h2>
+        <p>The .table-striped class adds zebra-stripes to a table:</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>商品名稱</th>
+                    <th>數量</th>
+                    <th>單價</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.itemList) {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>總價： @Model.PriceTotal</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 
     <form class="form-horizontal" method="post">
-        <input type="hidden" name="CustomerID" value="@Model.CustomerID" />
-        <input id="CustomerID" name="CustomerID" type="hidden" value="@Model.CustomerID">
+        @*<input type="hidden" name="CustomerID" value="@Model.CustomerID" />*@
+        <input type="hidden" name="customer.CustomerID" value="@Model.customer.CustomerID" />
+        @*<input id="CustomerID" name="CustomerID" type="hidden" value="@Model.CustomerID">*@
         <fieldset>
 
             <!-- Form Name -->
@@ -26,45 +53,46 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <label class="col-md-4 control-label" for="textinput">姓名</label>
                 <div class="col-md-4">
-                    <input id="textinput" name="CustomerName" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerName" required>
-                    <span class="help-block">姓名</span>
+                    <input id="textinput" name="customer.CustomerName" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerName" required>
+                    @*<span class="help-block">姓名</span>*@
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <label class="col-md-4 control-label" for="textinput">地址</label>
                 <div class="col-md-4">
-                    <input id="textinput" name="CustomerAddress" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerAddress" required>
-                    <span class="help-block">地址</span>
+                    <input id="textinput" name="customer.CustomerAddress" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerAddress" required>
+                    @*<span class="help-block">地址</span>*@
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <label class="col-md-4 control-label" for="textinput">聯絡電話</label>
                 <div class="col-md-4">
-                    <input id="textinput" name="CustomerMobilePhone" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerMobilePhone" required>
-                    <span class="help-block">聯絡電話</span>
+                    <input id="textinput" name="customer.CustomerMobilePhone" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerMobilePhone" required>
+                    @*<span class="help-block">聯絡電話</span>*@
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                <label class="col-md-4 control-label" for="textinput">電子郵件</label>
                 <div class="col-md-4">
-                    <input id="textinput" name="CustomerEmail" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.CustomerEmail" required>
-                    <span class="help-block">電子郵件</span>
+                    <input id="textinput" name="customer.CustomerEmail" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerEmail" required>
+                    @*<span class="help-block">電子郵件</span>*@
                 </div>
             </div>
 
             <!-- Button (Double) -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="button1id">Double Button</label>
+                @*<label class="col-md-4 control-label" for="button1id">Double Button</label>*@
                 <div class="col-md-8">
                     <button id="button2id" name="okOrCancel" class="btn btn-primary" value="backToshoppingCart" formnovalidate="formnovalidate"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</button>
+                    @*<a href="/Test/ShoppingCart" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</a>*@
                     <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確認</button>
 
                 </div>
@@ -81,5 +109,3 @@
 
 
 </body>
-
-

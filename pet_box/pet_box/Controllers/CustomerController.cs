@@ -9,8 +9,8 @@ namespace pet_box.Controllers
 {
     public class CustomerController : Controller
     {
-
-        PetBoxEntities3 db = new PetBoxEntities3();
+        
+        PetBoxEntities1 db = new PetBoxEntities1();
         public ActionResult Index()
         {
             var products = db.Products.ToList();
