@@ -15,28 +15,27 @@
 
 <body>
     <div class="container">
-        <h2>Striped Rows</h2>
-        <p>The .table-striped class adds zebra-stripes to a table:</p>
+        <h2 style="text-align:center;">訂單明細</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>商品名稱</th>
-                    <th>數量</th>
-                    <th>單價</th>
+                    <th style="font-size:20px;">商品名稱</th>
+                    <th style="font-size:20px;">數量</th>
+                    <th style="font-size:20px;">單價</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.itemList) {
                     <tr>
-                        <td>@item.ProductName</td>
-                        <td>@item.Quantity</td>
-                        <td>@item.UnitPrice</td>
+                        <td style="font-size:20px;">@item.ProductName</td>
+                        <td style="font-size:20px;">@item.Quantity</td>
+                        <td style="font-size:20px;">@item.UnitPrice</td>
                     </tr>
                 }
             </tbody>
             <tfoot>
                 <tr>
-                    <td>總價： @Model.PriceTotal</td>
+                    <td style="font-size:20px;">總價： @Model.PriceTotal</td>
                 </tr>
             </tfoot>
         </table>
@@ -53,7 +52,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">姓名</label>
+                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">姓名</label>
                 <div class="col-md-4">
                     <input id="textinput" name="customer.CustomerName" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerName" required>
                     @*<span class="help-block">姓名</span>*@
@@ -62,7 +61,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">地址</label>
+                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">地址</label>
                 <div class="col-md-4">
                     <input id="textinput" name="customer.CustomerAddress" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerAddress" required>
                     @*<span class="help-block">地址</span>*@
@@ -71,7 +70,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">聯絡電話</label>
+                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">聯絡電話</label>
                 <div class="col-md-4">
                     <input id="textinput" name="customer.CustomerMobilePhone" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerMobilePhone" required>
                     @*<span class="help-block">聯絡電話</span>*@
@@ -80,7 +79,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">電子郵件</label>
+                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">電子郵件</label>
                 <div class="col-md-4">
                     <input id="textinput" name="customer.CustomerEmail" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerEmail" required>
                     @*<span class="help-block">電子郵件</span>*@
@@ -90,7 +89,7 @@
             <!-- Button (Double) -->
             <div class="form-group">
                 @*<label class="col-md-4 control-label" for="button1id">Double Button</label>*@
-                <div class="col-md-8">
+                <div class="col-md-8" style="text-align:center;">
                     <button id="button2id" name="okOrCancel" class="btn btn-primary" value="backToshoppingCart" formnovalidate="formnovalidate"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</button>
                     @*<a href="/Test/ShoppingCart" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</a>*@
                     <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確認</button>

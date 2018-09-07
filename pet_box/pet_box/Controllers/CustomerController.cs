@@ -13,12 +13,11 @@ namespace pet_box.Controllers
         PetBoxEntities1 db = new PetBoxEntities1();
         public ActionResult Index()
         {
-            var products = db.Products.ToList();
             if (Session["Customer"] == null)
             {
-                return View("Index", "_Layout", products);
+                return View("Index", "_Layout");
             }
-            return View("Index", "_Layout2", products);
+            return View("Index", "_Layout2");
         }
 
         public ActionResult Login()
@@ -54,22 +53,22 @@ namespace pet_box.Controllers
 
         public ActionResult Index2()
         {
-            var products = db.Products.ToList();
+            
             if (Session["Customer"] == null)
             {
-                return View("Index2", "_Layout", products);
+                return View("Index2", "_Layout");
             }
-            return View("Index2", "_Layout2", products);
+            return View("Index2", "_Layout2");
         }
 
         public ActionResult Index3()
         {
-            var products = db.Products.ToList();
+           
             if (Session["Customer"] == null)
             {
-                return View("Index3", "_Layout", products);
+                return View("Index3", "_Layout");
             }
-            return View("Index3", "_Layout2", products);
+            return View("Index3", "_Layout2");
         }
 
 
@@ -84,27 +83,27 @@ namespace pet_box.Controllers
         {
             if(string.IsNullOrEmpty(cus.CustomerEmail))
             {
-                ViewBag.Message = "請填寫信箱";
+                ViewBag.Message2 = "請填寫信箱";
                 return View("Register", cus);
             }
             if (string.IsNullOrEmpty(cus.CustomerPassword))
             {
-                ViewBag.Message2 = "請填寫密碼";
+                ViewBag.Message3 = "請填寫密碼";
                 return View("Register", cus);
             }
 
-            db.Customers.Add(cus);
-            db.SaveChanges();
-            return RedirectToAction("Login");
-        }
+            var Customer = db.Customers
+               .Where(c => c.CustomerEmail == cus.CustomerEmail)
+               .FirstOrDefault();
 
-        public ActionResult OrderCompleted()
-        {
-            if (Session["Customer"] == null)
+            if (Customer == null)
             {
-                return View("Login", "_Layout");
+                db.Customers.Add(cus);
+                db.SaveChanges();
+                return RedirectToAction("Login");
             }
-            return View("OrderCompleted", "_Layout2");
+            ViewBag.Message = "此帳號己有人使用，註冊失敗";
+            return View();
         }
 
     }

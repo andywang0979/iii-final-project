@@ -149,14 +149,13 @@
     <Content Include="product_images\site_product\cover\a.jpg" />
     <Content Include="product_images\site_product\cover\b.jpg" />
     <Content Include="product_images\site_product\cover\c.jpg" />
-    <Content Include="product_images\site_product\index2\11.jpg" />
-    <Content Include="product_images\site_product\index2\12.jpg" />
-    <Content Include="product_images\site_product\index3\21.jpg" />
-    <Content Include="product_images\site_product\index3\22.jpg" />
-    <Content Include="product_images\site_product\index3\23.jpg" />
-    <Content Include="product_images\site_product\index\1.png" />
-    <Content Include="product_images\site_product\index\2.jpg" />
-    <Content Include="product_images\site_product\index\3.jpg" />
+    <Content Include="product_images\site_product\index1\cam_Normal.jpg" />
+    <Content Include="product_images\site_product\index1\cam_rf.jpg" />
+    <Content Include="product_images\site_product\index1\cam_wide.jpg" />
+    <Content Include="product_images\site_product\index2\feeder_median.jpg" />
+    <Content Include="product_images\site_product\index2\feeder_small.jpg" />
+    <Content Include="product_images\site_product\index3\sensor_humi_temp.jpg" />
+    <Content Include="product_images\site_product\index3\sensor_weight.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -258,16 +257,15 @@
     <Content Include="Views\Service\Customerservice.cshtml" />
     <Content Include="Views\Service\Customerservice2.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Customer\Login.cshtml" />
-    <Content Include="Views\Customer\Index2.cshtml" />
-    <Content Include="Views\Customer\Index3.cshtml" />
-    <Content Include="Views\Customer\OrderCompleted.cshtml" />
-    <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\OptionalItem\Index.cshtml" />
     <Content Include="Views\OptionalItem\ShoppingCart.cshtml" />
     <Content Include="Views\OptionalItem\DeliveryInfo.cshtml" />
     <Content Include="Views\OptionalItem\OrderSuccess.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Index2.cshtml" />
+    <Content Include="Views\Customer\Index3.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
