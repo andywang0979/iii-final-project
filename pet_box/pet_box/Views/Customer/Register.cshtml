@@ -1,4 +1,10 @@
-﻿@{
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
     ViewBag.Title = "Register";
 }
 
@@ -23,29 +29,37 @@
                 <h2>請註冊 <small></small></h2>
                 <hr class="colorgraph">
                 <div class="row">
+
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                            <input type="text" name="CustomerName" id="CustomerName" class="form-control input-lg" placeholder="User Name" tabindex="2">
                         </div>
                     </div>
+
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                            <input type="text" name="CustomerMobilePhone" id="CustomerMobilePhone" class="form-control input-lg" placeholder="MobilePhone Number" tabindex="1">
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3">
-                </div>
-                <div class="form-group">
-                    <input type="email" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="Email Address" tabindex="4">
-                </div>
-                <div class="row">
+
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="CustomerLoginName" id="CustomerLoginName" class="form-control input-lg" placeholder="Account Number" tabindex="1">
+                        </div>
+                    </div>
+                 
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                             <input type="password" name="CustomerPassword" id="CustomerPassword" class="form-control input-lg" placeholder="Password" tabindex="5">
                         </div>
                     </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="email" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                </div>
+                <div class="row">
+                    
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
@@ -55,12 +69,12 @@
                 <div class="row">
                     <div class="col-xs-4 col-sm-3 col-md-3">
                         <span class="button-checkbox">
-                            @*<button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>*@
+
                             <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
                         </span>
                     </div>
                     <div class="col-xs-8 col-sm-9 col-md-9">
-                        By clicking <strong class="label label-primary">註冊</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+                       
                     </div>
                 </div>
 
@@ -77,7 +91,7 @@
             </form>
         </div>
     </div>
-    <!-- Modal -->
+
     <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -95,50 +109,11 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
                 </div>
                 <div class="modal-footer">
-                    @*<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>*@
+
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            </div>
+        </div>
+    </div>
 </div>
 
-
-
-
-@*<div class="container">
-        <h2>新註冊</h2>
-        <form action="/action_page.php">
-
-            <div class="form-group">
-                <label for="name">姓名:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
-            </div>
-            <div class="form-group">
-                <label for="email">信箱:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="pwd">密碼:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-            </div>
-            <div class="checkbox">
-                    <label><input type="checkbox" name="remember"> Remember me</label>
-                </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-    </div>*@
-
-
-
-
-
-@*<h2>新帳戶</h2>
-
-
-    <h3>姓名</h3><br />
-    <input type="text"
-
-    <h3>信箱</h3><br />
-
-    <h3>密碼</h3><br />*@
 
