@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using pet_box.Models;
+using pet_box.ViewModels;
 
 namespace pet_box.Controllers
 {
@@ -11,13 +12,50 @@ namespace pet_box.Controllers
     {
         
         PetBoxEntities1 db = new PetBoxEntities1();
+
         public ActionResult Index()
         {
+            
+            TempData["shoppingURL"] = Request.Url.PathAndQuery;
+
+            if (TempData["itemList"] != null) {
+                TempData.Keep("itemList");
+            }
+
+
+            SingleBuyViewModel viewM = new SingleBuyViewModel();
+            
+            Dictionary<string, CategoryProductModel> dummy = new Dictionary<string, CategoryProductModel>();
+            
+            viewM.CategoryProductModelDic = dummy;
+            // loop
+            int? CategoryIdMax = db.Categories.Max(u => (int?)u.CategoryID);
+            for (int i = 2; i <= CategoryIdMax; i++) {
+                // categoryID with 2 digit
+                string s = String.Format("categoryId{0}", i.ToString("D2"));
+
+                // select coresponding collections of products, and tolist
+                var queryProductDynamic = (from o in db.Products
+                                           where o.ProductID > 1 && o.CategoryID == i
+                                           select o).ToList();
+
+                
+                CategoryProductModel tempObj = new CategoryProductModel();
+
+                tempObj.CategoryID = queryProductDynamic[0].CategoryID;
+                tempObj.CategoryName = queryProductDynamic[0].Category.CategoryName;
+                tempObj.Products = queryProductDynamic;
+
+                viewM.CategoryProductModelDic[s] = tempObj;
+            }
+           
+            
             if (Session["Customer"] == null)
             {
-                return View("Index", "_Layout");
+                return View("Index", "_Layout", viewM);
+                
             }
-            return View("Index", "_Layout2");
+            return View("Index", "_Layout2", viewM);
         }
 
         public ActionResult Login()

@@ -7,6 +7,6 @@ namespace pet_box.Models {
     public class CategoryProductModel {
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
     }
 }
