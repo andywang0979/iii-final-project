@@ -1,11 +1,14 @@
-﻿@model pet_box.Models.Product
+﻿
 @{
-    ViewBag.Title = "Additem";
+    ViewBag.Title = "AddItem";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+
+@model pet_box.Models.Product
 
 <h2>新增</h2>
 
-<form class="form-horizontal" method="post" action="">
+<form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
 
     <div class="form-group">
         <label class="col-md-4 control-label" for="ProductCode">產品代碼</label>
@@ -42,8 +45,8 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="ProductImageLocation">縮圖</label>
         <div class="col-md-4">
-            <input id="ProductImageLocation" name="ProductImageLocation" type="text" value="@Model.ProductImageLocation" placeholder="" class="form-control input-md">
-
+            <input id="ProductImageLocation" name="ProductImageLocation" type="text" value="/product_images/site_product/product/" placeholder="" class="form-control input-md">
+            <input type="file" name="file1" /> <br />
         </div>
     </div>
 
@@ -83,3 +86,5 @@
     </div>
 
 </form>
+
+

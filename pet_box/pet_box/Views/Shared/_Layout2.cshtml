@@ -22,16 +22,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                
+
 
                     @*格式(1.顯示的名字 || 2.控制器裡面的Action || 3.控制器名稱) *@
                     <li>@Html.ActionLink("客製化", "Index", "OptionalItem")</li>
                     <li>@Html.ActionLink("產品列表", "Index", "Customer")</li>
                     <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
                     <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
-                    <li><a href="#">@Session["Welcome"]</a> </li> 
+                    <li><a href="#">@Session["Welcome"]</a> </li>
 
-                    
+
 
 
                 </ul>
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-        
+
 
 
     <div class="container body-content">
@@ -48,12 +48,12 @@
 
         @RenderBody()
 
-       
+
 
     </div>
     <hr />
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="/Home/Page3">管理</a></li>
+        <li><a href=""></a></li>
     </ul>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

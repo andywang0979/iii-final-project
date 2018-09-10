@@ -12,7 +12,7 @@ namespace pet_box.Controllers
         // GET: Sale
 
         PetBoxEntities1 db = new PetBoxEntities1();
- 
+
 
         public ActionResult Shelf()
         {
@@ -34,6 +34,20 @@ namespace pet_box.Controllers
             if (Request["OkOrCancel"] == "Cancel")
             {
                 return RedirectToAction("Shelf");
+            }
+
+            System.IO.Directory.CreateDirectory("C:\\final-project\\pet_box\\pet_box\\product_images\\site_product\\product");
+            List<string> report = new List<string>();
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                var f = Request.Files[i];
+                if (f.ContentLength <= 0)
+                {
+                    report.Add("nothing");
+                    continue;
+                }
+                f.SaveAs("C:\\final-project\\pet_box\\pet_box\\product_images\\site_product\\product\\" + f.FileName);
+                report.Add("got: " + f.FileName);
             }
 
             db.Products.Add(pro);
@@ -65,15 +79,30 @@ namespace pet_box.Controllers
             {
                 return RedirectToAction("Shelf");
             }
+
             return View(pro);
         }
 
         [HttpPost]
-        public ActionResult EditItem(Product pro)
+        public ActionResult EditItem(Product pro, FormCollection frm)
         {
             if (Request["OkOrCancel"] == "Cancel")
             {
                 return RedirectToAction("Shelf");
+            }
+
+            System.IO.Directory.CreateDirectory("C:\\final-project\\pet_box\\pet_box\\product_images\\site_product\\product");
+            List<string> report = new List<string>();
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                var f = Request.Files[i];
+                if (f.ContentLength <= 0)
+                {
+                    report.Add("nothing");
+                    continue;
+                }
+                f.SaveAs("C:\\final-project\\pet_box\\pet_box\\product_images\\site_product\\product\\" + f.FileName);
+                report.Add("got: " + f.FileName);
             }
 
             db.Entry(pro).State = System.Data.Entity.EntityState.Modified;
