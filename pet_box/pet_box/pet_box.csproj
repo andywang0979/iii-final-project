@@ -156,6 +156,14 @@
     <Content Include="product_images\site_product\index2\feeder_small.jpg" />
     <Content Include="product_images\site_product\index3\sensor_humi_temp.jpg" />
     <Content Include="product_images\site_product\index3\sensor_weight.jpg" />
+    <Content Include="product_images\site_product\product\box_small.jpg" />
+    <Content Include="product_images\site_product\product\cam_Normal.jpg" />
+    <Content Include="product_images\site_product\product\cam_rf.jpg" />
+    <Content Include="product_images\site_product\product\cam_wide.jpg" />
+    <Content Include="product_images\site_product\product\feeder_median.jpg" />
+    <Content Include="product_images\site_product\product\feeder_small.jpg" />
+    <Content Include="product_images\site_product\product\sensor_humi_temp.jpg" />
+    <Content Include="product_images\site_product\product\sensor_weight.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />

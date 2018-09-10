@@ -64,10 +64,10 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string CustomerEmail, string CustomerPassword)
+        public ActionResult Login(string CustomerLoginName, string CustomerPassword)
         {
             var Customer = db.Customers
-                .Where(c => c.CustomerEmail == CustomerEmail && c.CustomerPassword == CustomerPassword)
+                .Where(c => c.CustomerLoginName == CustomerLoginName && c.CustomerPassword == CustomerPassword)
                 .FirstOrDefault();
 
             if (Customer == null)
@@ -119,9 +119,9 @@ namespace pet_box.Controllers
         [HttpPost]
         public ActionResult Register(Customer cus)
         {
-            if(string.IsNullOrEmpty(cus.CustomerEmail))
+            if (string.IsNullOrEmpty(cus.CustomerLoginName))
             {
-                ViewBag.Message2 = "請填寫信箱";
+                ViewBag.Message2 = "請填寫帳號";
                 return View("Register", cus);
             }
             if (string.IsNullOrEmpty(cus.CustomerPassword))
@@ -131,7 +131,7 @@ namespace pet_box.Controllers
             }
 
             var Customer = db.Customers
-               .Where(c => c.CustomerEmail == cus.CustomerEmail)
+               .Where(c => c.CustomerLoginName == cus.CustomerLoginName)
                .FirstOrDefault();
 
             if (Customer == null)
