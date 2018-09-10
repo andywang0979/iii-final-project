@@ -1,4 +1,6 @@
 ﻿
+@model pet_box.ViewModels.SingleBuyViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -44,16 +46,19 @@
             </div>
 
             <div class="row">
-
+                @* show the products in categoryID == 2:*@
+@for (int i = 0; i < Model.CategoryProductModelDic["categoryId03"].Products.Count(); i++) {
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         <img src="~/product_images/site_product/index1/cam_Normal.jpg" alt="" style="width:400px;height:200px;" class="img-rounded">
                         <div class="caption">
-                            <h4 class="pull-right">$800</h4>
+                            <h4 class="pull-right">$@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductPrice.ToString("F0")</h4>
+                            
+                          
                             <h4>
-                                <a href="#">一般鏡頭</a>
+                                <a href="#">@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductName</a>
                             </h4>
-                            <p>24小時跟隨監控</p>
+                            <p>@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductDescription</p>
                         </div>
                         <div class="ratings">
 
@@ -65,46 +70,8 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/product_images/site_product/index1/cam_wide.jpg" alt="" style="width:400px;height:200px;" class="img-rounded">
-                        <div class="caption">
-                            <h4 class="pull-right">$1200</h4>
-                            <h4>
-                                <a href="#">廣角鏡頭</a>
-                            </h4>
-                            <p>24小時跟隨監控</p>
-                        </div>
-                        <div class="ratings">
 
-                            <p>
-                                <button type="button" class="btn btn-primary">加入購物車</button>
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/product_images/site_product/index1/cam_rf.jpg" alt="" style="width:400px;height:200px;" class="img-rounded">
-                        <div class="caption">
-                            <h4 class="pull-right">$1500</h4>
-                            <h4>
-                                <a href="#">紅外線鏡頭</a>
-                            </h4>
-                            <p>24小時跟隨監控</p>
-                        </div>
-                        <div class="ratings">
-
-                            <p>
-                                <button type="button" class="btn btn-primary">加入購物車</button>
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+}
 
 
             </div>
