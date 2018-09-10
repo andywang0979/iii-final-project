@@ -213,20 +213,28 @@ namespace pet_box.Controllers {
                 TempData.Keep("itemList");
 
                 return RedirectToAction("DeliveryInfo");
+            } else if (Request.Form["okOrCancel"] == "continue") {
+
+                if (TempData["shoppingURL"] != null) {
+
+                    // then there could be 3 cases: "/", "/Home", "/Home/Index"
+                    string returnPath = TempData["shoppingURL"].ToString();
+                    //return Content(returnPath);
+                    string[] pathArray = returnPath.Split('/');
+                    if (pathArray.Length == 3) {
+                        return RedirectToAction(pathArray[2], pathArray[1]);
+                    } else if (pathArray.Length == 2 && pathArray[1] != "") {
+                        return RedirectToAction(pathArray[1], "");
+                    } else {
+                        return RedirectToAction("", "");
+                    }
+
+                } else {
+                    return RedirectToAction("", "");
+                }
+
             }
-
-            if (TempData["shoppingURL"] != null) {
-                string returnPath = TempData["shoppingURL"].ToString();
-                string[] pathArray = returnPath.Split('/');
-
-                return RedirectToAction(pathArray[1], pathArray[0]);
-            } else {
-                return RedirectToAction("", "Customer");
-            }
-
-
-            // back to index of shopping
-            //return RedirectToAction("", "");
+            return RedirectToAction("", "");
         }
 
         public ActionResult DeliveryInfo() {
@@ -400,39 +408,39 @@ namespace pet_box.Controllers {
         }
 
 
-
-        // add a item one time
         [HttpPost]
-        public ActionResult SingleBuy(int? id, SingleBuyViewModel sbvm) {
-
-            //add one corresponding item in itemList
+        public ActionResult SingleBuy(int id) {
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
+
 
             if (TempData["itemList"] == null) {
 
                 ShoppingCartObjectModel newItem = new ShoppingCartObjectModel();
                 // here should be the logined customer's id
                 newItem.CustomerID = Convert.ToInt32(Session["CustomerID"]);
-
-                newItem.ProductID = sbvm.oneItem.ProductID;
-                newItem.Quantity = sbvm.oneItem.Quantity;
+                newItem.ProductID = id;
+                newItem.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
                 itemObjList.Add(newItem);
+
 
             } else {
 
                 itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
 
-                ShoppingCartObjectModel tempObj = itemObjList.Find(obj => sbvm.oneItem.ProductID == obj.ProductID);
+                ShoppingCartObjectModel tempObj = itemObjList.Find(obj => id == obj.ProductID);
 
                 if (tempObj != null) {
 
-                    tempObj.Quantity += sbvm.oneItem.Quantity;
+                    tempObj.Quantity += Convert.ToInt32(Request.Form["buyQuantity"]);
 
                 } else {
+
                     ShoppingCartObjectModel addObj = new ShoppingCartObjectModel();
-                    addObj.CustomerID = 1;
-                    addObj.ProductID = sbvm.oneItem.ProductID;
-                    addObj.Quantity = sbvm.oneItem.Quantity;
+                    addObj.CustomerID = Convert.ToInt32(Session["CustomerID"]);
+                    addObj.ProductID = id;
+                    addObj.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
+
+                    //shopCartItemList.shopCartObjList.Add(instance);
                     itemObjList.Add(addObj);
                 }
 
@@ -441,8 +449,7 @@ namespace pet_box.Controllers {
             TempData["itemList"] = itemObjList;
             TempData.Keep("itemList");
 
-            return RedirectToAction("ShoppingCart", "Test");
-
+            return RedirectToAction("ShoppingCart", "OptionalItem");
         }
 
     }

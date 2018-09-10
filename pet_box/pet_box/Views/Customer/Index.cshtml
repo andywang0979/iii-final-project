@@ -47,31 +47,42 @@
 
             <div class="row">
                 @* show the products in categoryID == 2:*@
-@for (int i = 0; i < Model.CategoryProductModelDic["categoryId03"].Products.Count(); i++) {
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/product_images/site_product/index1/cam_Normal.jpg" alt="" style="width:400px;height:200px;" class="img-rounded">
-                        <div class="caption">
-                            <h4 class="pull-right">$@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductPrice.ToString("F0")</h4>
-                            
-                          
-                            <h4>
-                                <a href="#">@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductName</a>
-                            </h4>
-                            <p>@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductDescription</p>
-                        </div>
-                        <div class="ratings">
+                @for (int i = 0; i < Model.CategoryProductModelDic["categoryId03"].Products.Count(); i++) {
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductImageLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
+                            <div class="caption">
+                                <h4 class="pull-right">$@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductPrice.ToString("F0")</h4>
 
-                            <p>
-                                <button type="button" class="btn btn-primary">加入購物車</button>
 
-                            </p>
+                                <h4>
+                                    <a href="#">@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductName</a>
+                                </h4>
+                                <p>@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductDescription</p>
+                            </div>
+                            <div class="ratings">
+
+                                <form action="/OptionalItem/SingleBuy/@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductID" method="post">
+
+                                    數量 <input type="number" id="quantity" name="buyQuantity"
+                                              placeholder="please input quantity" step="1" min="1" max=""
+                                              value="1" />
+
+                                    <p>
+                                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span> 
+                                        加入購物車
+                                        </button>
+
+                                    </p>
+                                </form>
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
-}
+                }
 
 
             </div>

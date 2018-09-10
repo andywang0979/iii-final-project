@@ -76,6 +76,16 @@ namespace pet_box.Controllers
                 return View();
             }
 
+            // user is not a member
+            // not use yet, because the parameter is string, and the value of 
+            // non-member customer is null.
+            if (Customer.CustomerRole == 2) {
+                ViewBag.Message = "您未註冊為會員";
+                return RedirectToAction("Index");
+            }
+
+
+
             Session["Welcome"] = Customer.CustomerName + " " + "歡迎光臨";
             Session["Customer"] = Customer;
             Session["CustomerID"] = Customer.CustomerID;
