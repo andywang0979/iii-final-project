@@ -95,7 +95,15 @@ namespace pet_box.Controllers
 
         public ActionResult Logout()
         {
-            Session.Clear(); 
+            Session.Clear();
+            // clear 
+            if (TempData["itemList"] != null) {
+                
+                TempData["itemList"] = null;
+            }
+
+            Session["CustomerID"] = 1;
+
             return RedirectToAction("Index");
         }
 

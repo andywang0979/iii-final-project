@@ -254,6 +254,16 @@ namespace pet_box.Controllers {
             DeliveryInfoViewModel viewM = new DeliveryInfoViewModel();
             viewM.itemList = itemObjList;
 
+
+            // assign unit price of each item
+            foreach (ShoppingCartObjectModel item in itemObjList) {
+                Product queryProduct = (from o in db.Products
+                                       where o.ProductID == item.ProductID
+                                       select o).SingleOrDefault();
+                item.UnitPrice = queryProduct.ProductPrice;
+            }
+
+
             //calculate totalPrice
             viewM.PriceTotal = 0;
             foreach (ShoppingCartObjectModel item in itemObjList) {
@@ -359,8 +369,8 @@ namespace pet_box.Controllers {
 
         public ActionResult OrderSuccess(Customer customerFromForm) {
             // clear itemList, just to make sure it is empty
-            List<ShoppingCartObjectModel> emptyList = new List<ShoppingCartObjectModel>();
-            TempData["itemList"] = emptyList;
+            //List<ShoppingCartObjectModel> emptyList = new List<ShoppingCartObjectModel>();
+            TempData["itemList"] = null;
 
             return View();
         }
