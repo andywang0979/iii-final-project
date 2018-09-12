@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "EditItem";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@model pet_box.Models.Product
+
+
+<h2>商品檢視</h2>
+
+<form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+
+    @Html.HiddenFor(model => model.ProductID)
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="ProductCode">產品代碼</label>
+        <div class="col-md-4">
+            <input id="ProductCode" name="ProductCode" type="text" value="@Model.ProductCode" placeholder="" class="form-control input-md">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="ProductName">名稱</label>
+        <div class="col-md-4">
+            <input id="ProductName" name="ProductName" type="text" value="@Model.ProductName" placeholder="" class="form-control input-md">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="ProductDescription">產品描述</label>
+        <div class="col-md-4">
+            <input id="ProductDescription" name="ProductDescription" type="text" value="@Model.ProductDescription" placeholder="" class="form-control input-md">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="CategoryID">類別編號</label>
+        <div class="col-md-4">
+            <input id="CategoryID" name="CategoryID" type="text" value="@Model.CategoryID" placeholder="" class="form-control input-md">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="ProductImageLocation">縮圖</label>
+        <div class="col-md-4">
+            <input id="ProductImageLocation" name="ProductImageLocation" type="text" value="@Model.ProductImageLocation" placeholder="" class="form-control input-md">
+            <input type="file" name="file1" /> <br />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="ProductQuantity">庫存</label>
+        <div class="col-md-4">
+            <input id="ProductQuantity" name="ProductQuantity" type="text" value="@Model.ProductQuantity" placeholder="" class="form-control input-md">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="ProductUnit">產品單位</label>
+        <div class="col-md-4">
+            <input id="ProductUnit" name="ProductUnit" type="text" value="@Model.ProductUnit" placeholder="" class="form-control input-md">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="ProductPrice">產品價格</label>
+        <div class="col-md-4">
+            <input id="ProductPrice" name="ProductPrice" type="text" value="@Model.ProductPrice" placeholder="" class="form-control input-md">
+
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="OKButton"></label>
+        <div class="col-md-8">
+            <button id="OKButton" name="OkOrCancel" class="btn btn-success" value="Ok">確定</button>
+            <button id="CancelButton" name="OkOrCancel" class="btn btn-danger" value="Cancel">取消</button>
+        </div>
+    </div>
+
+</form>
+
+

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PetBoxMode3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PetBoxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -73,6 +73,7 @@
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="money" Nullable="false" />
           <Property Name="Discount" Type="real" />
         </EntityType>
         <EntityType Name="Orders">
@@ -98,7 +99,7 @@
           <Property Name="ProductImageLocation" Type="varchar" MaxLength="250" />
           <Property Name="ProductQuantity" Type="int" />
           <Property Name="ProductUnit" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProductPrice" Type="int" />
+          <Property Name="ProductPrice" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRoles">
           <Key>
@@ -240,7 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PetBoxMode3StoreContainer">
+        <EntityContainer Name="PetBoxModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
@@ -295,7 +296,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PetBoxMode3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PetBoxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -374,6 +375,7 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Discount" Type="Single" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
           <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
@@ -403,7 +405,7 @@
           <Property Name="ProductImageLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="ProductQuantity" Type="Int32" />
           <Property Name="ProductUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductPrice" Type="Int32" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="Opinions" Relationship="Self.FK_Opinions_Products" FromRole="Products" ToRole="Opinions" />
           <NavigationProperty Name="OptionalItemImages" Relationship="Self.FK_OptionalItemImages_Products_ID" FromRole="Products" ToRole="OptionalItemImages" />
@@ -551,7 +553,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PetBoxEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PetBoxEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
@@ -607,9 +609,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PetBoxMode3StoreContainer" CdmEntityContainer="PetBoxEntities3">
+        <EntityContainerMapping StorageEntityContainer="PetBoxModelStoreContainer" CdmEntityContainer="PetBoxEntities1">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="PetBoxMode3.Category">
+            <EntityTypeMapping TypeName="PetBoxModel.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -619,7 +621,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="PetBoxMode3.Customer">
+            <EntityTypeMapping TypeName="PetBoxModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="CustomerLoginName" ColumnName="CustomerLoginName" />
@@ -635,7 +637,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="PetBoxMode3.Employee">
+            <EntityTypeMapping TypeName="PetBoxModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="EmployeeLoginName" ColumnName="EmployeeLoginName" />
@@ -645,7 +647,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Opinions">
-            <EntityTypeMapping TypeName="PetBoxMode3.Opinion">
+            <EntityTypeMapping TypeName="PetBoxModel.Opinion">
               <MappingFragment StoreEntitySet="Opinions">
                 <ScalarProperty Name="OpinionID" ColumnName="OpinionID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -661,7 +663,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OptionalItemImages">
-            <EntityTypeMapping TypeName="PetBoxMode3.OptionalItemImage">
+            <EntityTypeMapping TypeName="PetBoxModel.OptionalItemImage">
               <MappingFragment StoreEntitySet="OptionalItemImages">
                 <ScalarProperty Name="OptionalItemImageID" ColumnName="OptionalItemImageID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -674,18 +676,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="PetBoxMode3.OrderDetail">
+            <EntityTypeMapping TypeName="PetBoxModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
                 <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="PetBoxMode3.Order">
+            <EntityTypeMapping TypeName="PetBoxModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -697,7 +700,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="PetBoxMode3.Product">
+            <EntityTypeMapping TypeName="PetBoxModel.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
@@ -712,7 +715,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="PetBoxMode3.UserRole">
+            <EntityTypeMapping TypeName="PetBoxModel.UserRole">
               <MappingFragment StoreEntitySet="UserRoles">
                 <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
                 <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />

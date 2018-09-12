@@ -18,6 +18,7 @@ namespace pet_box.Models
         public int OrderID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
         public Nullable<float> Discount { get; set; }
     
         public virtual Order Order { get; set; }

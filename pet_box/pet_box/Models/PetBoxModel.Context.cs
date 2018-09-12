@@ -13,10 +13,10 @@ namespace pet_box.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PetBoxEntities3 : DbContext
+    public partial class PetBoxEntities1 : DbContext
     {
-        public PetBoxEntities3()
-            : base("name=PetBoxEntities3")
+        public PetBoxEntities1()
+            : base("name=PetBoxEntities1")
         {
         }
     
