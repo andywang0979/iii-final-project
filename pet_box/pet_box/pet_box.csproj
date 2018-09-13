@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -272,11 +273,11 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Index2.cshtml" />
     <Content Include="Views\Customer\Index3.cshtml" />
-    <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Customer\Member.cshtml" />
     <Content Include="Views\Customer\MemberEdit.cshtml" />
     <Content Include="Views\Customer\MemberQA.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
