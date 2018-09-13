@@ -258,8 +258,8 @@ namespace pet_box.Controllers {
             // assign unit price of each item
             foreach (ShoppingCartObjectModel item in itemObjList) {
                 Product queryProduct = (from o in db.Products
-                                       where o.ProductID == item.ProductID
-                                       select o).SingleOrDefault();
+                                        where o.ProductID == item.ProductID
+                                        select o).SingleOrDefault();
                 item.UnitPrice = queryProduct.ProductPrice;
             }
 
@@ -460,6 +460,104 @@ namespace pet_box.Controllers {
             TempData.Keep("itemList");
 
             return RedirectToAction("ShoppingCart", "OptionalItem");
+        }
+
+
+        public ActionResult CategoryItem(int? id) {
+
+            TempData["shoppingURL"] = Request.Url.PathAndQuery;
+
+            if (TempData["itemList"] != null) {
+                //return Content("some some in temp data itemlist");
+                TempData.Keep("itemList");
+            }
+
+            CategoryItemViewModel viewM = new CategoryItemViewModel();
+            viewM.ProductList = new List<CategoryItemModel>();
+
+            var queryProduct = (from o in db.Products
+                                where o.ProductID > 1 && o.CategoryID == id
+                                select o).ToList();
+
+            foreach (Product item in queryProduct) {
+                CategoryItemModel tempInstance = new CategoryItemModel();
+                tempInstance.ImgLocation = item.ProductImageLocation;
+                tempInstance.ProductID = item.ProductID;
+                tempInstance.ProductName = item.ProductName;
+                tempInstance.UnitPrice = item.ProductPrice;
+                tempInstance.ProductDescription = item.ProductDescription;
+
+                viewM.ProductList.Add(tempInstance);
+            }
+
+
+            return View(viewM);
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult SingleBuyJavaScript(int id) {
+            List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
+
+
+            if (TempData["itemList"] == null) {
+
+                ShoppingCartObjectModel newItem = new ShoppingCartObjectModel();
+                // here should be the logined customer's id
+                newItem.CustomerID = Convert.ToInt32(Session["CustomerID"]);
+
+                newItem.ProductID = id;
+                newItem.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
+                itemObjList.Add(newItem);
+
+
+            } else {
+
+                itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
+
+                ShoppingCartObjectModel tempObj = itemObjList.Find(obj => id == obj.ProductID);
+
+                if (tempObj != null) {
+
+                    tempObj.Quantity += Convert.ToInt32(Request.Form["buyQuantity"]);
+
+                } else {
+
+                    ShoppingCartObjectModel addObj = new ShoppingCartObjectModel();
+                    addObj.CustomerID = Convert.ToInt32(Session["CustomerID"]);
+                    addObj.ProductID = id;
+                    addObj.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
+
+
+                    itemObjList.Add(addObj);
+                }
+
+            }
+
+            TempData["itemList"] = itemObjList;
+            TempData.Keep("itemList");
+
+            return RedirectToAction("CountShoppingCartItemTotal", "OptionalItem");
+
+        }
+
+        public ActionResult CountShoppingCartItemTotal() {
+            if (TempData["itemList"] != null) {
+                List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
+                itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
+                TempData.Keep("itemList");
+
+                int totalQuantity = 0;
+                foreach (ShoppingCartObjectModel item in itemObjList) {
+                    totalQuantity += item.Quantity;
+                }
+
+                return Content(totalQuantity.ToString());
+            }
+
+            return Content("0");
         }
 
     }

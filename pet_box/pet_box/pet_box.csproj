@@ -196,6 +196,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryItemModel.cs" />
     <Compile Include="Models\CategoryProductModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>PetBoxModel.tt</DependentUpon>
@@ -240,6 +241,7 @@
       <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CategoryItemViewModel.cs" />
     <Compile Include="ViewModels\DeliveryInfoViewModel.cs" />
     <Compile Include="ViewModels\OptionalItemViewModel.cs" />
     <Compile Include="ViewModels\SingleBuyViewModel.cs" />
@@ -278,6 +280,7 @@
     <Content Include="Views\Customer\MemberEdit.cshtml" />
     <Content Include="Views\Customer\MemberQA.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\OptionalItem\CategoryItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

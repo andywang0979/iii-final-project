@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+@model  pet_box.ViewModels.CategoryItemViewModel
+
+@using pet_box.Models;
+
+
+<div class="row">
+    @* show the products in categoryID == 2:*@
+    @foreach (CategoryItemModel item in Model.ProductList) {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@item.ImgLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
+                <div class="caption">
+                    <h4 class="pull-right">$@item.UnitPrice.ToString("F0")</h4>
+
+
+                    <h4>
+                        <a href="#">@item.ProductName</a>
+                    </h4>
+                    <p>@item.ProductDescription</p>
+                </div>
+                <div class="ratings">
+                    數量
+                    <input type="number" id="@(item.ProductID + "quantity")" name="buyQuantity"
+                           placeholder="please input quantity" step="1" min="1" max=""
+                           value="1" />
+
+                    <p>
+                        <div>
+                            <br />
+                        </div>
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" value="@item.ProductID" onclick="buyRequest(this.value)">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            加入購物車
+                        </button>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+</div>

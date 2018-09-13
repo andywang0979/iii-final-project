@@ -6,87 +6,102 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<body>
+    <div class="container">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-md-3">
-            <br />
-
-            <div class="list-group">
-
-                <ul class="list-group">
-                    <li class="list-group-item" style="background-color:coral;text-align:center"><a href="http://localhost:49732/Customer/Index"><span class="glyphicon glyphicon-camera" style="font-size:17px;color:black">監控系統</span></a> </li>
-                    <li class="list-group-item" style="font-size:15px;color:black;text-align:center">一般鏡頭</li>
-                    <li class="list-group-item" style="font-size:15px;color:black;text-align:center">廣角鏡頭</li>
-                    <li class="list-group-item" style="font-size:15px;color:black;text-align:center">紅外線鏡頭</li>
-                </ul>
-
-                <ul class="list-group">
-                    <li class="list-group-item" style="background-color:coral;text-align:center"><a href="http://localhost:49732/Customer/Index2"><span class="glyphicon glyphicon-glass" style="font-size:17px;color:black">自動飼料餵食器</span></a> </li>
-                    <li class="list-group-item" style="font-size:15px;color:black;text-align:center">小型自動飼料餵食器</li>
-                    <li class="list-group-item" style="font-size:15px;color:black;text-align:center">中型自動飼料餵食器</li>
-                </ul>
-
-                <ul class="list-group">
-                    <li class="list-group-item" style="background-color:coral;text-align:center"><a href="http://localhost:49732/Customer/Index3"><span class="glyphicon glyphicon-dashboard" style="font-size:17px;color:black">感測器</span></a> </li>
-                    <li class="list-group-item" style="font-size:15px;color:black;text-align:center">溫濕度感測器</li>
-                    <li class="list-group-item" style="font-size:15px;color:black;text-align:center">壓力感測器</li>
-                </ul>
-
-            </div>
-        </div>
-
-        <div class="col-md-9">
-
-
-
-            <div>
+            <div class="col-md-3">
                 <br />
+
+                <div class="list-group">
+
+
+                    <ul class="list-group">
+                        <li class="list-group-item" style="background-color:coral;text-align:center">
+                            <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="3" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
+                                <span class="glyphicon glyphicon-camera" style="font-size:17px;color:black">監控系統</span>
+                            </button>
+                        </li>
+
+                        <li class="list-group-item" style="background-color:coral;text-align:center">
+                            <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="4" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
+                                <span class="glyphicon glyphicon-glass" style="font-size:17px;color:black">自動飼料餵食器</span>
+                            </button>
+                        </li>
+
+                        <li class="list-group-item" style="background-color:coral;text-align:center">
+                            <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="5" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
+                                <span class="glyphicon glyphicon-dashboard" style="font-size:17px;color:black">感測器</span>
+                            </button>
+                        </li>
+
+                    </ul>
+
+
+
+                </div>
             </div>
 
-            <div class="row">
-                @* show the products in categoryID == 2:*@
-                @for (int i = 0; i < Model.CategoryProductModelDic["categoryId03"].Products.Count(); i++) {
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductImageLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
-                            <div class="caption">
-                                <h4 class="pull-right">$@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductPrice.ToString("F0")</h4>
+            <div class="col-md-9">
 
 
-                                <h4>
-                                    <a href="#">@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductName</a>
-                                </h4>
-                                <p>@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductDescription</p>
+
+                <div>
+                    <br />
+                </div>
+
+
+                <div class="row">
+                    <div id="categoryItemsDiv">
+
+                        @* show the products in categoryID == 2:*@
+                        @for (int i = 0; i < Model.CategoryProductModelDic["categoryId03"].Products.Count(); i++) {
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductImageLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
+                                    <div class="caption">
+                                        <h4 class="pull-right">$@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductPrice.ToString("F0")</h4>
+
+
+                                        <h4>
+                                            <a href="#">@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductName</a>
+                                        </h4>
+                                        <p>@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductDescription</p>
+                                    </div>
+                                    <div class="ratings">
+
+                                        <form action="/OptionalItem/SingleBuy/@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductID" method="post">
+
+                                            數量 <input type="number" id="quantity" name="buyQuantity"
+                                                      placeholder="please input quantity" step="1" min="1" max=""
+                                                      value="1" />
+
+                                            <p>
+
+                                                <div>
+                                                    <br />
+                                                </div>
+                                                <button id="singlebutton" name="singlebutton" class="btn btn-primary">
+                                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                                    加入購物車
+                                                </button>
+
+                                            </p>
+                                        </form>
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ratings">
 
-                                <form action="/OptionalItem/SingleBuy/@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductID" method="post">
 
-                                    數量 <input type="number" id="quantity" name="buyQuantity"
-                                              placeholder="please input quantity" step="1" min="1" max=""
-                                              value="1" />
+                        }
 
-                                    <p>
-
-                                        <div>
-                                            <br />
-                                        </div>
-                                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-shopping-cart"></span> 
-                                        加入購物車
-                                        </button>
-
-                                    </p>
-                                </form>
-
-                            </div>
-                        </div>
                     </div>
+                </div>
 
 
-                }
+
 
 
             </div>
@@ -95,22 +110,147 @@
 
     </div>
 
-</div>
+    <div class="container">
 
-<div class="container">
+        <hr>
 
-    <hr>
-
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>智慧寵物屋 &copy; 2018</p>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>智慧寵物屋 &copy; 2018</p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-</div>
+    </div>
 
-<script src="js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
-<script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <script>
+
+        SelectCategoryFun(3);
+
+        // load category
+        function SelectCategoryFun(categoryId) {
+            // send as a form
+            makeRequest('/OptionalItem/CategoryItem/' + categoryId);
+        };
+
+        // accept the user data and pass it along to the server.
+        // we include our data as a parameter in the call to httpRequest.send()
+        function makeRequest(url) {
+            //
+            if (window.XMLHttpRequest) { // Mozilla, Safari,...
+                httpRequest = new XMLHttpRequest();
+                if (httpRequest.overrideMimeType) {
+                    httpRequest.overrideMimeType('text/xml');
+                }
+            } else if (window.ActiveXObject) { // IE
+                try {
+                    http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) { }
+                }
+            }
+            //----
+
+            if (!httpRequest) {
+                alert('Giving up : Cannot create an XMLHTTP instance');
+                return false;
+            }
+            // tell the instance of XMLHttpRequest which JavaScript function will
+            // handle the response.
+            httpRequest.onreadystatechange = LoadCategoryItem;
+
+            httpRequest.open('GET', url);
+            httpRequest.send();
+        }
+
+
+
+        function LoadCategoryItem() {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+
+                    // remove any child
+                    // Get the <div> element with id="categoryItemsDiv"
+                    var nodeList = document.getElementById("categoryItemsDiv");
+
+                    // As long as categoryItemsDiv has a child node, remove it
+                    while (nodeList.hasChildNodes()) {
+                        nodeList.removeChild(nodeList.firstChild);
+                    }
+
+                    var d1 = document.getElementById('categoryItemsDiv');
+                    //  `beforeend`: Just inside the element, after its last child.
+                    d1.insertAdjacentHTML('beforeend', httpRequest.responseText);
+
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        }
+
+
+
+
+        function buyRequest(productID) {
+            //
+            if (window.XMLHttpRequest) { // Mozilla, Safari,...
+                httpRequest = new XMLHttpRequest();
+                if (httpRequest.overrideMimeType) {
+                    httpRequest.overrideMimeType('text/xml');
+                }
+            } else if (window.ActiveXObject) { // IE
+                try {
+                    http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) { }
+                }
+            }
+            //----
+
+            if (!httpRequest) {
+                alert('Giving up : Cannot create an XMLHTTP instance');
+                return false;
+            }
+            // tell the instance of XMLHttpRequest which JavaScript function will
+            // handle the response.
+
+            var buyQuantity = document.getElementById(productID + "quantity").value
+
+            httpRequest.onreadystatechange = alertContents;
+
+
+            httpRequest.open('POST', '/OptionalItem/SingleBuyJavaScript/' + productID);
+            // send as a form post?
+            httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // send as a form post, assing `name` attribute
+            httpRequest.send('buyQuantity=' + encodeURIComponent(buyQuantity));
+        }
+
+
+        // we design the data come from server will be like:
+        // {"UserData":"yourName","ComputedString":"Hi, yourName!"}
+        // So we have to parse it and alert `ComputedString`, the property we want:
+
+        function alertContents() {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    alert(httpRequest.responseText);
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        }
+
+    </script>
+</body>
