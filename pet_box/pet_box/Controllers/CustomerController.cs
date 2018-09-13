@@ -162,5 +162,51 @@ namespace pet_box.Controllers
             return View();
         }
 
+        public ActionResult Member()
+        {
+            Opinion op = new Opinion();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Member(Customer cus)
+        {
+
+            if (Request["OkOrCancel"] == "Ok")
+            {
+                return RedirectToAction("MemberEdit");
+            }
+
+            if (Request["OkOrCancel"] == "Cancel")
+            {
+                return RedirectToAction("MemberQA");
+            }
+
+            return View();
+        }
+
+        public ActionResult MemberEdit()
+        {
+            return View();
+        }
+
+        public ActionResult MemberQA()
+        {
+            Opinion op = new Opinion();
+            return View(op);
+        }
+
+        [HttpPost]
+        public ActionResult MemberQA(Opinion op)
+        {
+
+
+
+            op.OpinionDateTime = DateTime.Now.ToString("yyyyMMdd HH:mm");
+            db.Opinions.Add(op);
+            db.SaveChanges();
+            return RedirectToAction("Member");
+        }
+
     }
 }

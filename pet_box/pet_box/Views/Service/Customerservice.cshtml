@@ -1,4 +1,4 @@
-﻿
+﻿@model List<pet_box.Models.Opinion>
 @{
     ViewBag.Title = "Customerservice";
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -17,19 +17,29 @@
     <thead>
         <tr>
             <th class="col-md-6">問題編號</th>
-            <th class="col-md-2">客戶意見</th>
+            <th class="col-md-2">客戶問題</th>
+            <th class="col-md-6">客服處理</th>
         </tr>
     </thead>
     <tbody>
-        @*@foreach (var emp in Model)*@
+        @foreach (var emp in Model)
+        {
 
-        <tr>
-            <td>問題1</td>
-            <td>出貨時間?</td>
-            <td>
-                <a href="http://localhost:49732/Service/Customerservice2" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span>點擊處理</span></a>
-            </td>
-        </tr>
+            if (emp.OpinionStatus == 0)
+            {
+                <tr>
+                    <td>@emp.OpinionID</td>
+                    <td>@emp.OpinionTitle</td>
+                    <td>
+                        <a href="/Service/Customerservice2/@emp.OpinionID" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span>點擊處理</span></a>
+                    </td>
+                </tr>
+            }
+
+
+        }
+
+
 
     </tbody>
 </table>

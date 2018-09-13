@@ -274,6 +274,9 @@
     <Content Include="Views\Customer\Index3.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\Customer\Member.cshtml" />
+    <Content Include="Views\Customer\MemberEdit.cshtml" />
+    <Content Include="Views\Customer\MemberQA.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

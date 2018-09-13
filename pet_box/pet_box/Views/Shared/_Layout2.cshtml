@@ -34,6 +34,7 @@
                     @if (Session["Customer"] != null) {
                     <li>@Html.ActionLink("客製化", "Index", "OptionalItem")</li>
                     <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
+                    <li>@Html.ActionLink("會員專區", "Member", "Customer")</li>
                     <li><a href="#">@Session["Welcome"]</a> </li>
                     }
 
