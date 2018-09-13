@@ -1,40 +1,56 @@
-﻿
+﻿@model pet_box.Models.Opinion
 @{
     ViewBag.Title = "Customerservice2";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
-<h2>Customerservice2</h2>
-
-
-客戶資料<br />
-姓名: <br />
-性別: <br />
-帳號: <br />
+<h2>客服回應</h2>
 
 <br />
 
-意見歷史資訊<br />
+<form method="post">
 
-<br />
+    @Html.HiddenFor(model => model.OpinionID)
+    @Html.HiddenFor(model => model.CustomerID)
+    @Html.HiddenFor(model => model.ProductID)
+    @Html.HiddenFor(model => model.OpinionDateTime)
+    @Html.HiddenFor(model => model.OpinionTitle)
 
-問題<br />
+    客戶資料<br />
+    <br />
+    姓名:@Model.Customer.CustomerName<br />
+    帳號:@Model.Customer.CustomerLoginName<br />
 
-<br />
+    <br />
 
-<br />
+    <br />
 
-<h3>客服回應</h3>
+    發問時間:@Model.OpinionDateTime<br />
+
+    問題標題:@Model.OpinionTitle<br />
+    
+    <br />
+
+    <textarea readonly id="OpinionContent" name="OpinionContent" placeholder="" rows="4" cols="50">@Model.OpinionContent</textarea>
+    <br />
+
+    <br />
+
+    <h3>客服回應</h3><br />
 
 
+    <textarea id="OpinionFeedback" name="OpinionFeedback" placeholder="" rows="4" cols="50">@Model.OpinionFeedback</textarea>
 
-<textarea style="width:300%;height:300%;"></textarea><br />
+    <br />
 
-<br />
+    <input type="hidden" name="OpinionStatus" value="1" />
 
-<input type="submit" value="送出" onclick="location.href = 'http://localhost:49732/Service/Customerservice'" />
+    <input type="hidden" name="EmployeeID" value="4" />
 
+    <input type="submit" value="送出" />
+
+</form>
 
 
 
