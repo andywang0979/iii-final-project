@@ -3,10 +3,26 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<body>
+
+<div class="col-sm-12" id="imageContainer">
+    <div id="shoppingIconDiv">
+        <a href="/OptionalItem/ShoppingCart">
+            <div class="col-sm-3" id="totalBuyQuantityLabel">
+                <span class="label label-info" id="qq">
+                    <span id="totalButQuantitySpan">0</span>
+                </span>
+            </div>
+
+            <img src="~/product_images/site_images/shopping-cart-78019_64.png" id="shoppingCartIconImage" />
+        </a>
+    </div>
+
+</div>
+
+
     <div class="container">
 
         <div class="row">
@@ -131,6 +147,8 @@
 
     <script>
 
+        getTotal()
+
         SelectCategoryFun(3);
 
         // load category
@@ -144,38 +162,38 @@
         function makeRequest(url) {
             //
             if (window.XMLHttpRequest) { // Mozilla, Safari,...
-                httpRequest = new XMLHttpRequest();
-                if (httpRequest.overrideMimeType) {
-                    httpRequest.overrideMimeType('text/xml');
+                httpRequestCategory = new XMLHttpRequest();
+                if (httpRequestCategory.overrideMimeType) {
+                    httpRequestCategory.overrideMimeType('text/xml');
                 }
             } else if (window.ActiveXObject) { // IE
                 try {
-                    http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                    http_requestCategory = new ActiveXObject("Msxml2.XMLHTTP");
                 } catch (e) {
                     try {
-                        http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                        http_requestCategory = new ActiveXObject("Microsoft.XMLHTTP");
                     } catch (e) { }
                 }
             }
             //----
 
-            if (!httpRequest) {
+            if (!httpRequestCategory) {
                 alert('Giving up : Cannot create an XMLHTTP instance');
                 return false;
             }
             // tell the instance of XMLHttpRequest which JavaScript function will
             // handle the response.
-            httpRequest.onreadystatechange = LoadCategoryItem;
+            httpRequestCategory.onreadystatechange = LoadCategoryItem;
 
-            httpRequest.open('GET', url);
-            httpRequest.send();
+            httpRequestCategory.open('GET', url);
+            httpRequestCategory.send();
         }
 
 
 
         function LoadCategoryItem() {
-            if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                if (httpRequest.status === 200) {
+            if (httpRequestCategory.readyState === XMLHttpRequest.DONE) {
+                if (httpRequestCategory.status === 200) {
 
                     // remove any child
                     // Get the <div> element with id="categoryItemsDiv"
@@ -188,7 +206,7 @@
 
                     var d1 = document.getElementById('categoryItemsDiv');
                     //  `beforeend`: Just inside the element, after its last child.
-                    d1.insertAdjacentHTML('beforeend', httpRequest.responseText);
+                    d1.insertAdjacentHTML('beforeend', httpRequestCategory.responseText);
 
                 } else {
                     alert('There was a problem with the request.');
@@ -202,22 +220,22 @@
         function buyRequest(productID) {
             //
             if (window.XMLHttpRequest) { // Mozilla, Safari,...
-                httpRequest = new XMLHttpRequest();
-                if (httpRequest.overrideMimeType) {
-                    httpRequest.overrideMimeType('text/xml');
+                httpRequestBuy = new XMLHttpRequest();
+                if (httpRequestBuy.overrideMimeType) {
+                    httpRequestBuy.overrideMimeType('text/xml');
                 }
             } else if (window.ActiveXObject) { // IE
                 try {
-                    http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                    http_requestBuy = new ActiveXObject("Msxml2.XMLHTTP");
                 } catch (e) {
                     try {
-                        http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                        http_requestBuy = new ActiveXObject("Microsoft.XMLHTTP");
                     } catch (e) { }
                 }
             }
             //----
 
-            if (!httpRequest) {
+            if (!httpRequestBuy) {
                 alert('Giving up : Cannot create an XMLHTTP instance');
                 return false;
             }
@@ -226,15 +244,15 @@
 
             var buyQuantity = document.getElementById(productID + "quantity").value
 
-            httpRequest.onreadystatechange = alertContents;
+            httpRequestBuy.onreadystatechange = alertContents;
 
 
-            httpRequest.open('POST', '/OptionalItem/SingleBuyJavaScript/' + productID);
+            httpRequestBuy.open('POST', '/OptionalItem/SingleBuyJavaScript/' + productID);
             // send as a form post?
-            httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            httpRequestBuy.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
             // send as a form post, assing `name` attribute
-            httpRequest.send('buyQuantity=' + encodeURIComponent(buyQuantity));
+            httpRequestBuy.send('buyQuantity=' + encodeURIComponent(buyQuantity));
         }
 
 
@@ -243,14 +261,155 @@
         // So we have to parse it and alert `ComputedString`, the property we want:
 
         function alertContents() {
-            if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                if (httpRequest.status === 200) {
-                    alert(httpRequest.responseText);
+            if (httpRequestBuy.readyState === XMLHttpRequest.DONE) {
+                if (httpRequestBuy.status === 200) {
+                    handleResizeClick()
+                    
+                    document.getElementById("totalButQuantitySpan").textContent = httpRequestBuy.responseText;
+
+                    //var quantityLabel = document.querySelector('#totalButQuantitySpan');
+                    //quantityLabel.textContent = httpRequest.responseText;
                 } else {
                     alert('There was a problem with the request.');
                 }
             }
         }
 
+
+        
+        // transition animation
+
+        // for debounce , scroll event fire multiple times.
+        const debounce = (func, delay) => {
+            let debounceTimer
+            return function () {
+                const context = this
+                const args = arguments
+                clearTimeout(debounceTimer)
+                debounceTimer
+            = setTimeout(() => func.apply(context, args), delay)
+            }
+        }
+
+        // for debounce
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+
+        var lastScrollTop = 20;
+
+        // to check if program execute movedown or up.
+        var count = 0;
+
+        var elementShoppingCartIcon = document.querySelector("#shoppingIconDiv");
+        // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+        window.addEventListener("scroll", debounce(DetectScrollAndMoveIcon, 100), false);
+
+        // ignore that ide complains about missing `;` sign.
+
+        async function DetectScrollAndMoveIcon() { // or window.addEventListener("scroll"....
+            var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+            if (st > lastScrollTop && count == 0) {
+                // downscroll code
+
+                elementShoppingCartIcon.style.webkitAnimationName = 'moveDown';
+                elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
+                await sleep(100);   
+                elementShoppingCartIcon.style.position = "fixed";
+                elementShoppingCartIcon.style.top = "50%";               
+                count = 1;
+
+                // avoid broser scroll down and up to top again imediately, use `count` to check
+            } else if (st < 2 && count == 1) {
+                // upscroll code
+
+                elementShoppingCartIcon.style.webkitAnimationName = 'moveUp';
+                elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
+                await sleep(100);
+                
+                elementShoppingCartIcon.style.position = "fixed";
+
+                elementShoppingCartIcon.style.top = "1%";
+                
+                count = 0;
+                
+            }
+
+
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+            
+        }
+
+
+        
+
+        // resize animation
+        function resetClick() {
+            var spinner = document.getElementById("totalBuyQuantityLabel");
+            spinner.style.webkitAnimationName = "none";
+        }
+
+
+
+        function handleResizeClick() {
+            var spinner = document.getElementById("totalBuyQuantityLabel");
+
+            spinner.style.webkitAnimationName = '';
+            spinner.style.webkitAnimationPlayState = 'running';
+        }
+
+
+        // get total quantity at page load
+
+
+        function getTotal() {
+            //
+            if (window.XMLHttpRequest) { // Mozilla, Safari,...
+                httpRequestTotal = new XMLHttpRequest();
+                if (httpRequestTotal.overrideMimeType) {
+                    httpRequestTotal.overrideMimeType('text/xml');
+                }
+            } else if (window.ActiveXObject) { // IE
+                try {
+                    http_requestTotal = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        http_requestTotal = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) { }
+                }
+            }
+            //----
+
+            if (!httpRequestTotal) {
+                alert('Giving up : Cannot create an XMLHTTP instance');
+                return false;
+            }
+            // tell the instance of XMLHttpRequest which JavaScript function will
+            // handle the response.
+
+            httpRequestTotal.onreadystatechange = GetTotalState;
+
+
+            httpRequestTotal.open('GET', '/OptionalItem/CountShoppingCartItemTotal/');
+            // send as a form post?
+            httpRequestTotal.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // send as a form post, assing `name` attribute
+            httpRequestTotal.send();
+        }
+
+        function GetTotalState() {
+            if (httpRequestTotal.readyState === XMLHttpRequest.DONE) {
+                if (httpRequestTotal.status === 200) {                 
+                    var quantityLabel = document.querySelector('#totalButQuantitySpan');
+                    quantityLabel.textContent = '';
+                    quantityLabel.textContent = httpRequestTotal.responseText;
+
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        }
+
+
     </script>
-</body>

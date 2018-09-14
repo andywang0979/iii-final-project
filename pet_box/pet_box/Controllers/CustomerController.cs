@@ -50,11 +50,11 @@ namespace pet_box.Controllers
             }
            
             
-            if (Session["Customer"] == null)
-            {
-                return View("Index", "_Layout", viewM);
+            //if (Session["Customer"] == null)
+            //{
+            //    return View("Index", "_Layout", viewM);
                 
-            }
+            //}
             return View("Index", "_Layout2", viewM);
         }
 

@@ -12,7 +12,7 @@
 <div class="row">
     @* show the products in categoryID == 2:*@
     @foreach (CategoryItemModel item in Model.ProductList) {
-        <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="col-sm-4">
             <div class="thumbnail">
                 <img src="@item.ImgLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
                 <div class="caption">
@@ -34,7 +34,7 @@
                         <div>
                             <br />
                         </div>
-                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" value="@item.ProductID" onclick="buyRequest(this.value)">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" value="@item.ProductID" onclick="buyRequest(this.value)" onmousedown="resetClick();">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                             加入購物車
                         </button>
