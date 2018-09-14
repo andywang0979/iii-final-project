@@ -239,7 +239,7 @@ namespace pet_box.Controllers {
 
         public ActionResult DeliveryInfo() {
             //show member contact info, user can also modify here.
-
+            int customerIdInt = Convert.ToInt32(Session["CustomerID"]);
 
             // if the client is not a member. and do not want to be a member.
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
@@ -274,16 +274,16 @@ namespace pet_box.Controllers {
             // here should check if the member login in, 
             // temporary solution: here just use default value of `int` if no assignment,
             // 
-            if (itemObjList[0].CustomerID == 1) {
+            if (customerIdInt == 1) {
                 Customer newCustomer = new Customer();
                 viewM.customer = newCustomer;
                 return View(viewM);
             }
 
 
-            int customerId = itemObjList[0].CustomerID;
+            //int customerId = itemObjList[0].CustomerID;
             var query = from o in db.Customers
-                        where o.CustomerID == customerId
+                        where o.CustomerID == customerIdInt
                         select o;
 
             viewM.customer = query.SingleOrDefault();
@@ -300,16 +300,20 @@ namespace pet_box.Controllers {
             itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
             TempData.Keep("itemList");
 
+            int customerIdInt = Convert.ToInt32(Session["CustomerID"]);
+
             if (Request.Form["okOrCancel"] == "ok") {
+
+
 
                 // update Customers
                 // 1 is non-member. 
-                if (itemObjList[0].CustomerID != 1) {
-
-                    int myInt = itemObjList[0].CustomerID;
+                //if (itemObjList[0].CustomerID != 1) {
+                if (customerIdInt != 1) {
+                    //int myInt = Convert.ToInt32(Session["CustomerID"]);
 
                     var customerDatabase = db.Customers
-                        .Where(x => x.CustomerID == myInt)
+                        .Where(x => x.CustomerID == customerIdInt)
                         .FirstOrDefault();
                     customerDatabase.CustomerAddress = divm.customer.CustomerAddress;
                     customerDatabase.CustomerEmail = divm.customer.CustomerEmail;
@@ -325,7 +329,7 @@ namespace pet_box.Controllers {
                 // create Order
                 Order newOrder = new Order();
 
-                newOrder.CustomerID = divm.customer.CustomerID;
+                newOrder.CustomerID = customerIdInt;
                 newOrder.OrderDateTime = DateTime.Now.ToString("yyyyMMdd HH:mm");
                 newOrder.OrderShipAddress = divm.customer.CustomerAddress;
                 db.Orders.Add(newOrder);
