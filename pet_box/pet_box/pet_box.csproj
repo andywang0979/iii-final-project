@@ -283,6 +283,7 @@
     <Content Include="Views\Customer\MemberQA.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\OptionalItem\CategoryItem.cshtml" />
+    <Content Include="Views\Customer\MemberSee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

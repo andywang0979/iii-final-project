@@ -1,8 +1,25 @@
-﻿
+﻿@model pet_box.Models.Customer
 @{
     ViewBag.Title = "MemberEdit";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h2>基本資料編輯</h2>
+<h3 style="text-align:center">修改基本資料</h3>
+
+<br />
+
+<form method="post" style="text-align:center">
+
+    @Html.HiddenFor(model => model.CustomerID)
+
+    姓名:<input type="text" name="CustomerName" value="@Model.CustomerName" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    信箱:<input type="text" name="CustomerEmail" value="@Model.CustomerEmail" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    電話:<input type="text" name="CustomerMobilePhone" value="@Model.CustomerMobilePhone" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    郵遞區號:<input type="text" name="CustomerPostalCode" value="@Model.CustomerPostalCode" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    地址:<input type="text" name="CustomerAddress" value="@Model.CustomerAddress" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    國家:<input type="text" name="CustomerCountry" value="@Model.CustomerCountry" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+
+    <input type="submit" class="btn btn-success btn-lg" value="修改" />
+
+</form>
 

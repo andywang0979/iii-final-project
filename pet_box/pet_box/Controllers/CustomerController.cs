@@ -168,30 +168,33 @@ namespace pet_box.Controllers
 
         public ActionResult Member()
         {
-            Opinion op = new Opinion();
-            return View();
+            int customerID = Convert.ToInt32(Session["CustomerID"]);
+            Customer cus = (from o in db.Customers
+                            where o.CustomerID == customerID
+                            select o).Single();
+            //Convert.ToInt32(Session["CustomerID"].ToString())
+            return View(cus);
         }
 
         [HttpPost]
         public ActionResult Member(Customer cus)
         {
-
-            if (Request["OkOrCancel"] == "Ok")
-            {
-                return RedirectToAction("MemberEdit");
-            }
-
-            if (Request["OkOrCancel"] == "Cancel")
-            {
-                return RedirectToAction("MemberQA");
-            }
-
             return View();
         }
 
-        public ActionResult MemberEdit()
+        public ActionResult MemberEdit(int? id)
         {
-            return View();
+            Customer cus = db.Customers.Find(id);
+            //if (cus == null) { return RedirectToAction("Member"); }
+            return View(cus);
+        }
+
+        [HttpPost]
+        public ActionResult MemberEdit(Customer cus)
+        {
+            db.Entry(cus).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Member");
         }
 
         public ActionResult MemberQA()
@@ -203,13 +206,22 @@ namespace pet_box.Controllers
         [HttpPost]
         public ActionResult MemberQA(Opinion op)
         {
-
-
-
             op.OpinionDateTime = DateTime.Now.ToString("yyyyMMdd HH:mm");
             db.Opinions.Add(op);
             db.SaveChanges();
             return RedirectToAction("Member");
+        }
+
+        public ActionResult MemberSee(int? id)
+        {
+
+            Opinion op = db.Opinions.Find(id);
+            if (op == null)
+            {
+                return RedirectToAction("Member");
+            }
+
+            return View(op);
         }
 
     }
