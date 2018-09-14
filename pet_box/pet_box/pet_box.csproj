@@ -147,6 +147,8 @@
     <Content Include="product_images\optional_items\cube.jpg" />
     <Content Include="product_images\optional_items\feeder_small.png" />
     <Content Include="product_images\optional_items\sensor_humi_temp.png" />
+    <Content Include="product_images\site_images\shopping-cart-78019_64.jpg" />
+    <Content Include="product_images\site_images\shopping-cart-78019_64.png" />
     <Content Include="product_images\site_product\cover\a.jpg" />
     <Content Include="product_images\site_product\cover\b.jpg" />
     <Content Include="product_images\site_product\cover\c.jpg" />
