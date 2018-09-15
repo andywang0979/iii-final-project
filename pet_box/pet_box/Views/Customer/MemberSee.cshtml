@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h2 style="text-align:center">聯絡客服</h2>
+<h2 style="text-align:center">問題回應</h2>
 
 <br />
 
@@ -13,11 +13,11 @@
     @Html.HiddenFor(model => model.OpinionID)
     @Html.HiddenFor(model => model.OpinionDateTime)
 
-    <h4> 問題標題:</h4><input type="text" name="OpinionTitle" style="font-size:30px;border:2px inset black" /><br />
+    <h4> 問題標題:</h4><input type="text" name="OpinionTitle" style="font-size:30px;border:2px inset black" value="@Model.OpinionTitle" /><br />
 
     <br />
-    <h4>請輸入內容:</h4>
-    <textarea id="OpinionContent" name="OpinionContent" style="font-size:10px;border:2px solid black" placeholder="" rows="10" cols="100"></textarea><br />
+    <h4>回應:</h4>
+    <textarea id="OpinionFeedback" name="OpinionFeedback" style="font-size:10px;border:2px solid black" placeholder="" rows="10" cols="100">@Model.OpinionFeedback</textarea><br />
 
     <input type="hidden" name="OpinionStatus" value="0" />
     <input type="hidden" name="EmployeeID" value="1" />
