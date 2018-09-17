@@ -165,7 +165,15 @@
     <Content Include="product_images\site_product\product\cam_wide.jpg" />
     <Content Include="product_images\site_product\product\feeder_median.jpg" />
     <Content Include="product_images\site_product\product\feeder_small.jpg" />
+    <Content Include="product_images\site_product\product\sensor_carbon dioxide.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Carbon monoxide.jpg" />
     <Content Include="product_images\site_product\product\sensor_humi_temp.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Light.jpg" />
+    <Content Include="product_images\site_product\product\sensor_smoke.jpg" />
+    <Content Include="product_images\site_product\product\sensor_sound.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Ultrasonic.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Ultraviolet light.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Water level.jpg" />
     <Content Include="product_images\site_product\product\sensor_weight.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -284,6 +292,8 @@
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\OptionalItem\CategoryItem.cshtml" />
     <Content Include="Views\Customer\MemberSee.cshtml" />
+    <Content Include="Views\Customer\Memberselect.cshtml" />
+    <Content Include="Views\Customer\MemberOrderTrack.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

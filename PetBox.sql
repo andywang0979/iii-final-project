@@ -368,17 +368,17 @@ GO
 
 --顧客ID 員工ID 產品ID 意見標題 內容 狀況 時間
 INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
-VALUES(1, N'到貨時間?', N'我今天買了溫溼度感應器，請問什麼時後到貨？', '20180825 12:00')
+VALUES(2, N'到貨時間?', N'我今天買了溫溼度感應器，請問什麼時後到貨？', '20180825 12:00')
 
 INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
-VALUES(2, N'產品怎麼操作?', N'我收到了貴公司的產品，可是沒有操作手冊，請問網站有沒有教學文件？', '20180826 15:00')
+VALUES(3, N'產品怎麼操作?', N'我收到了貴公司的產品，可是沒有操作手冊，請問網站有沒有教學文件？', '20180826 15:00')
 
 INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
-VALUES(3, N'要求退貨?', N'不好意思，我買錯商品，想要退貨，請問貴公司的退貨手續怎麼辦理？', '20180827 11:00')
+VALUES(4, N'要求退貨?', N'不好意思，我買錯商品，想要退貨，請問貴公司的退貨手續怎麼辦理？', '20180827 11:00')
 GO
 
 INSERT INTO Opinions(CustomerID, EmployeeID, OpinionTitle, OpinionContent, OpinionDateTime, OpinionStatus, OpinionFeedback, OpinionFeedbackTime)
-VALUES(4, 4, N'已回答範例', N'我想要退貨，請問要怎麼退？', '20180827 16:00', 1, N'謝謝您購買本公司產品，在本公司網站的最下方有FAQ，裏面第1項有提供相關訊息，謝謝您。', '20180828 09:30')
+VALUES(5, 4, N'已回答範例', N'我想要退貨，請問要怎麼退？', '20180827 16:00', 1, N'謝謝您購買本公司產品，在本公司網站的最下方有FAQ，裏面第1項有提供相關訊息，謝謝您。', '20180828 09:30')
 GO
 
 
