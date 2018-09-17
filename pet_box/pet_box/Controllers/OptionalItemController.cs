@@ -247,7 +247,7 @@ namespace pet_box.Controllers {
             TempData.Keep("itemList");
 
             // user use broser's previsous page from deilvery page or other situation
-            if (itemObjList.Count() == 0 || itemObjList == null) {
+            if (TempData["itemList"] == null) {
                 return RedirectToAction("", "Customer");
             }
 
@@ -562,6 +562,18 @@ namespace pet_box.Controllers {
             }
 
             return Content("0");
+        }
+
+
+        public ActionResult CheckCustomerLogin() {
+            if (TempData["itemList"] != null) {
+                //return Content("some some in temp data itemlist");
+                TempData.Keep("itemList");
+            }
+
+            // check if user login, probably use another session or other way.
+            //return Content(Session["CustomerID"].ToString());
+            return Content(Session["CustomerID"].ToString());
         }
 
     }
