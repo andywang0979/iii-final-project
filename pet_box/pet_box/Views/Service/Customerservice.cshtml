@@ -11,14 +11,14 @@
     }
 </style>
 
-<h3 id="title">(未回答)客戶問題列表</h3><br />
+<h3 id="title" style="color:red">(未回答)客戶問題列表</h3><br />
 
-<table class="table table-hover table-bordered " style="margin-top: 10px">
+<table class="table table-hover table-bordered " style="margin-top: 10px;text-align:center" >
     <thead>
         <tr>
-            <th class="col-md-6">問題編號</th>
-            <th class="col-md-2">客戶問題</th>
-            <th class="col-md-6">客服處理</th>
+            <th class="col-md-6" style="text-align:center">問題編號</th>
+            <th class="col-md-2" style="text-align:center">客戶問題</th>
+            <th class="col-md-6" style="text-align:center">客服處理</th>
         </tr>
     </thead>
     <tbody>
@@ -31,7 +31,11 @@
                     <td>@emp.OpinionID</td>
                     <td>@emp.OpinionTitle</td>
                     <td>
-                        <a href="/Service/Customerservice2/@emp.OpinionID" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span>點擊處理</span></a>
+
+                        <div style="text-align:center">
+                            <a href="/Service/Customerservice2/@emp.OpinionID" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span>點擊處理</span></a>
+                        </div>
+                    
                     </td>
                 </tr>
             }

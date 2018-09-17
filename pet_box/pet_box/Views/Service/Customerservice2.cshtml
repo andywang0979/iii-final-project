@@ -5,11 +5,99 @@
 }
 
 
-<h2>客服回應</h2>
 
-<br />
 
-<form method="post" style="font-size:20px;">
+
+<form method="post">
+
+    <div class="container">
+
+        <div class="col-lg-4" style="left:65px;top:20px;">
+
+            <h3 style="color:coral;">客服人員 回應步驟</h3>
+            <br />
+            <h4 style="color:red;">步驟一 了解會員問題 </h4>
+            <h4>查看會員的發問</h4>
+            <br />
+            <h4 style="color:red;">步驟二 解決會員問題 </h4>
+            <h4>因應會員不同的問題，找出解決的方法</h4>
+            <br />
+            <h4 style="color:red;">步驟三 歡迎在與客服聯絡 </h4>
+            <h4>有任何的問題，歡迎再與客服人員聯絡</h4>
+            <br />
+
+            <img src="https://cdn2.ettoday.net/images/736/d736983.jpg" width="300" height="200" />
+
+        </div>
+
+        <div class="col-lg-4" style="left:120px;top:15px;font-size:20px;" >
+
+
+            @Html.HiddenFor(model => model.OpinionID)
+            @Html.HiddenFor(model => model.CustomerID)
+            @Html.HiddenFor(model => model.ProductID)
+            @Html.HiddenFor(model => model.OpinionDateTime)
+            @Html.HiddenFor(model => model.OpinionTitle)
+
+            <h3 style="color:coral;">會員基本資料</h3>
+
+            姓名:@Model.Customer.CustomerName<br />
+            帳號:@Model.Customer.CustomerLoginName<br />
+            發問時間:@Model.OpinionDateTime<br /><br />
+
+           <span style="color:red">問題標題:@Model.OpinionTitle </span> <br />
+
+            <textarea readonly id="OpinionContent" name="OpinionContent" placeholder="" rows="4" cols="50">@Model.OpinionContent</textarea>
+            <br />
+
+            <br />
+
+            <span style="color:red">客服回應:@Model.OpinionTitle </span> <br />
+
+            <textarea id="OpinionFeedback" name="OpinionFeedback" placeholder="" rows="4" cols="50">@Model.OpinionFeedback</textarea>
+
+            <br />
+
+            <input type="hidden" name="OpinionStatus" value="1" />
+
+            <input type="hidden" name="EmployeeID" value="4" />
+
+            <br />
+
+            <input type="submit" class="btn btn-success btn-lg" value="送出" />
+        </div>
+
+        <div class="col-lg-4" style="left:150px;top:15px">
+
+            <h3 style="color:red">客服人員注意事項</h3> <br />
+            <h4 style="color:red">第一項、保持友善</h4>
+            <h4>回應時不帶有個人的情緒</h4>
+            <br />
+            <h4 style="color:red">第二項、耐心與同理心</h4>
+            <h4>面對不同的問題，都保持著會員角度</h4>
+            <br />
+
+            </div>
+
+    </div>
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<form method="post" style="font-size:20px;">
 
     @Html.HiddenFor(model => model.OpinionID)
     @Html.HiddenFor(model => model.CustomerID)
@@ -17,25 +105,21 @@
     @Html.HiddenFor(model => model.OpinionDateTime)
     @Html.HiddenFor(model => model.OpinionTitle)
 
-    客戶資料<br />
+    會員資料<br />
     <br />
+
     姓名:@Model.Customer.CustomerName<br />
     帳號:@Model.Customer.CustomerLoginName<br />
-
-    <br />
-
-    發問時間:@Model.OpinionDateTime<br />
+    發問時間:@Model.OpinionDateTime<br /><br />
 
     問題標題:@Model.OpinionTitle<br />
-
-    <br />
 
     <textarea readonly id="OpinionContent" name="OpinionContent" placeholder="" rows="4" cols="50">@Model.OpinionContent</textarea>
     <br />
 
     <br />
 
-    <h3>客服回應</h3><br />
+    <h3>客服回應</h3>
 
 
     <textarea id="OpinionFeedback" name="OpinionFeedback" placeholder="" rows="4" cols="50">@Model.OpinionFeedback</textarea>
@@ -50,7 +134,7 @@
 
     <input type="submit" class="btn btn-success btn-lg" value="送出" />
 
-</form>
+</form>*@
 
 
 
