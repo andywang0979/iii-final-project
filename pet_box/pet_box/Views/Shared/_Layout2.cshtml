@@ -116,7 +116,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("智慧寵物屋", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("智慧寵物屋", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })*@
+                <ul class="nav navbar-nav">
+                    <li style="left:85px;font-size:15px;">@Html.ActionLink("智慧寵物屋", "Index", "Customer")</li>
+                </ul>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
