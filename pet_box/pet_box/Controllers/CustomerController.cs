@@ -212,16 +212,34 @@ namespace pet_box.Controllers
             return RedirectToAction("Member");
         }
 
+        public ActionResult Memberselect(int? id)
+        {
+
+            var query = from o in db.Opinions
+                        where o.CustomerID == id
+                        select o;
+            List<Opinion> op = query.ToList();
+
+
+            return View(op);
+        }
+
         public ActionResult MemberSee(int? id)
         {
 
             Opinion op = db.Opinions.Find(id);
+
             if (op == null)
             {
                 return RedirectToAction("Member");
             }
 
             return View(op);
+        }
+
+        public ActionResult MemberOrderTrack()
+        {
+            return View();
         }
 
     }

@@ -8,14 +8,14 @@
 
 <br />
 
-<form method="post" style="text-align:center">
+<form method="post" style="text-align:center;font-size:20px;">
 
     @Html.HiddenFor(model => model.CustomerID)
 
     姓名:<input type="text" name="CustomerName" value="@Model.CustomerName" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
     信箱:<input type="text" name="CustomerEmail" value="@Model.CustomerEmail" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
     電話:<input type="text" name="CustomerMobilePhone" value="@Model.CustomerMobilePhone" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
-    郵遞區號:<input type="text" name="CustomerPostalCode" value="@Model.CustomerPostalCode" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    區號:<input type="text" name="CustomerPostalCode" value="@Model.CustomerPostalCode" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
     地址:<input type="text" name="CustomerAddress" value="@Model.CustomerAddress" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
     國家:<input type="text" name="CustomerCountry" value="@Model.CustomerCountry" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
 

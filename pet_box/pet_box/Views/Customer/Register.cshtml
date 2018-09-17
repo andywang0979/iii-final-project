@@ -1,117 +1,179 @@
-﻿
+﻿@model pet_box.Models.Customer
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@{
-    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <!-- Website CSS style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form" method="post">
-                <h2 style="text-align:center;">會員註冊 <small></small></h2>
-                <hr class="colorgraph">
-                <div class="row">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+</head>
+
+<style>
+    body, html {
+        height: 100%;
+        background-repeat: no-repeat;
+        background-color: white;
+        font-family: 'Oxygen', sans-serif;
+    }
+
+    .main {
+        margin-top: 10px;
+    }
+
+    hr {
+        width: 10%;
+        color: #fff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-bottom: 15px;
+    }
+
+    input,
+    input::-webkit-input-placeholder {
+        font-size: 11px;
+        padding-top: 3px;
+    }
+
+    .main-login {
+        background-color: #fff;
+        /* shadows and rounded borders */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-center {
+        margin-top: 1px;
+        margin: 0 auto;
+        max-width: 330px;
+        padding: 1px 1px;
+    }
+
+    .login-button {
+        margin-top: 1px;
+    }
+
+    .login-register {
+        font-size: 11px;
+        text-align: center;
+    }
+</style>
+
+<form method="post">
+
+    <div class="container">
+
+        <div class="col-lg-4" style="left:65px;top:20px;">
+
+            <h3 style="color:coral;">歡迎註冊智慧寵物屋會員</h3>
+            <br />
+            <h4 style="color:red;">步驟一 註冊成為會員 </h4>
+            <h4>請於右方輸入框，輸入基本的資料</h4>
+            <br />
+            <h4 style="color:red;">步驟二 登入會員 </h4>
+            <h4>可以享受會員專屬客製化服務</h4>
+            <br />
+            <h4 style="color:red;">FAQ 聯絡客服人員 </h4>
+            <h4>有任何的問題，歡迎與客服人員聯絡</h4>
+            <br />
+
+            <img src="https://cdn2.ettoday.net/images/736/d736983.jpg" width="300" height="200" />
+
+        </div>
+
+        <div class="col-lg-4" style="left:150px;top:30px;">
+
+            <div class="main-login main-center">
+
+
+                    <br />
 
                     <input type="hidden" name="CustomerRole" value="3" />
 
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            請填寫姓名:
-                            <input type="text" name="CustomerName" id="CustomerName" class="form-control input-lg" placeholder="" tabindex="1">
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">姓名</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="CustomerName" id="CustomerName" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">信箱</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="email" class="form-control" name="CustomerEmail" id="CustomerEmail" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">帳號</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="CustomerLoginName" id="CustomerLoginName" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">密碼</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="CustomerPassword" id="CustomerPassword" placeholder="" />
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            請填寫電話:
-                            <input type="text" name="CustomerMobilePhone" id="CustomerMobilePhone" class="form-control input-lg" placeholder="" tabindex="2">
-                        </div>
+                    <div style="text-align:center;">
+                        <input type="submit" class="btn btn-success btn-lg" value="註冊" />
+                    </div>
+                    <div>
+                        <h4 style="color:red">@ViewBag.Message </h4>
+                        <h4 style="color:red">@ViewBag.Message2 </h4>
+                        <h4 style="color:red">@ViewBag.Message3 </h4>
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            請填寫帳號:
-                            <input type="text" name="CustomerLoginName" id="CustomerLoginName" class="form-control input-lg" placeholder="" tabindex="3">
-                        </div>
-                    </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            請填寫密碼:
-                            <input type="password" name="CustomerPassword" id="CustomerPassword" class="form-control input-lg" placeholder="" tabindex="4">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            請填寫信箱:
-                            <input type="email" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="" tabindex="5">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            請填寫地址:
-                            <input type="text" name="CustomerAddress" id="CustomerAddress" class="form-control input-lg" placeholder="" tabindex="6">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            請填寫國家:
-                            <input type="text" name="CustomerCountry" id="CustomerCountry" class="form-control input-lg" placeholder="" tabindex="7">
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3">
-                        <span class="button-checkbox">
-
-                            <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-                        </span>
-                    </div>
-                    <div class="col-xs-8 col-sm-9 col-md-9">
-
-                    </div>
-                </div>
-
-                <hr class="colorgraph">
-                <div class="row">
-                    <div class="col-xs-12 col-md-6"><input type="submit" value="註冊" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                </div>
-                <div>
-                    <h4 style="color:red">@ViewBag.Message </h4>
-                    <h4 style="color:red">@ViewBag.Message2 </h4>
-                    <h4 style="color:red">@ViewBag.Message3 </h4>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-
-                </div>
             </div>
         </div>
+
+        @*<div class="col-lg-4" style="left:100px;top:20px;">
+
+                <h3 style="text-align:center;color:coral">會員專屬客製化</h3>
+                <br />
+                <h4>成為會員即可擁有專屬客製化服務</h4>
+                <br />
+                <img src="~/product_images/site_product/product/box_small.jpg" width="300" height="200" />
+
+            </div>*@
+
     </div>
-</div>
+
+</form>
+
+
+
+
 
 

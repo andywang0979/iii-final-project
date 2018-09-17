@@ -13,13 +13,12 @@
     @Html.HiddenFor(model => model.OpinionID)
     @Html.HiddenFor(model => model.OpinionDateTime)
 
-    <h4> 問題標題:</h4><input type="text" name="OpinionTitle" style="font-size:30px;border:2px inset black" value="@Model.OpinionTitle" /><br />
+    <h4>標題:@Model.OpinionTitle"</h4><br />
 
-    <br />
     <h4>回應:</h4>
-    <textarea id="OpinionFeedback" name="OpinionFeedback" style="font-size:10px;border:2px solid black" placeholder="" rows="10" cols="100">@Model.OpinionFeedback</textarea><br />
+    <textarea readonly id="OpinionFeedback" name="OpinionFeedback" style="font-size:10px;border:2px solid black" placeholder="" rows="10" cols="100">@Model.OpinionFeedback</textarea><br />
 
-    <input type="hidden" name="OpinionStatus" value="0" />
+    <input type="hidden" name="OpinionStatus" value="1" />
     <input type="hidden" name="EmployeeID" value="1" />
 
     <input type="hidden" name="CustomerID" value="@Session["CustomerID"]" />
@@ -27,6 +26,7 @@
 
     <br />
 
-    <input type="submit" value="送出" />
+    <a href="http://localhost:49732/Customer/Memberselect/@Session["CustomerID"]" class="btn btn-success btn-lg">確定</a>
+    @*<input type="submit" class="btn btn-success btn-lg" value="確定" />*@
 
 </form>

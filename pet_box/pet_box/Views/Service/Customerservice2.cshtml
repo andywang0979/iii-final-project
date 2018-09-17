@@ -9,7 +9,7 @@
 
 <br />
 
-<form method="post">
+<form method="post" style="font-size:20px;">
 
     @Html.HiddenFor(model => model.OpinionID)
     @Html.HiddenFor(model => model.CustomerID)
@@ -24,12 +24,10 @@
 
     <br />
 
-    <br />
-
     發問時間:@Model.OpinionDateTime<br />
 
     問題標題:@Model.OpinionTitle<br />
-    
+
     <br />
 
     <textarea readonly id="OpinionContent" name="OpinionContent" placeholder="" rows="4" cols="50">@Model.OpinionContent</textarea>
@@ -48,7 +46,9 @@
 
     <input type="hidden" name="EmployeeID" value="4" />
 
-    <input type="submit" value="送出" />
+    <br />
+
+    <input type="submit" class="btn btn-success btn-lg" value="送出" />
 
 </form>
 
