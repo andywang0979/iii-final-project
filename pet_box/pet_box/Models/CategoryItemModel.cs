@@ -9,6 +9,7 @@ namespace pet_box.Models {
         public string ProductName { get; set; }
         public string ImgLocation { get; set; }
         public decimal UnitPrice { get; set; }
+        public int QuantityInStock { get; set; }
         public string ProductDescription { get; set; }
     }
 }
