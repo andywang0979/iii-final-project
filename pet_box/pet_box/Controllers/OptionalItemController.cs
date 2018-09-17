@@ -490,6 +490,7 @@ namespace pet_box.Controllers {
                 tempInstance.ProductName = item.ProductName;
                 tempInstance.UnitPrice = item.ProductPrice;
                 tempInstance.ProductDescription = item.ProductDescription;
+                tempInstance.QuantityInStock = (int)item.ProductQuantity;
 
                 viewM.ProductList.Add(tempInstance);
             }

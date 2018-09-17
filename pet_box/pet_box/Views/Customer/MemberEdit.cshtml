@@ -12,14 +12,33 @@
 
     @Html.HiddenFor(model => model.CustomerID)
 
-    姓名:<input type="text" name="CustomerName" value="@Model.CustomerName" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
-    信箱:<input type="text" name="CustomerEmail" value="@Model.CustomerEmail" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
-    電話:<input type="text" name="CustomerMobilePhone" value="@Model.CustomerMobilePhone" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
-    區號:<input type="text" name="CustomerPostalCode" value="@Model.CustomerPostalCode" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
-    地址:<input type="text" name="CustomerAddress" value="@Model.CustomerAddress" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    姓名:<input type="text" id="name" name="CustomerName" value="@Model.CustomerName" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    信箱:<input type="text" id ="email" name="CustomerEmail" value="@Model.CustomerEmail" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    電話:<input type="text" id="phone" name="CustomerMobilePhone" value="@Model.CustomerMobilePhone" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    區號:<input type="text" id="postCode" name="CustomerPostalCode" value="@Model.CustomerPostalCode" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    地址:<input type="text" id="address" name="CustomerAddress" value="@Model.CustomerAddress" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
     國家:<input type="text" name="CustomerCountry" value="@Model.CustomerCountry" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
 
     <input type="submit" class="btn btn-success btn-lg" value="修改" />
 
 </form>
 
+
+
+<button id="autoFillButton" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
+
+
+
+<script>
+        function OneKeyFillFun() {
+            document.getElementById("name").value = "王小美";
+            document.getElementById("email").value = "littleBeauty@domain.com";
+            //document.getElementById("username").value = "beauty";
+            //document.getElementById("password").value = "beauty";
+            document.getElementById("phone").value = "0423265860 ";
+            document.getElementById("address").value = "台中市公益路二段51號20樓";
+            document.getElementById("postCode").value = "406";
+        }
+
+
+</script>

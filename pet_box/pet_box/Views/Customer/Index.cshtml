@@ -20,7 +20,7 @@
                 position: fixed;
                 width: 5%;
                 right: 0.5vh;
-                top: 0.1vh;
+                top: 0pt;
                 z-index: 1044;
                 /*-webkit-animation: moveDown 1s 1  normal ease-out;
         animation: moveDown 1s 1  normal ease-out;*/
@@ -36,7 +36,7 @@
 
             @@-webkit-keyframes moveDown {
                 0% {
-                    top: 1%;
+                    top: 0%;
                 }
 
                 100% {
@@ -50,7 +50,7 @@
                 }
 
                 100% {
-                    top: 1%;
+                    top: 0%;
                 }
             }
 
@@ -105,16 +105,20 @@
                 }
 
 
-                .myCategoryMenuClass {
+                /*.myCategoryMenuClass {
                     position:fixed;
                     top:8vh;
-                }
+                }*/
 
-                .myCategoryItemClass {
+                /*.myCategoryItemClass {
                     position:relative;
-                    /*top:10vh;*/
+                    
                     left:45vh;
                     top:1vh;
+                }*/
+
+                .myMarginTop{
+                    margin-top:5pt;
                 }
     </style>
 }
@@ -139,12 +143,12 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="row myMarginTop">
 
         <div class="col-md-3 myCategoryMenuClass">
             
 
-            <div class="list-group">
+            <div class="list-group affix">
 
 
                 <ul class="list-group">
@@ -173,7 +177,7 @@
             </div>
         </div>
 
-        <div class="col-md-9 myCategoryItemClass">
+        <div class="col-md-9 myCategoryItemClass ">
             
             <div class="row">
                 <div id="categoryItemsDiv">
@@ -437,7 +441,7 @@
 
             elementShoppingCartIcon.style.position = "fixed";
 
-            elementShoppingCartIcon.style.top = "1%";
+            elementShoppingCartIcon.style.top = "0pt";
 
             count = 0;
 
