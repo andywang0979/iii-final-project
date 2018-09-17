@@ -9,98 +9,111 @@
 
 @section IndexTop{
     <style>
-    #imageContainer {
-        position: relative;
-    }
+            #imageContainer {
+                position: relative;
+            }
 
-    #shoppingIconDiv {
-        position: fixed;
-        width: 5%;
-        right: 1%;
-        top: 1%;
-        z-index: 1044;
-        /*-webkit-animation: moveDown 1s 1  normal ease-out;
-    animation: moveDown 1s 1  normal ease-out;*/
-        animation-duration: 1s;
-        animation-iteration-count: 1;
-        /*animation-name:;*/
-        -webkit-animation-duration: 1s;
-        -webkit-animation-iteration-count: 1;
-        /*-webkit-animation-name:;*/
-    }
-
-
-
-    @@-webkit-keyframes moveDown {
-        0% {
-            top: 1%;
-        }
-
-        100% {
-            top: 50%;
-        }
-    }
-
-    @@-webkit-keyframes moveUp {
-        0% {
-            top: 50%;
-        }
-
-        100% {
-            top: 1%;
-        }
-    }
+            #shoppingIconDiv {
+                position: fixed;
+                width: 5%;
+                right: 0.5vh;
+                top: 0.1vh;
+                z-index: 1044;
+                /*-webkit-animation: moveDown 1s 1  normal ease-out;
+        animation: moveDown 1s 1  normal ease-out;*/
+                animation-duration: 1s;
+                animation-iteration-count: 1;
+                /*animation-name:;*/
+                -webkit-animation-duration: 1s;
+                -webkit-animation-iteration-count: 1;
+                /*-webkit-animation-name:;*/
+            }
 
 
 
-    @@-webkit-keyframes pulse {
-        0% {
-            -webkit-transform: scale(1, 1);
-        }
+            @@-webkit-keyframes moveDown {
+                0% {
+                    top: 1%;
+                }
 
-        50% {
-            -webkit-transform: scale(1.5, 1.5);
-        }
+                100% {
+                    top: 50%;
+                }
+            }
 
-        100% {
-            -webkit-transform: scale(1, 1);
-        }
-    }
+            @@-webkit-keyframes moveUp {
+                0% {
+                    top: 50%;
+                }
 
-    @@keyframes pulse {
-        0% {
-            transform: scale(1, 1);
-        }
-
-        50% {
-            transform: scale(1.5, 1.5);
-        }
-
-        100% {
-            transform: scale(1, 1);
-        }
-    }
+                100% {
+                    top: 1%;
+                }
+            }
 
 
 
-    #totalBuyQuantityLabel {
-        position: absolute;
-        right: 1%;
-        top: 1%;
-        width: 50px;
-        height: 50px;
-        /* for different broswer*/
-        /* the format is animationName animationDuration ??? iterationNumber*/
-        -webkit-animation: pulse 1s linear 2;
-        animation: pulse 1s linear 2;
-        animation-play-state: paused;
-    }
+            @@-webkit-keyframes pulse {
+                0% {
+                    -webkit-transform: scale(1, 1);
+                }
 
-        #totalBuyQuantityLabel:hover {
-            -webkit-animation: none;
-            animation: none;
-        }
-</style>
+                50% {
+                    -webkit-transform: scale(1.5, 1.5);
+                }
+
+                100% {
+                    -webkit-transform: scale(1, 1);
+                }
+            }
+
+            @@keyframes pulse {
+                0% {
+                    transform: scale(1, 1);
+                }
+
+                50% {
+                    transform: scale(1.5, 1.5);
+                }
+
+                100% {
+                    transform: scale(1, 1);
+                }
+            }
+
+
+
+            #totalBuyQuantityLabel {
+                position: absolute;
+                right: 1%;
+                top: 1%;
+                width: 50px;
+                height: 50px;
+                /* for different broswer*/
+                /* the format is animationName animationDuration ??? iterationNumber*/
+                -webkit-animation: pulse 1s linear 2;
+                animation: pulse 1s linear 2;
+                animation-play-state: paused;
+            }
+
+                #totalBuyQuantityLabel:hover {
+                    -webkit-animation: none;
+                    animation: none;
+                }
+
+
+                .myCategoryMenuClass {
+                    position:fixed;
+                    top:8vh;
+                }
+
+                .myCategoryItemClass {
+                    position:relative;
+                    /*top:10vh;*/
+                    left:45vh;
+                    top:1vh;
+                }
+    </style>
 }
 
 
@@ -121,393 +134,386 @@
 </div>
 
 
-    <div class="container">
+<div class="container">
 
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-3">
-                <br />
+        <div class="col-md-3 myCategoryMenuClass">
+            
 
-                <div class="list-group">
-
-
-                    <ul class="list-group">
-                        <li class="list-group-item" style="background-color:coral;text-align:center">
-                            <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="3" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
-                                <span class="glyphicon glyphicon-camera" style="font-size:17px;color:black">監控系統</span>
-                            </button>
-                        </li>
-
-                        <li class="list-group-item" style="background-color:coral;text-align:center">
-                            <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="4" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
-                                <span class="glyphicon glyphicon-glass" style="font-size:17px;color:black">自動飼料餵食器</span>
-                            </button>
-                        </li>
-
-                        <li class="list-group-item" style="background-color:coral;text-align:center">
-                            <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="5" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
-                                <span class="glyphicon glyphicon-dashboard" style="font-size:17px;color:black">感測器</span>
-                            </button>
-                        </li>
-
-                    </ul>
+            <div class="list-group">
 
 
+                <ul class="list-group">
+                    <li class="list-group-item" style="background-color:coral;text-align:center">
+                        <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="3" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
+                            <span class="glyphicon glyphicon-camera" style="font-size:17px;color:black">監控系統</span>
+                        </button>
+                    </li>
 
-                </div>
+                    <li class="list-group-item" style="background-color:coral;text-align:center">
+                        <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="4" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
+                            <span class="glyphicon glyphicon-glass" style="font-size:17px;color:black">自動飼料餵食器</span>
+                        </button>
+                    </li>
+
+                    <li class="list-group-item" style="background-color:coral;text-align:center">
+                        <button style="background-color:coral;text-align:center" id="ajaxButton" name="" class="categoryChooser btn " value="5" formnovalidate="formnovalidate" onclick="SelectCategoryFun(this.value)">
+                            <span class="glyphicon glyphicon-dashboard" style="font-size:17px;color:black">感測器</span>
+                        </button>
+                    </li>
+
+                </ul>
+
+
+
             </div>
+        </div>
 
-            <div class="col-md-9">
+        <div class="col-md-9 myCategoryItemClass">
+            
+            <div class="row">
+                <div id="categoryItemsDiv">
 
-
-
-                <div>
-                    <br />
-                </div>
-
-
-                <div class="row">
-                    <div id="categoryItemsDiv">
-
-                        @* show the products in categoryID == 2:*@
-                        @for (int i = 0; i < Model.CategoryProductModelDic["categoryId03"].Products.Count(); i++) {
-                            <div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductImageLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
-                                    <div class="caption">
-                                        <h4 class="pull-right">$@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductPrice.ToString("F0")</h4>
+                    @* show the products in categoryID == 2:*@
+                    @for (int i = 0; i < Model.CategoryProductModelDic["categoryId03"].Products.Count(); i++) {
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductImageLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
+                                <div class="caption">
+                                    <h4 class="pull-right">$@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductPrice.ToString("F0")</h4>
 
 
-                                        <h4>
-                                            <a href="#">@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductName</a>
-                                        </h4>
-                                        <p>@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductDescription</p>
-                                    </div>
-                                    <div class="ratings">
+                                    <h4>
+                                        <a href="#">@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductName</a>
+                                    </h4>
+                                    <p>@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductDescription</p>
+                                </div>
+                                <div class="ratings">
 
-                                        <form action="/OptionalItem/SingleBuy/@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductID" method="post">
+                                    <form action="/OptionalItem/SingleBuy/@Model.CategoryProductModelDic["categoryId03"].Products[i].ProductID" method="post">
 
-                                            數量 <input type="number" id="quantity" name="buyQuantity"
-                                                      placeholder="please input quantity" step="1" min="1" max=""
-                                                      value="1" />
+                                        數量 <input type="number" id="quantity" name="buyQuantity"
+                                                  placeholder="please input quantity" step="1" min="1" max=""
+                                                  value="1" />
 
-                                            <p>
+                                        <p>
 
-                                                <div>
-                                                    <br />
-                                                </div>
-                                                <button id="singlebutton" name="singlebutton" class="btn btn-primary">
-                                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                                    加入購物車
-                                                </button>
+                                            <div>
+                                                <br />
+                                            </div>
+                                            <button id="singlebutton" name="singlebutton" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                                加入購物車
+                                            </button>
 
-                                            </p>
-                                        </form>
+                                        </p>
+                                    </form>
 
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
 
-                        }
+                    }
 
-                    </div>
                 </div>
-
-
-
-
-
             </div>
+
+
+
+
 
         </div>
 
     </div>
 
-    <div class="container">
+</div>
 
-        <hr>
+<div class="container">
 
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>智慧寵物屋 &copy; 2018</p>
-                </div>
+    <hr>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>智慧寵物屋 &copy; 2018</p>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-    </div>
+</div>
 
-    <script src="js/jquery.js"></script>
+<script src="js/jquery.js"></script>
 
-    <script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 
-    <script>
+<script>
 
-        getTotal()
+    getTotal()
 
-        SelectCategoryFun(3);
+    SelectCategoryFun(3);
 
-        // load category
-        function SelectCategoryFun(categoryId) {
-            // send as a form
-            makeRequest('/OptionalItem/CategoryItem/' + categoryId);
-        };
+    // load category
+    function SelectCategoryFun(categoryId) {
+        // send as a form
+        makeRequest('/OptionalItem/CategoryItem/' + categoryId);
+    };
 
-        // accept the user data and pass it along to the server.
-        // we include our data as a parameter in the call to httpRequest.send()
-        function makeRequest(url) {
-            //
-            if (window.XMLHttpRequest) { // Mozilla, Safari,...
-                httpRequestCategory = new XMLHttpRequest();
-                if (httpRequestCategory.overrideMimeType) {
-                    httpRequestCategory.overrideMimeType('text/xml');
-                }
-            } else if (window.ActiveXObject) { // IE
+    // accept the user data and pass it along to the server.
+    // we include our data as a parameter in the call to httpRequest.send()
+    function makeRequest(url) {
+        //
+        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+            httpRequestCategory = new XMLHttpRequest();
+            if (httpRequestCategory.overrideMimeType) {
+                httpRequestCategory.overrideMimeType('text/xml');
+            }
+        } else if (window.ActiveXObject) { // IE
+            try {
+                http_requestCategory = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
                 try {
-                    http_requestCategory = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (e) {
-                    try {
-                        http_requestCategory = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (e) { }
-                }
-            }
-            //----
-
-            if (!httpRequestCategory) {
-                alert('Giving up : Cannot create an XMLHTTP instance');
-                return false;
-            }
-            // tell the instance of XMLHttpRequest which JavaScript function will
-            // handle the response.
-            httpRequestCategory.onreadystatechange = LoadCategoryItem;
-
-            httpRequestCategory.open('GET', url);
-            httpRequestCategory.send();
-        }
-
-
-
-        function LoadCategoryItem() {
-            if (httpRequestCategory.readyState === XMLHttpRequest.DONE) {
-                if (httpRequestCategory.status === 200) {
-
-                    // remove any child
-                    // Get the <div> element with id="categoryItemsDiv"
-                    var nodeList = document.getElementById("categoryItemsDiv");
-
-                    // As long as categoryItemsDiv has a child node, remove it
-                    while (nodeList.hasChildNodes()) {
-                        nodeList.removeChild(nodeList.firstChild);
-                    }
-
-                    var d1 = document.getElementById('categoryItemsDiv');
-                    //  `beforeend`: Just inside the element, after its last child.
-                    d1.insertAdjacentHTML('beforeend', httpRequestCategory.responseText);
-
-                } else {
-                    alert('There was a problem with the request.');
-                }
+                    http_requestCategory = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) { }
             }
         }
+        //----
+
+        if (!httpRequestCategory) {
+            alert('Giving up : Cannot create an XMLHTTP instance');
+            return false;
+        }
+        // tell the instance of XMLHttpRequest which JavaScript function will
+        // handle the response.
+        httpRequestCategory.onreadystatechange = LoadCategoryItem;
+
+        httpRequestCategory.open('GET', url);
+        httpRequestCategory.send();
+    }
 
 
 
+    function LoadCategoryItem() {
+        if (httpRequestCategory.readyState === XMLHttpRequest.DONE) {
+            if (httpRequestCategory.status === 200) {
 
-        function buyRequest(productID) {
-            //
-            if (window.XMLHttpRequest) { // Mozilla, Safari,...
-                httpRequestBuy = new XMLHttpRequest();
-                if (httpRequestBuy.overrideMimeType) {
-                    httpRequestBuy.overrideMimeType('text/xml');
+                // remove any child
+                // Get the <div> element with id="categoryItemsDiv"
+                var nodeList = document.getElementById("categoryItemsDiv");
+
+                // As long as categoryItemsDiv has a child node, remove it
+                while (nodeList.hasChildNodes()) {
+                    nodeList.removeChild(nodeList.firstChild);
                 }
-            } else if (window.ActiveXObject) { // IE
+
+                var d1 = document.getElementById('categoryItemsDiv');
+                //  `beforeend`: Just inside the element, after its last child.
+                d1.insertAdjacentHTML('beforeend', httpRequestCategory.responseText);
+
+            } else {
+                alert('There was a problem with the request.');
+            }
+        }
+    }
+
+
+
+
+    function buyRequest(productID) {
+        //
+        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+            httpRequestBuy = new XMLHttpRequest();
+            if (httpRequestBuy.overrideMimeType) {
+                httpRequestBuy.overrideMimeType('text/xml');
+            }
+        } else if (window.ActiveXObject) { // IE
+            try {
+                http_requestBuy = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
                 try {
-                    http_requestBuy = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (e) {
-                    try {
-                        http_requestBuy = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (e) { }
-                }
-            }
-            //----
-
-            if (!httpRequestBuy) {
-                alert('Giving up : Cannot create an XMLHTTP instance');
-                return false;
-            }
-            // tell the instance of XMLHttpRequest which JavaScript function will
-            // handle the response.
-
-            var buyQuantity = document.getElementById(productID + "quantity").value
-
-            httpRequestBuy.onreadystatechange = alertContents;
-
-
-            httpRequestBuy.open('POST', '/OptionalItem/SingleBuyJavaScript/' + productID);
-            // send as a form post?
-            httpRequestBuy.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            // send as a form post, assing `name` attribute
-            httpRequestBuy.send('buyQuantity=' + encodeURIComponent(buyQuantity));
-        }
-
-
-        // we design the data come from server will be like:
-        // {"UserData":"yourName","ComputedString":"Hi, yourName!"}
-        // So we have to parse it and alert `ComputedString`, the property we want:
-
-        function alertContents() {
-            if (httpRequestBuy.readyState === XMLHttpRequest.DONE) {
-                if (httpRequestBuy.status === 200) {
-                    handleResizeClick()
-                    
-                    document.getElementById("totalButQuantitySpan").textContent = httpRequestBuy.responseText;
-
-                    //var quantityLabel = document.querySelector('#totalButQuantitySpan');
-                    //quantityLabel.textContent = httpRequest.responseText;
-                } else {
-                    alert('There was a problem with the request.');
-                }
+                    http_requestBuy = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) { }
             }
         }
+        //----
+
+        if (!httpRequestBuy) {
+            alert('Giving up : Cannot create an XMLHTTP instance');
+            return false;
+        }
+        // tell the instance of XMLHttpRequest which JavaScript function will
+        // handle the response.
+
+        var buyQuantity = document.getElementById(productID + "quantity").value
+
+        httpRequestBuy.onreadystatechange = alertContents;
 
 
-        
-        // transition animation
+        httpRequestBuy.open('POST', '/OptionalItem/SingleBuyJavaScript/' + productID);
+        // send as a form post?
+        httpRequestBuy.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        // for debounce , scroll event fire multiple times.
-        const debounce = (func, delay) => {
-            let debounceTimer
-            return function () {
-                const context = this
-                const args = arguments
-                clearTimeout(debounceTimer)
-                debounceTimer
-            = setTimeout(() => func.apply(context, args), delay)
+        // send as a form post, assing `name` attribute
+        httpRequestBuy.send('buyQuantity=' + encodeURIComponent(buyQuantity));
+    }
+
+
+    // we design the data come from server will be like:
+    // {"UserData":"yourName","ComputedString":"Hi, yourName!"}
+    // So we have to parse it and alert `ComputedString`, the property we want:
+
+    function alertContents() {
+        if (httpRequestBuy.readyState === XMLHttpRequest.DONE) {
+            if (httpRequestBuy.status === 200) {
+                handleResizeClick()
+
+                document.getElementById("totalButQuantitySpan").textContent = httpRequestBuy.responseText;
+
+                //var quantityLabel = document.querySelector('#totalButQuantitySpan');
+                //quantityLabel.textContent = httpRequest.responseText;
+            } else {
+                alert('There was a problem with the request.');
             }
         }
+    }
 
-        // for debounce
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
+
+
+    // transition animation
+
+    // for debounce , scroll event fire multiple times.
+    const debounce = (func, delay) => {
+        let debounceTimer
+        return function () {
+            const context = this
+            const args = arguments
+            clearTimeout(debounceTimer)
+            debounceTimer
+        = setTimeout(() => func.apply(context, args), delay)
+        }
+    }
+
+    // for debounce
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+    var lastScrollTop = 20;
+
+    // to check if program execute movedown or up.
+    var count = 0;
+
+    var elementShoppingCartIcon = document.querySelector("#shoppingIconDiv");
+    // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+    window.addEventListener("scroll", debounce(DetectScrollAndMoveIcon, 100), false);
+
+    // ignore that ide complains about missing `;` sign.
+
+    async function DetectScrollAndMoveIcon() { // or window.addEventListener("scroll"....
+        var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+        if (st > lastScrollTop && count == 0) {
+            // downscroll code
+
+            elementShoppingCartIcon.style.webkitAnimationName = 'moveDown';
+            elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
+            await sleep(100);
+            elementShoppingCartIcon.style.position = "fixed";
+            elementShoppingCartIcon.style.top = "50%";
+            count = 1;
+
+            // avoid broser scroll down and up to top again imediately, use `count` to check
+        } else if (st < 2 && count == 1) {
+            // upscroll code
+
+            elementShoppingCartIcon.style.webkitAnimationName = 'moveUp';
+            elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
+            await sleep(100);
+
+            elementShoppingCartIcon.style.position = "fixed";
+
+            elementShoppingCartIcon.style.top = "1%";
+
+            count = 0;
+
         }
 
 
-        var lastScrollTop = 20;
+        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
 
-        // to check if program execute movedown or up.
-        var count = 0;
+    }
 
-        var elementShoppingCartIcon = document.querySelector("#shoppingIconDiv");
-        // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
-        window.addEventListener("scroll", debounce(DetectScrollAndMoveIcon, 100), false);
 
-        // ignore that ide complains about missing `;` sign.
 
-        async function DetectScrollAndMoveIcon() { // or window.addEventListener("scroll"....
-            var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-            if (st > lastScrollTop && count == 0) {
-                // downscroll code
 
-                elementShoppingCartIcon.style.webkitAnimationName = 'moveDown';
-                elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
-                await sleep(100);   
-                elementShoppingCartIcon.style.position = "fixed";
-                elementShoppingCartIcon.style.top = "50%";               
-                count = 1;
+    // resize animation
+    function resetClick() {
+        var spinner = document.getElementById("totalBuyQuantityLabel");
+        spinner.style.webkitAnimationName = "none";
+    }
 
-                // avoid broser scroll down and up to top again imediately, use `count` to check
-            } else if (st < 2 && count == 1) {
-                // upscroll code
 
-                elementShoppingCartIcon.style.webkitAnimationName = 'moveUp';
-                elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
-                await sleep(100);
-                
-                elementShoppingCartIcon.style.position = "fixed";
 
-                elementShoppingCartIcon.style.top = "1%";
-                
-                count = 0;
-                
+    function handleResizeClick() {
+        var spinner = document.getElementById("totalBuyQuantityLabel");
+
+        spinner.style.webkitAnimationName = '';
+        spinner.style.webkitAnimationPlayState = 'running';
+    }
+
+
+    // get total quantity at page load
+
+
+    function getTotal() {
+        //
+        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+            httpRequestTotal = new XMLHttpRequest();
+            if (httpRequestTotal.overrideMimeType) {
+                httpRequestTotal.overrideMimeType('text/xml');
             }
-
-
-            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-            
-        }
-
-
-        
-
-        // resize animation
-        function resetClick() {
-            var spinner = document.getElementById("totalBuyQuantityLabel");
-            spinner.style.webkitAnimationName = "none";
-        }
-
-
-
-        function handleResizeClick() {
-            var spinner = document.getElementById("totalBuyQuantityLabel");
-
-            spinner.style.webkitAnimationName = '';
-            spinner.style.webkitAnimationPlayState = 'running';
-        }
-
-
-        // get total quantity at page load
-
-
-        function getTotal() {
-            //
-            if (window.XMLHttpRequest) { // Mozilla, Safari,...
-                httpRequestTotal = new XMLHttpRequest();
-                if (httpRequestTotal.overrideMimeType) {
-                    httpRequestTotal.overrideMimeType('text/xml');
-                }
-            } else if (window.ActiveXObject) { // IE
+        } else if (window.ActiveXObject) { // IE
+            try {
+                http_requestTotal = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
                 try {
-                    http_requestTotal = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (e) {
-                    try {
-                        http_requestTotal = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (e) { }
-                }
-            }
-            //----
-
-            if (!httpRequestTotal) {
-                alert('Giving up : Cannot create an XMLHTTP instance');
-                return false;
-            }
-            // tell the instance of XMLHttpRequest which JavaScript function will
-            // handle the response.
-
-            httpRequestTotal.onreadystatechange = GetTotalState;
-
-
-            httpRequestTotal.open('GET', '/OptionalItem/CountShoppingCartItemTotal/');
-            // send as a form post?
-            httpRequestTotal.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            // send as a form post, assing `name` attribute
-            httpRequestTotal.send();
-        }
-
-        function GetTotalState() {
-            if (httpRequestTotal.readyState === XMLHttpRequest.DONE) {
-                if (httpRequestTotal.status === 200) {                 
-                    var quantityLabel = document.querySelector('#totalButQuantitySpan');
-                    quantityLabel.textContent = '';
-                    quantityLabel.textContent = httpRequestTotal.responseText;
-
-                } else {
-                    alert('There was a problem with the request.');
-                }
+                    http_requestTotal = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) { }
             }
         }
+        //----
+
+        if (!httpRequestTotal) {
+            alert('Giving up : Cannot create an XMLHTTP instance');
+            return false;
+        }
+        // tell the instance of XMLHttpRequest which JavaScript function will
+        // handle the response.
+
+        httpRequestTotal.onreadystatechange = GetTotalState;
 
 
-    </script>
+        httpRequestTotal.open('GET', '/OptionalItem/CountShoppingCartItemTotal/');
+        // send as a form post?
+        httpRequestTotal.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // send as a form post, assing `name` attribute
+        httpRequestTotal.send();
+    }
+
+    function GetTotalState() {
+        if (httpRequestTotal.readyState === XMLHttpRequest.DONE) {
+            if (httpRequestTotal.status === 200) {
+                var quantityLabel = document.querySelector('#totalButQuantitySpan');
+                quantityLabel.textContent = '';
+                quantityLabel.textContent = httpRequestTotal.responseText;
+
+            } else {
+                alert('There was a problem with the request.');
+            }
+        }
+    }
+
+
+</script>
