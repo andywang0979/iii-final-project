@@ -36,12 +36,12 @@ namespace pet_box.Controllers
                 return RedirectToAction("Shelf");
             }
 
-            System.IO.Directory.CreateDirectory(@"C:\Users\user\Desktop\final-project\pet_box\pet_box\product_images\site_product\product");
+            System.IO.Directory.CreateDirectory(@"C:\final-project\pet_box\pet_box\product_images\site_product\product");
 
             var f = Request.Files[0];
             if (f.ContentLength >= 0)
             {
-                f.SaveAs(@"C:\Users\user\Desktop\final-project\pet_box\pet_box\product_images\site_product\product\" + f.FileName);
+                f.SaveAs(@"C:\final-project\pet_box\pet_box\product_images\site_product\product\" + f.FileName);
             }
 
             pro.ProductImageLocation = "/product_images/site_product/product/" + f.FileName;
@@ -88,12 +88,12 @@ namespace pet_box.Controllers
                 return RedirectToAction("Shelf");
             }
 
-            System.IO.Directory.CreateDirectory(@"C:\Users\user\Desktop\final-project\pet_box\pet_box\product_images\site_product\product");
+            System.IO.Directory.CreateDirectory(@"C:\final-project\pet_box\pet_box\product_images\site_product\product");
 
             var f = Request.Files[0];
             if (f.ContentLength >= 0)
             {
-                f.SaveAs(@"C:\Users\user\Desktop\final-project\pet_box\pet_box\product_images\site_product\product\" + f.FileName);
+                f.SaveAs(@"C:\final-project\pet_box\pet_box\product_images\site_product\product\" + f.FileName);
             }
 
             pro.ProductImageLocation = "/product_images/site_product/product/" + f.FileName;
