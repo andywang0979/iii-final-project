@@ -60,13 +60,13 @@
                 <tr>
                     <td style="font-size:20px;">@item.ProductName</td>
                     <td style="font-size:20px;">@item.Quantity</td>
-                    <td style="font-size:20px;">@item.UnitPrice</td>
+                    <td style="font-size:20px;">@item.UnitPrice.ToString("F0")</td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <td style="font-size:20px;">總價： @Model.PriceTotal</td>
+                <td style="font-size:20px;">總價： @Model.PriceTotal.ToString("F0")</td>
             </tr>
         </tfoot>
     </table>
