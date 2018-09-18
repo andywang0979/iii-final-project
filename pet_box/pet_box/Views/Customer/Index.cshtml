@@ -197,9 +197,6 @@
 
 
 
-<script src="js/jquery.js"></script>
-
-<script src="js/bootstrap.min.js"></script>
 
 
 <script>
@@ -217,22 +214,11 @@
     // accept the user data and pass it along to the server.
     // we include our data as a parameter in the call to httpRequest.send()
     function makeRequest(url) {
-        //
-        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+        
+        
             httpRequestCategory = new XMLHttpRequest();
-            if (httpRequestCategory.overrideMimeType) {
-                httpRequestCategory.overrideMimeType('text/xml');
-            }
-        } else if (window.ActiveXObject) { // IE
-            try {
-                http_requestCategory = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    http_requestCategory = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) { }
-            }
-        }
-        //----
+            
+        
 
         if (!httpRequestCategory) {
             alert('Giving up : Cannot create an XMLHTTP instance');
@@ -276,20 +262,10 @@
 
     function buyRequest(productID) {
         //
-        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+       
             httpRequestBuy = new XMLHttpRequest();
-            if (httpRequestBuy.overrideMimeType) {
-                httpRequestBuy.overrideMimeType('text/xml');
-            }
-        } else if (window.ActiveXObject) { // IE
-            try {
-                http_requestBuy = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    http_requestBuy = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) { }
-            }
-        }
+            
+        
         //----
 
         if (!httpRequestBuy) {
@@ -354,7 +330,7 @@
     }
 
 
-    var lastScrollTop = 20;
+    var lastScrollTop = 35;
 
     // to check if program execute movedown or up.
     var count = 0;
@@ -422,20 +398,10 @@
 
     function getTotal() {
         //
-        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+        
             httpRequestTotal = new XMLHttpRequest();
-            if (httpRequestTotal.overrideMimeType) {
-                httpRequestTotal.overrideMimeType('text/xml');
-            }
-        } else if (window.ActiveXObject) { // IE
-            try {
-                http_requestTotal = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    http_requestTotal = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) { }
-            }
-        }
+            
+        
         //----
 
         if (!httpRequestTotal) {
