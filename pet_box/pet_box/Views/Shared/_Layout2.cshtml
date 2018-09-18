@@ -8,10 +8,9 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <style>
+
         body {
-            margin: 0;
-            font-family: 'Microsoft JhengHei';
-            font-size: 20px;
+            padding-top: 1px;
         }
 
         .myInvisibleButtionClass {
@@ -22,39 +21,38 @@
         }
 
         .navbar {
-            min-height: 80px;
-        }
+  min-height: 80px;
+}
 
-        .navbar-brand {
-            padding: 0 15px;
-            height: 80px;
-            line-height: 80px;
-        }
+.navbar-brand {
+  padding: 0 15px;
+  height: 80px;
+  line-height: 80px;
+}
 
-        .navbar-toggle {
-            /* (80px - button height 34px) / 2 = 23px */
-            margin-top: 23px;
-            padding: 9px 10px !important;
-        }
+.navbar-toggle {
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 23px;
+  padding: 9px 10px !important;
+}
 
-        @@media (min-width: 768px) {
-            .navbar-nav > li > a {
-                /* (80px - line-height of 27px) / 2 = 26.5px */
-                padding-top: 26.5px;
-                padding-bottom: 26.5px;
-                line-height: 27px;
-            }
-        }
+@@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 26.5px;
+    padding-bottom: 26.5px;
+    line-height: 27px;
+  }
+}
     </style>
     @*custom css style*@
     @RenderSection("IndexTop", required: false)
     @RenderSection("OptionalItemTop", required: false)
-    @RenderSection("DeliveryInfoTop", required: false)
+
 
 </head>
 <body>
-
-    <div class="navbar navbar-default navbar-fixed-top " style="background-color:blanchedalmond">
+    <div class="navbar navbar-default top" style="background-color:blanchedalmond">
         <div class="col-sm-11">
             <div class="container">
                 <div class="navbar-header">

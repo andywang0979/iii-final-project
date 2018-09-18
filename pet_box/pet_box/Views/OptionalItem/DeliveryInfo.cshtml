@@ -9,41 +9,6 @@
 @model pet_box.ViewModels.DeliveryInfoViewModel
 
 
-@section DeliveryInfoTop{
-    <style>
-        .closableFooterDiv {
-            
-            position: fixed;
-            background-color: bisque;
-            color: black;
-            left: 0px;
-            padding: 16px;
-           
-            bottom: 0px;
-            height: 20%;
-            width: 100%;
-            text-align: center;
-            z-index: 100;
-            display: none;
-        }
-
-
-        .myCloseButtonClass {
-            display: inline-block;
-            position: absolute;
-            right: 0px;
-            top: 0px;
-            padding: 0;
-            border: none;
-            background: none;
-            font-size: 24px;
-            width: 5%;
-            height: auto;
-            z-index: 101;
-        }
-    </style>
-}
-
 
 <div class="container">
     <h2 style="text-align:center;">訂單明細</h2>
@@ -133,94 +98,9 @@
 
 
 
-<div class="closableFooterDiv">
-    <div class="row">
-        <div class="col-sm-12">
-            <p>註冊成為會員好處多多喔，像是客制化寵物屋，訂單追蹤等會員獨享功能。</p>
-
-            <p>收件人相關資訊都會幫你填好喔。</p>
-
-            <button id="closeBtn" type="button" class="myCloseButtonClass" onclick="CloseFooterFun();"> <span class="glyphicon glyphicon glyphicon-remove"></span></button>
-            <a href="/Customer/Register" class="btn btn-default " onclick="CloseFooterFun();">
-                <span class="glyphicon glyphicon-registration-mark"></span>
-                @*<button id="registerBtn" name="" class="categoryChooser btn btn-primary" value="" formnovalidate="formnovalidate" onclick=""><span class="glyphicon glyphicon glyphicon-registration-mark"></span> </button>*@
-                點我註冊
-            </a>
-            
-            <button id="cancelBtn" name="" class="categoryChooser btn btn-default" value="" formnovalidate="formnovalidate" onclick="CloseFooterFun();"><span class="glyphicon glyphicon glyphicon-remove"></span> 不，謝了</button>
-
-        </div>
-    </div>
-
-
-</div>
-
-<script>
-
-        CheckCustomerLoginFun();
-
-        function CloseFooterFun() {
-            var targetElement = document.querySelector(".closableFooterDiv");
-            targetElement.style.display = "none";
-        }
-
-
-        function CheckCustomerLoginFun() {
-            if (window.XMLHttpRequest) { // Mozilla, Safari,...
-                httpRequestLoginStatus = new XMLHttpRequest();
-                if (httpRequestLoginStatus.overrideMimeType) {
-                    httpRequestLoginStatus.overrideMimeType('text/xml');
-                }
-            } else if (window.ActiveXObject) { // IE
-                try {
-                    http_requestLoginStatus = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (e) {
-                    try {
-                        http_requestLoginStatus = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (e) { }
-                }
-            }
-            //----
-
-            if (!httpRequestLoginStatus) {
-                alert('Giving up : Cannot create an XMLHTTP instance');
-                return false;
-            }
-
-
-            httpRequestLoginStatus.onreadystatechange = GetLoginStatus;
-
-
-            httpRequestLoginStatus.open('GET', '/OptionalItem/CheckCustomerLogin');
-            // send as a form post?
-            httpRequestLoginStatus.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            // send as a form post, assing `name` attribute
-            httpRequestLoginStatus.send();
-        }
 
 
 
-
-
-
-        function GetLoginStatus() {
-            if (httpRequestLoginStatus.readyState === XMLHttpRequest.DONE) {
-                if (httpRequestLoginStatus.status === 200) {
-
-                    if (httpRequestLoginStatus.responseText == "1") {
-
-                        var targetElement = document.querySelector(".closableFooterDiv");
-                        targetElement.style.display = "block";
-                    }
-
-
-                } else {
-                    alert('There was a problem with the request.');
-                }
-            }
-        }
-
-</script>
 
 
 

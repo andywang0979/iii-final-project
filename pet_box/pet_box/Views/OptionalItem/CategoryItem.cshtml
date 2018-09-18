@@ -16,14 +16,11 @@
             <div class="thumbnail">
                 <img src="@item.ImgLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
                 <div class="caption">
-                    <h4 class="pull-right">$@item.UnitPrice.ToString("F0")</h4>
-
-
-                    <h4>
+                    <h3 class="pull-right">$@item.UnitPrice.ToString("F0")</h3>
+                    <h3>
                         <a href="#">@item.ProductName</a>
-                    </h4>
+                    </h3>
                     <p>@item.ProductDescription</p>
-
                     <div class="ratings">
                         數量
                         <input type="number" id="@(item.ProductID + "quantity")" name="buyQuantity"
