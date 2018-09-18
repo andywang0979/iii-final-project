@@ -19,6 +19,11 @@ namespace pet_box.Controllers {
                 TempData.Keep("itemList");
             }
 
+
+            if (Session["Customer"] == null) {
+                return RedirectToAction("", "Customer");
+            }
+
             OptionalItemViewModel viewM = new OptionalItemViewModel();
 
 
