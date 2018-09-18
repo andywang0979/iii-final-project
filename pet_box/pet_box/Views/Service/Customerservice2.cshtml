@@ -52,7 +52,7 @@
 
             <br />
 
-            <span style="color:red">客服回應:@Model.OpinionTitle </span> <br />
+            <span style="color:red">客服回應: </span> <br />
 
             <textarea id="OpinionFeedback" name="OpinionFeedback" placeholder="" rows="4" cols="50">@Model.OpinionFeedback</textarea>
 
@@ -74,7 +74,7 @@
             <h4>回應時不帶有個人的情緒</h4>
             <br />
             <h4 style="color:red">第二項、耐心與同理心</h4>
-            <h4>面對不同的問題，都保持著會員角度</h4>
+            <h4>面對問題，都保持著會員的角度</h4>
             <br />
 
             </div>
@@ -86,6 +86,20 @@
 </form>
 
 
+
+<button id="autoFillButton" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
+
+
+
+<script>
+        function OneKeyFillFun() {
+
+            document.getElementById("OpinionFeedback").value = "小美你好，目前商品已被下架，請先參考其他產品";
+   
+        }
+
+
+</script>
 
 
 

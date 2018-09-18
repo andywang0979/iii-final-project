@@ -88,3 +88,20 @@
 </form>
 
 
+
+<button id="autoFillButton" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
+
+
+<script>
+        function OneKeyFillFun() {
+            document.getElementById("ProductCode").value = "sensor-voltage";
+            document.getElementById("ProductName").value = "電壓感測器";
+            document.getElementById("ProductDescription").value = "感測電壓";
+            document.getElementById("CategoryID").value = "4";
+            document.getElementById("ProductQuantity").value = "10 ";
+            document.getElementById("ProductUnit").value = "個 ";
+            document.getElementById("ProductPrice").value = "120";
+        }
+
+
+</script>

@@ -160,9 +160,14 @@ namespace pet_box.Controllers
             {
                 db.Customers.Add(cus);
                 db.SaveChanges();
-                return RedirectToAction("Login");
+                return RedirectToAction("RegisterOk",cus);
             }
             ViewBag.Message = "此帳號己有人使用，註冊失敗";
+            return View();
+        }
+
+        public ActionResult RegisterOk()
+        {
             return View();
         }
 

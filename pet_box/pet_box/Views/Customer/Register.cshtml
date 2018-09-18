@@ -77,6 +77,7 @@
     }
 </style>
 
+
 <form method="post">
 
     <div class="container">
@@ -99,80 +100,97 @@
 
         </div>
 
-        <div class="col-lg-4" style="left:150px;top:30px;">
+        <div class="col-lg-4" style="left:100px;top:30px;">
 
             <div class="main-login main-center">
 
 
-                    <br />
+                <br />
 
-                    <input type="hidden" name="CustomerRole" value="3" />
+                <input type="hidden" name="CustomerRole" value="3" />
 
-                    <div class="form-group">
-                        <label for="name" class="cols-sm-2 control-label">姓名</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input type="text" id="name" class="form-control" name="CustomerName" id="CustomerName" placeholder="" />
-                            </div>
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">姓名 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="CustomerName" id="name" placeholder="" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email" class="cols-sm-2 control-label">信箱</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <input type="email" id="email" class="form-control" name="CustomerEmail" id="CustomerEmail" placeholder="" />
-                            </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">信箱 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="CustomerEmail" id="email" placeholder="" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="username" class="cols-sm-2 control-label">帳號</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                <input type="text" id="username" class="form-control" name="CustomerLoginName" id="CustomerLoginName" placeholder="" />
-                            </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">帳號 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="CustomerLoginName" id="username" placeholder="" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="password" class="cols-sm-2 control-label">密碼</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <input type="password" id="password"class="form-control" name="CustomerPassword" id="CustomerPassword" placeholder="" />
-                            </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">密碼 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="CustomerPassword" id="password" placeholder="" />
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">電話 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="CustomerMobilePhone" id="phone" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">地址 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="CustomerAddress" id="address" placeholder="" />
+                        </div>
+                    </div>
+                </div>
 
-                    <div style="text-align:center;">
-                        <input type="submit" class="btn btn-success btn-lg" value="註冊" />
-                    </div>
-                    <div>
-                        <h4 style="color:red">@ViewBag.Message </h4>
-                        <h4 style="color:red">@ViewBag.Message2 </h4>
-                        <h4 style="color:red">@ViewBag.Message3 </h4>
-                    </div>
+                <div style="text-align:center;">
+                    <input type="submit" class="btn btn-success btn-lg" value="註冊" />
+                </div>
+                <div>
+                    <h4 style="color:red">@ViewBag.Message </h4>
+                    <h4 style="color:red">@ViewBag.Message2 </h4>
+                    <h4 style="color:red">@ViewBag.Message3 </h4>
+                </div>
 
 
             </div>
         </div>
 
-        @*<div class="col-lg-4" style="left:100px;top:20px;">
+        <div class="col-lg-4" style="left:180px;top:50px;">
 
-                <h3 style="text-align:center;color:coral">會員專屬客製化</h3>
-                <br />
-                <h4>成為會員即可擁有專屬客製化服務</h4>
-                <br />
-                <img src="~/product_images/site_product/product/box_small.jpg" width="300" height="200" />
+            <h3 style="color:red"> *代表必填 </h3>
 
-            </div>*@
+        </div>
 
     </div>
 
-
-
 </form>
+
+
+
+
+
 
 
 

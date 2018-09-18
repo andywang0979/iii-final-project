@@ -4,7 +4,168 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<div class="container">
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <!-- Website CSS style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+</head>
+
+<style>
+    body, html {
+        height: 100%;
+        background-repeat: no-repeat;
+        background-color: white;
+        font-family: 'Oxygen', sans-serif;
+    }
+
+    .main {
+        margin-top: 10px;
+    }
+
+    hr {
+        width: 10%;
+        color: #fff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-bottom: 15px;
+    }
+
+    input,
+    input::-webkit-input-placeholder {
+        font-size: 11px;
+        padding-top: 3px;
+    }
+
+    .main-login {
+        background-color: #fff;
+        /* shadows and rounded borders */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-center {
+        margin-top: 1px;
+        margin: 0 auto;
+        max-width: 330px;
+        padding: 1px 1px;
+    }
+
+    .login-button {
+        margin-top: 1px;
+    }
+
+    .login-register {
+        font-size: 11px;
+        text-align: center;
+    }
+</style>
+
+<form method="post">
+
+    <div class="container">
+
+        <div class="col-lg-4" style="left:65px;top:20px;">
+
+            <h3 style="color:coral;">歡迎登入智慧寵物屋會員</h3>
+            <br />
+            <h4 style="color:red;">步驟一 註冊成為會員 </h4>
+            <h4>請於右方輸入框，輸入基本的資料</h4>
+            <br />
+            <h4 style="color:red;">步驟二 登入會員 </h4>
+            <h4>可以享受會員專屬客製化服務</h4>
+            <br />
+            <h4 style="color:red;">FAQ 聯絡客服人員 </h4>
+            <h4>有任何的問題，歡迎與客服人員聯絡</h4>
+            <br />
+
+            <img src="https://cdn2.ettoday.net/images/736/d736983.jpg" width="300" height="200" />
+
+        </div>
+
+        <div class="col-lg-4" style="left:100px;top:30px;">
+
+            <div class="main-login main-center">
+
+                <br />
+
+
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">帳號</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="LoginName" id="LoginName" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">密碼</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="Password" id="Password" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center;">
+                    <input type="submit" class="btn btn-success btn-lg" value="登入" />
+                </div>
+                <div><h4 style="color:red">@ViewBag.Message</h4></div>
+
+
+            </div>
+        </div>
+
+        <div class="col-lg-4" style="left:150px;">
+
+            <h3 style="color:coral;">會員專屬客製化設計</h3>
+
+            <h3 style="color:red;">一.專屬寵物屋</h3>
+            <br />
+
+            <img src="~/product_images/site_product/product/box_small.jpg" style="right;" width="250" height="200" />
+
+            <h3 style="color:red;">二.專屬客製化配備</h3>
+
+            <br />
+
+            <img src="~/product_images/site_product/product/cam_wide.jpg" style="right;" width="250" height="200" />
+
+
+        </div>
+
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+@*<div class="container">
     <div class="row" style="margin-top:20px">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <form role="form" method="post">
@@ -36,7 +197,7 @@
             </form>
         </div>
     </div>
-</div>
+</div>*@
 
 
 <button id="autoFillButton" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
