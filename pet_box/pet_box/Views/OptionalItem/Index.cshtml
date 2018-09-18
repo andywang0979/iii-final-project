@@ -68,7 +68,18 @@
             /*            display: none;*/
             visibility: hidden;
         }
+
+
+        .myFieldsetMarginClass{
+            margin-bottom: 10px;
+        }
+
+        .myLegendMarginClass{
+     margin-bottom: 5px;
+    }
     </style>
+
+    
 
 }
 
@@ -90,21 +101,21 @@
                                 <div id="ver04">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <fieldset>
+                                            <fieldset class="myFieldsetMarginClass">
 
-                                                <legend>@Model.CategoryProductModelDic["categoryId03"].CategoryName</legend>
+                                                <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId03"].CategoryName</legend>
                                                 @foreach (var item in Model.CategoryProductModelDic["categoryId03"].Products) {
 
-                                            <div>
-                                                <input type="checkbox"
-                                                       id=@item.ProductID
-                                                       name="boxItem"
-                                                       value=@item.ProductID
-                                                       data-productCode=@item.ProductCode
-                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                <label for="catFeader">@item.ProductName</label>
-                                            </div>
-                                            }
+                                                    <div>
+                                                        <input type="checkbox"
+                                                               id=@item.ProductID
+                                                               name="boxItem"
+                                                               value=@item.ProductID
+                                                               data-productCode=@item.ProductCode
+                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                        <label for="catFeader">@item.ProductName</label>
+                                                    </div>
+                                                }
 
 
                                             </fieldset>
@@ -114,21 +125,21 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <fieldset>
+                                            <fieldset class="myFieldsetMarginClass">
 
-                                                <legend>@Model.CategoryProductModelDic["categoryId04"].CategoryName</legend>
+                                                <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId04"].CategoryName</legend>
                                                 @foreach (var item in @Model.CategoryProductModelDic["categoryId04"].Products) {
 
-                                            <div>
-                                                <input type="checkbox"
-                                                       id=@item.ProductID
-                                                       name="boxItem"
-                                                       value=@item.ProductID
-                                                       data-productCode=@item.ProductCode
-                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                <label for="catFeader">@item.ProductName</label>
-                                            </div>
-                                            }
+                                                    <div>
+                                                        <input type="checkbox"
+                                                               id=@item.ProductID
+                                                               name="boxItem"
+                                                               value=@item.ProductID
+                                                               data-productCode=@item.ProductCode
+                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                        <label for="catFeader">@item.ProductName</label>
+                                                    </div>
+                                                }
 
                                             </fieldset>
                                         </div>
@@ -136,20 +147,20 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <fieldset>
-                                                <legend>@Model.CategoryProductModelDic["categoryId05"].CategoryName</legend>
+                                            <fieldset class="myFieldsetMarginClass">
+                                                <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId05"].CategoryName</legend>
                                                 @foreach (var item in Model.CategoryProductModelDic["categoryId05"].Products) {
 
-                                            <div>
-                                                <input type="checkbox"
-                                                       id=@item.ProductID
-                                                       name="boxItem"
-                                                       value=@item.ProductID
-                                                       data-productCode=@item.ProductCode
-                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                <label for="catFeader">@item.ProductName</label>
-                                            </div>
-                                            }
+                                                    <div>
+                                                        <input type="checkbox"
+                                                               id=@item.ProductID
+                                                               name="boxItem"
+                                                               value=@item.ProductID
+                                                               data-productCode=@item.ProductCode
+                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                        <label for="catFeader">@item.ProductName</label>
+                                                    </div>
+                                                }
 
                                             </fieldset>
                                         </div>
@@ -158,7 +169,7 @@
 
                                 </div>
 
-                                
+
 
 
 
