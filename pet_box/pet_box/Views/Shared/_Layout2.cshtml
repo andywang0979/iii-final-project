@@ -11,14 +11,39 @@
         body {
             margin: 0;
             font-family: 'Microsoft JhengHei';
-            font-size:20px;
+            font-size: 20px;
         }
 
         .myInvisibleButtionClass {
             background: transparent;
             border: none !important;
             font-size: 18px;
-            opacity: 0; 
+            opacity: 0;
+        }
+
+        .navbar {
+            min-height: 80px;
+        }
+
+        .navbar-brand {
+            padding: 0 15px;
+            height: 80px;
+            line-height: 80px;
+        }
+
+        .navbar-toggle {
+            /* (80px - button height 34px) / 2 = 23px */
+            margin-top: 23px;
+            padding: 9px 10px !important;
+        }
+
+        @@media (min-width: 768px) {
+            .navbar-nav > li > a {
+                /* (80px - line-height of 27px) / 2 = 26.5px */
+                padding-top: 26.5px;
+                padding-bottom: 26.5px;
+                line-height: 27px;
+            }
         }
     </style>
     @*custom css style*@
@@ -30,49 +55,55 @@
 <body>
 
     <div class="navbar navbar-default navbar-fixed-top " style="background-color:blanchedalmond">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @*@Html.ActionLink("智慧寵物屋", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })*@
-                <ul class="nav navbar-nav">
-                    <li style="left:85px;font-size:15px;">@Html.ActionLink("智慧寵物屋", "Index", "Customer")</li>
-                </ul>
+        <div class="col-sm-11">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*@Html.ActionLink("智慧寵物屋", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })*@
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("智慧寵物屋", "Index", "Customer")</li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+
+                        @*格式(1.顯示的名字 || 2.控制器裡面的Action || 3.控制器名稱) *@
+
+
+                        @if (Session["Customer"] == null && Session["Employee"] == null) {
+                            <li>@Html.ActionLink("註冊", "Register", "Customer")</li>
+                            <li>@Html.ActionLink("登入", "Login", "Customer")</li>
+                            <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
+                        }
+
+                        @if (Session["Customer"] != null) {
+                            <li>@Html.ActionLink("產品列表", "Index", "Customer")</li>
+                            <li>@Html.ActionLink("客製化", "Index", "OptionalItem")</li>
+                            <li>@Html.ActionLink("會員專區", "Member", "Customer")</li>
+                            <li><a href="#">@Session["Welcome"]</a> </li>
+                            <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
+                            <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
+                        }
+
+                        @if (Session["Employee"] != null) {
+                            <li><a href="#">@Session["Welcome"]</a> </li>
+                            <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
+                        }
+
+
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
 
 
-                    @*格式(1.顯示的名字 || 2.控制器裡面的Action || 3.控制器名稱) *@
-
-
-                    @if (Session["Customer"] == null && Session["Employee"] == null) {
-                        <li>@Html.ActionLink("註冊", "Register", "Customer")</li>
-                        <li>@Html.ActionLink("登入", "Login", "Customer")</li>
-                        <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
-                    }
-
-                    @if (Session["Customer"] != null) {
-                        <li>@Html.ActionLink("產品列表", "Index", "Customer")</li>
-                        <li>@Html.ActionLink("客製化", "Index", "OptionalItem")</li>
-                        <li>@Html.ActionLink("會員專區", "Member", "Customer")</li>
-                        <li><a href="#">@Session["Welcome"]</a> </li>
-                        <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
-                        <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
-                    }
-
-                    @if (Session["Employee"] != null) {
-                        <li><a href="#">@Session["Welcome"]</a> </li>
-                        <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
-                    }
-
-
-                </ul>
-            </div>
         </div>
+        <div class="col-sm-1"></div>
+        
     </div>
 
 
