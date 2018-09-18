@@ -10,7 +10,9 @@
 @section IndexTop{
     <style>
 
-  
+  .myShoppingIconClass{
+      width: 140%;
+  }
 
             #imageContainer {
                 position: relative;
@@ -19,7 +21,7 @@
             #shoppingIconDiv {
                 position: fixed;
                 width: 5%;
-                right: 0.5vh;
+                right: 2vw;
                 top: 0pt;
                 z-index: 1044;
                 /*-webkit-animation: moveDown 1s 1  normal ease-out;
@@ -92,6 +94,12 @@
                 top: 1%;
                 width: 50px;
                 height: 50px;
+                
+                padding-left: 1px;
+                padding-right: 1px;
+                padding-bottom:1px;
+                padding-top: 1px;
+                /*margin-left:2vh;*/
                 /* for different broswer*/
                 /* the format is animationName animationDuration ??? iterationNumber*/
                 -webkit-animation: pulse 1s linear 2;
@@ -105,17 +113,7 @@
                 }
 
 
-                /*.myCategoryMenuClass {
-                    position:fixed;
-                    top:8vh;
-                }*/
-
-                /*.myCategoryItemClass {
-                    position:relative;
-                    
-                    left:45vh;
-                    top:1vh;
-                }*/
+                
 
                 .myMarginTop{
                     margin-top:5pt;
@@ -128,13 +126,13 @@
 <div class="col-sm-12" id="imageContainer">
     <div id="shoppingIconDiv">
         <a href="/OptionalItem/ShoppingCart">
-            <div class="col-sm-3" id="totalBuyQuantityLabel">
-                <span class="label label-info" id="qq">
+            <div class="col-sm-12" id="totalBuyQuantityLabel">
+                <span class="label label-info pull-right" id="qq">
                     <span id="totalButQuantitySpan">0</span>
                 </span>
             </div>
 
-            <img src="~/product_images/site_images/shopping-cart-78019_64.png" id="shoppingCartIconImage" />
+            <img class="myShoppingIconClass" src="~/product_images/site_images/shopping-cart-78019_128.png" id="shoppingCartIconImage" />
         </a>
     </div>
 

@@ -7,12 +7,20 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-<style>
-body {
-  margin: 0;
-  font-family: 'Microsoft JhengHei';
-}
-</style>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Microsoft JhengHei';
+            font-size:20px;
+        }
+
+        .myInvisibleButtionClass {
+            background: transparent;
+            border: none !important;
+            font-size: 18px;
+            opacity: 0; 
+        }
+    </style>
     @*custom css style*@
     @RenderSection("IndexTop", required: false)
     @RenderSection("OptionalItemTop", required: false)
@@ -41,15 +49,13 @@ body {
                     @*格式(1.顯示的名字 || 2.控制器裡面的Action || 3.控制器名稱) *@
 
 
-                    @if (Session["Customer"] == null && Session["Employee"] == null)
-                    {
+                    @if (Session["Customer"] == null && Session["Employee"] == null) {
                         <li>@Html.ActionLink("註冊", "Register", "Customer")</li>
                         <li>@Html.ActionLink("登入", "Login", "Customer")</li>
                         <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
                     }
 
-                    @if (Session["Customer"] != null)
-                    {
+                    @if (Session["Customer"] != null) {
                         <li>@Html.ActionLink("產品列表", "Index", "Customer")</li>
                         <li>@Html.ActionLink("客製化", "Index", "OptionalItem")</li>
                         <li>@Html.ActionLink("會員專區", "Member", "Customer")</li>
@@ -58,8 +64,7 @@ body {
                         <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
                     }
 
-                    @if (Session["Employee"] != null)
-                    {
+                    @if (Session["Employee"] != null) {
                         <li><a href="#">@Session["Welcome"]</a> </li>
                         <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
                     }
