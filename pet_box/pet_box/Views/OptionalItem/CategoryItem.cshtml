@@ -10,7 +10,7 @@
 
 
 <div class="row">
-    
+
     @foreach (CategoryItemModel item in Model.ProductList) {
         <div class="col-sm-4">
             <div class="thumbnail">
@@ -22,7 +22,7 @@
                     </h3>
                     <p>@item.ProductDescription</p>
                     <div class="ratings">
-                        數量
+                        <span>數量</span>
                         <input type="number" id="@(item.ProductID + "quantity")" name="buyQuantity"
                                placeholder="please input quantity" step="1" min="1" max="@item.QuantityInStock"
                                value="1" />
