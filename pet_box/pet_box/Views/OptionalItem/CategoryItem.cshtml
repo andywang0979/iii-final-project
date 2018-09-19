@@ -12,14 +12,14 @@
 <div class="row">
 
     @foreach (CategoryItemModel item in Model.ProductList) {
-        <div class="col-sm-4">
+        <div class="col-sm-4 myColMarginClass">
             <div class="thumbnail">
                 <img src="@item.ImgLocation" alt="" style="width:400px;height:200px;" class="img-rounded">
                 <div class="caption">
-                    <h3 class="pull-right">$@item.UnitPrice.ToString("F0")</h3>
-                    <h3>
+                    <h4 class="pull-right">$@item.UnitPrice.ToString("F0")</h4>
+                    <h4>
                         <a href="#">@item.ProductName</a>
-                    </h3>
+                    </h4>
                     <p>@item.ProductDescription</p>
                     <div class="ratings">
                         <span>數量</span>

@@ -10,12 +10,12 @@ namespace pet_box.Controllers
 {
     public class CustomerController : Controller
     {
-        
+
         PetBoxEntities1 db = new PetBoxEntities1();
 
         public ActionResult Index()
         {
-            
+
             TempData["shoppingURL"] = Request.Url.PathAndQuery;
 
             if (TempData["itemList"] != null) {
@@ -24,9 +24,9 @@ namespace pet_box.Controllers
 
 
             SingleBuyViewModel viewM = new SingleBuyViewModel();
-            
+
             Dictionary<string, CategoryProductModel> dummy = new Dictionary<string, CategoryProductModel>();
-            
+
             viewM.CategoryProductModelDic = dummy;
             // loop
             int? CategoryIdMax = db.Categories.Max(u => (int?)u.CategoryID);
@@ -39,7 +39,7 @@ namespace pet_box.Controllers
                                            where o.ProductID > 1 && o.CategoryID == i
                                            select o).ToList();
 
-                
+
                 CategoryProductModel tempObj = new CategoryProductModel();
 
                 tempObj.CategoryID = queryProductDynamic[0].CategoryID;
@@ -48,13 +48,7 @@ namespace pet_box.Controllers
 
                 viewM.CategoryProductModelDic[s] = tempObj;
             }
-           
-            
-            //if (Session["Customer"] == null)
-            //{
-            //    return View("Index", "_Layout", viewM);
-                
-            //}
+
             return View("Index", "_Layout2", viewM);
         }
 
@@ -100,9 +94,9 @@ namespace pet_box.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            // clear 
+            // clear
             if (TempData["itemList"] != null) {
-                
+
                 TempData["itemList"] = null;
             }
 
@@ -113,7 +107,7 @@ namespace pet_box.Controllers
 
         public ActionResult Index2()
         {
-            
+
             if (Session["Customer"] == null)
             {
                 return View("Index2", "_Layout");
@@ -123,7 +117,7 @@ namespace pet_box.Controllers
 
         public ActionResult Index3()
         {
-           
+
             if (Session["Customer"] == null)
             {
                 return View("Index3", "_Layout");
