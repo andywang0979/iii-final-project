@@ -9,125 +9,130 @@
 
 @section IndexTop{
     <style>
-
-        .myColMarginClass{
+        .myColMarginClass {
             margin-bottom: 10px;
         }
 
-  .myShoppingIconClass{
-      width: 140%;
-  }
+        .myShoppingIconClass {
+            width: 140%;
+        }
 
-            #imageContainer {
-                position: relative;
-            }
+        #imageContainer {
+            position: relative;
+        }
 
-            #shoppingIconDiv {
-                position: fixed;
-                width: 5%;
-                right: 2vw;
-                top: 0pt;
-                z-index: 1044;
-                /*-webkit-animation: moveDown 1s 1  normal ease-out;
+        #shoppingIconDiv {
+            position: fixed;
+            width: 5%;
+            right: 2vw;
+            top: 0pt;
+            z-index: 1044;
+            /*-webkit-animation: moveDown 1s 1  normal ease-out;
         animation: moveDown 1s 1  normal ease-out;*/
-                animation-duration: 1s;
-                animation-iteration-count: 1;
-                /*animation-name:;*/
-                -webkit-animation-duration: 1s;
-                -webkit-animation-iteration-count: 1;
-                /*-webkit-animation-name:;*/
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+            /*animation-name:;*/
+            -webkit-animation-duration: 1s;
+            -webkit-animation-iteration-count: 1;
+            /*-webkit-animation-name:;*/
+        }
+
+
+
+        @@-webkit-keyframes moveDown {
+            0% {
+                top: 0%;
+            }
+
+            100% {
+                top: 50%;
+            }
+        }
+
+        @@-webkit-keyframes moveUp {
+            0% {
+                top: 50%;
+            }
+
+            100% {
+                top: 0%;
+            }
+        }
+
+
+
+        @@-webkit-keyframes pulse {
+            0% {
+                -webkit-transform: scale(1, 1);
+            }
+
+            50% {
+                -webkit-transform: scale(1.5, 1.5);
+            }
+
+            100% {
+                -webkit-transform: scale(1, 1);
+            }
+        }
+
+        @@keyframes pulse {
+            0% {
+                transform: scale(1, 1);
+            }
+
+            50% {
+                transform: scale(1.5, 1.5);
+            }
+
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+
+
+
+        #totalBuyQuantityLabel {
+            position: absolute;
+            right: 1%;
+            top: 1%;
+            width: 50px;
+            height: 50px;
+            padding-left: 1px;
+            padding-right: 0px;
+            padding-bottom: 1px;
+            padding-top: 9px;
+            margin-right: -10px;
+            /*margin-left:2vh;*/
+            /* for different browser*/
+            /* the format is animationName animationDuration ??? iterationNumber*/
+            -webkit-animation: pulse 1s linear 2;
+            animation: pulse 1s linear 2;
+            animation-play-state: paused;
+        }
+
+            #totalBuyQuantityLabel:hover {
+                -webkit-animation: none;
+                animation: none;
             }
 
 
 
-            @@-webkit-keyframes moveDown {
-                0% {
-                    top: 0%;
-                }
 
-                100% {
-                    top: 50%;
-                }
-            }
+        .myMarginTop {
+            margin-top: 10pt;
+        }
 
-            @@-webkit-keyframes moveUp {
-                0% {
-                    top: 50%;
-                }
-
-                100% {
-                    top: 0%;
-                }
-            }
-
-
-
-            @@-webkit-keyframes pulse {
-                0% {
-                    -webkit-transform: scale(1, 1);
-                }
-
-                50% {
-                    -webkit-transform: scale(1.5, 1.5);
-                }
-
-                100% {
-                    -webkit-transform: scale(1, 1);
-                }
-            }
-
-            @@keyframes pulse {
-                0% {
-                    transform: scale(1, 1);
-                }
-
-                50% {
-                    transform: scale(1.5, 1.5);
-                }
-
-                100% {
-                    transform: scale(1, 1);
-                }
-            }
-
-
-
-            #totalBuyQuantityLabel {
-                position: absolute;
-                right: 1%;
-                top: 1%;
-                width: 50px;
-                height: 50px;
-
-                padding-left: 1px;
-                padding-right: 0px;
-                padding-bottom:1px;
-                padding-top: 9px;
-                margin-right:-10px;
-                /*margin-left:2vh;*/
-                /* for different browser*/
-                /* the format is animationName animationDuration ??? iterationNumber*/
-                -webkit-animation: pulse 1s linear 2;
-                animation: pulse 1s linear 2;
-                animation-play-state: paused;
-            }
-
-                #totalBuyQuantityLabel:hover {
-                    -webkit-animation: none;
-                    animation: none;
-                }
+        .myCategoryMenuClass {
+            position: sticky;
+            top: 10px;
+        }
 
 
 
 
-                .myMarginTop{
-                    margin-top:10pt;
-                }
-
-                .myCategoryMenuClass{
-                    position: sticky;
-                    top: 10px;
-                }
+        input[type="number"] {
+            width: 5em;
+        }
     </style>
 }
 
@@ -209,241 +214,241 @@
 
 
 @section IndexBottom{
-<script>
+    <script>
 
-    getTotal()
+        getTotal()
 
-    SelectCategoryFun(3);
+        SelectCategoryFun(3);
 
-    // load category
-    function SelectCategoryFun(categoryId) {
-        // send as a form
-        makeRequest('/OptionalItem/CategoryItem/' + categoryId);
-    };
+        // load category
+        function SelectCategoryFun(categoryId) {
+            // send as a form
+            makeRequest('/OptionalItem/CategoryItem/' + categoryId);
+        };
 
-    // accept the user data and pass it along to the server.
-    // we include our data as a parameter in the call to httpRequest.send()
-    function makeRequest(url) {
+        // accept the user data and pass it along to the server.
+        // we include our data as a parameter in the call to httpRequest.send()
+        function makeRequest(url) {
 
 
             httpRequestCategory = new XMLHttpRequest();
 
 
 
-        if (!httpRequestCategory) {
-            alert('Giving up : Cannot create an XMLHTTP instance');
-            return false;
+            if (!httpRequestCategory) {
+                alert('Giving up : Cannot create an XMLHTTP instance');
+                return false;
+            }
+            // tell the instance of XMLHttpRequest which JavaScript function will
+            // handle the response.
+            httpRequestCategory.onreadystatechange = LoadCategoryItem;
+
+            httpRequestCategory.open('GET', url);
+            httpRequestCategory.send();
         }
-        // tell the instance of XMLHttpRequest which JavaScript function will
-        // handle the response.
-        httpRequestCategory.onreadystatechange = LoadCategoryItem;
-
-        httpRequestCategory.open('GET', url);
-        httpRequestCategory.send();
-    }
 
 
 
-    function LoadCategoryItem() {
-        if (httpRequestCategory.readyState === XMLHttpRequest.DONE) {
-            if (httpRequestCategory.status === 200) {
+        function LoadCategoryItem() {
+            if (httpRequestCategory.readyState === XMLHttpRequest.DONE) {
+                if (httpRequestCategory.status === 200) {
 
-                // remove any child
-                // Get the <div> element with id="categoryItemsDiv"
-                var nodeList = document.getElementById("categoryItemsDiv");
+                    // remove any child
+                    // Get the <div> element with id="categoryItemsDiv"
+                    var nodeList = document.getElementById("categoryItemsDiv");
 
-                // As long as categoryItemsDiv has a child node, remove it
-                while (nodeList.hasChildNodes()) {
-                    nodeList.removeChild(nodeList.firstChild);
+                    // As long as categoryItemsDiv has a child node, remove it
+                    while (nodeList.hasChildNodes()) {
+                        nodeList.removeChild(nodeList.firstChild);
+                    }
+
+                    var d1 = document.getElementById('categoryItemsDiv');
+                    //  `beforeend`: Just inside the element, after its last child.
+                    d1.insertAdjacentHTML('beforeend', httpRequestCategory.responseText);
+
+                } else {
+                    alert('There was a problem with the request.');
                 }
-
-                var d1 = document.getElementById('categoryItemsDiv');
-                //  `beforeend`: Just inside the element, after its last child.
-                d1.insertAdjacentHTML('beforeend', httpRequestCategory.responseText);
-
-            } else {
-                alert('There was a problem with the request.');
             }
         }
-    }
 
 
 
 
-    function buyRequest(productID) {
-        //
+        function buyRequest(productID) {
+            //
 
             httpRequestBuy = new XMLHttpRequest();
 
 
-        //----
+            //----
 
-        if (!httpRequestBuy) {
-            alert('Giving up : Cannot create an XMLHTTP instance');
-            return false;
+            if (!httpRequestBuy) {
+                alert('Giving up : Cannot create an XMLHTTP instance');
+                return false;
+            }
+            // tell the instance of XMLHttpRequest which JavaScript function will
+            // handle the response.
+
+            var buyQuantity = document.getElementById(productID + "quantity").value
+
+            httpRequestBuy.onreadystatechange = alertContents;
+
+
+            httpRequestBuy.open('POST', '/OptionalItem/SingleBuyJavaScript/' + productID);
+            // send as a form post?
+            httpRequestBuy.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // send as a form post, assing `name` attribute
+            httpRequestBuy.send('buyQuantity=' + encodeURIComponent(buyQuantity));
         }
-        // tell the instance of XMLHttpRequest which JavaScript function will
-        // handle the response.
-
-        var buyQuantity = document.getElementById(productID + "quantity").value
-
-        httpRequestBuy.onreadystatechange = alertContents;
 
 
-        httpRequestBuy.open('POST', '/OptionalItem/SingleBuyJavaScript/' + productID);
-        // send as a form post?
-        httpRequestBuy.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // we design the data come from server will be like:
+        // {"UserData":"yourName","ComputedString":"Hi, yourName!"}
+        // So we have to parse it and alert `ComputedString`, the property we want:
 
-        // send as a form post, assing `name` attribute
-        httpRequestBuy.send('buyQuantity=' + encodeURIComponent(buyQuantity));
-    }
+        function alertContents() {
+            if (httpRequestBuy.readyState === XMLHttpRequest.DONE) {
+                if (httpRequestBuy.status === 200) {
+                    handleResizeClick()
 
+                    document.getElementById("totalButQuantitySpan").textContent = httpRequestBuy.responseText;
 
-    // we design the data come from server will be like:
-    // {"UserData":"yourName","ComputedString":"Hi, yourName!"}
-    // So we have to parse it and alert `ComputedString`, the property we want:
-
-    function alertContents() {
-        if (httpRequestBuy.readyState === XMLHttpRequest.DONE) {
-            if (httpRequestBuy.status === 200) {
-                handleResizeClick()
-
-                document.getElementById("totalButQuantitySpan").textContent = httpRequestBuy.responseText;
-
-                //var quantityLabel = document.querySelector('#totalButQuantitySpan');
-                //quantityLabel.textContent = httpRequest.responseText;
-            } else {
-                alert('There was a problem with the request.');
+                    //var quantityLabel = document.querySelector('#totalButQuantitySpan');
+                    //quantityLabel.textContent = httpRequest.responseText;
+                } else {
+                    alert('There was a problem with the request.');
+                }
             }
         }
-    }
 
 
 
-    // transition animation
+        // transition animation
 
-    // for debounce , scroll event fire multiple times.
-    const debounce = (func, delay) => {
-        let debounceTimer
-        return function () {
-            const context = this
-            const args = arguments
-            clearTimeout(debounceTimer)
-            debounceTimer
-        = setTimeout(() => func.apply(context, args), delay)
+        // for debounce , scroll event fire multiple times.
+        const debounce = (func, delay) => {
+            let debounceTimer
+            return function () {
+                const context = this
+                const args = arguments
+                clearTimeout(debounceTimer)
+                debounceTimer
+            = setTimeout(() => func.apply(context, args), delay)
+            }
         }
-    }
 
-    // for debounce
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-
-    var lastScrollTop = 35;
-
-    // to check if program execute movedown or up.
-    var count = 0;
-
-    var elementShoppingCartIcon = document.querySelector("#shoppingIconDiv");
-    // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
-    window.addEventListener("scroll", debounce(DetectScrollAndMoveIcon, 100), false);
-
-    // ignore that ide complains about missing `;` sign.
-
-    async function DetectScrollAndMoveIcon() { // or window.addEventListener("scroll"....
-        var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-        if (st > lastScrollTop && count == 0) {
-            // downscroll code
-
-            elementShoppingCartIcon.style.webkitAnimationName = 'moveDown';
-            elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
-            await sleep(100);
-            elementShoppingCartIcon.style.position = "fixed";
-            elementShoppingCartIcon.style.top = "50%";
-            count = 1;
-
-            // avoid broser scroll down and up to top again imediately, use `count` to check
-        } else if (st < 2 && count == 1) {
-            // upscroll code
-
-            elementShoppingCartIcon.style.webkitAnimationName = 'moveUp';
-            elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
-            await sleep(100);
-
-            elementShoppingCartIcon.style.position = "fixed";
-
-            elementShoppingCartIcon.style.top = "0pt";
-
-            count = 0;
-
+        // for debounce
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
 
 
-        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        var lastScrollTop = 35;
 
-    }
+        // to check if program execute movedown or up.
+        var count = 0;
+
+        var elementShoppingCartIcon = document.querySelector("#shoppingIconDiv");
+        // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+        window.addEventListener("scroll", debounce(DetectScrollAndMoveIcon, 100), false);
+
+        // ignore that ide complains about missing `;` sign.
+
+        async function DetectScrollAndMoveIcon() { // or window.addEventListener("scroll"....
+            var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+            if (st > lastScrollTop && count == 0) {
+                // downscroll code
+
+                elementShoppingCartIcon.style.webkitAnimationName = 'moveDown';
+                elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
+                await sleep(100);
+                elementShoppingCartIcon.style.position = "fixed";
+                elementShoppingCartIcon.style.top = "50%";
+                count = 1;
+
+                // avoid broser scroll down and up to top again imediately, use `count` to check
+            } else if (st < 2 && count == 1) {
+                // upscroll code
+
+                elementShoppingCartIcon.style.webkitAnimationName = 'moveUp';
+                elementShoppingCartIcon.style.webkitAnimationPlayState = 'running';
+                await sleep(100);
+
+                elementShoppingCartIcon.style.position = "fixed";
+
+                elementShoppingCartIcon.style.top = "0pt";
+
+                count = 0;
+
+            }
+
+
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+
+        }
 
 
 
 
-    // resize animation
-    function resetClick() {
-        var spinner = document.getElementById("totalBuyQuantityLabel");
-        spinner.style.webkitAnimationName = "none";
-    }
+        // resize animation
+        function resetClick() {
+            var spinner = document.getElementById("totalBuyQuantityLabel");
+            spinner.style.webkitAnimationName = "none";
+        }
 
 
 
-    function handleResizeClick() {
-        var spinner = document.getElementById("totalBuyQuantityLabel");
+        function handleResizeClick() {
+            var spinner = document.getElementById("totalBuyQuantityLabel");
 
-        spinner.style.webkitAnimationName = '';
-        spinner.style.webkitAnimationPlayState = 'running';
-    }
-
-
-    // get total quantity at page load
+            spinner.style.webkitAnimationName = '';
+            spinner.style.webkitAnimationPlayState = 'running';
+        }
 
 
-    function getTotal() {
-        //
+        // get total quantity at page load
+
+
+        function getTotal() {
+            //
 
             httpRequestTotal = new XMLHttpRequest();
 
 
-        //----
+            //----
 
-        if (!httpRequestTotal) {
-            alert('Giving up : Cannot create an XMLHTTP instance');
-            return false;
+            if (!httpRequestTotal) {
+                alert('Giving up : Cannot create an XMLHTTP instance');
+                return false;
+            }
+            // tell the instance of XMLHttpRequest which JavaScript function will
+            // handle the response.
+
+            httpRequestTotal.onreadystatechange = GetTotalState;
+
+
+            httpRequestTotal.open('GET', '/OptionalItem/CountShoppingCartItemTotal/');
+            // send as a form post?
+            httpRequestTotal.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // send as a form post, assing `name` attribute
+            httpRequestTotal.send();
         }
-        // tell the instance of XMLHttpRequest which JavaScript function will
-        // handle the response.
 
-        httpRequestTotal.onreadystatechange = GetTotalState;
+        function GetTotalState() {
+            if (httpRequestTotal.readyState === XMLHttpRequest.DONE) {
+                if (httpRequestTotal.status === 200) {
+                    var quantityLabel = document.querySelector('#totalButQuantitySpan');
+                    quantityLabel.textContent = '';
+                    quantityLabel.textContent = httpRequestTotal.responseText;
 
-
-        httpRequestTotal.open('GET', '/OptionalItem/CountShoppingCartItemTotal/');
-        // send as a form post?
-        httpRequestTotal.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        // send as a form post, assing `name` attribute
-        httpRequestTotal.send();
-    }
-
-    function GetTotalState() {
-        if (httpRequestTotal.readyState === XMLHttpRequest.DONE) {
-            if (httpRequestTotal.status === 200) {
-                var quantityLabel = document.querySelector('#totalButQuantitySpan');
-                quantityLabel.textContent = '';
-                quantityLabel.textContent = httpRequestTotal.responseText;
-
-            } else {
-                alert('There was a problem with the request.');
+                } else {
+                    alert('There was a problem with the request.');
+                }
             }
         }
-    }
 
 
-</script>
-    }
+    </script>
+}
