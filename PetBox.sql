@@ -322,13 +322,38 @@ VALUES('cam_rf', N'紅外線鏡頭', N'可於夜晚時清楚地拍攝物體',3,'
 
 
 
-INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
-VALUES('sensor_humi_temp', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',4,'/product_images/site_product/product/sensor_humi_temp.jpg',15, N'個',100)
+--INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+--VALUES('sensor_humi_temp', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度，運作環境：溼度介於20%~90%，溫度介於0度至50度',4,'/product_images/site_product/product/sensor_humi_temp.jpg',15, N'個',100)
 
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_humi_temp', N'DHT11溫濕度感測器', N'同時監測空氣溼度與溫度',4,'/product_images/site_product/product/sensor_humi_temp.jpg',15, N'個',100)
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
 VALUES('sensor_weight', N'壓力感測', N'可以感受五公斤以下重量',4,'/product_images/site_product/product/sensor_weight.jpg',15, N'個',100)
 
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_Light', N'光敏感測', N'可以用來偵測光反應',4,'/product_images/site_product/product/sensor_Light.jpg',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_Ultraviolet light', N'紫外線感測', N'可以檢測目前環境紫外線輻射的強度',4,'/product_images/site_product/product/sensor_Ultraviolet light.jpg',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_smoke', N'煙霧感測', N'可以偵測環境是否存在煙霧',4,'/product_images/site_product/product/sensor_smoke.jpg',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_Water level', N'水位感測', N'可以測量其水量大小從而判斷水位',4,'/product_images/site_product/product/sensor_Water level.jpg',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_carbon dioxide', N'二氧化碳感測', N'用於感測環境二氧化碳',4,'/product_images/site_product/product/sensor_carbon dioxide.jpg',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_Carbon monoxide', N'一氧化碳感測', N'用於感測環境一氧化碳',4,'/product_images/site_product/product/sensor_Carbon monoxide.jpg',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_sound', N'聲音感測', N'用來檢測周圍環境的聲音強度',4,'/product_images/site_product/product/sensor_sound.jpg',15, N'個',100)
+
+INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
+VALUES('sensor_Ultrasonic', N'超音波感測', N'可以用來偵測距離',4,'/product_images/site_product/product/sensor_Ultrasonic.jpg',15, N'個',100)
 
 
 INSERT INTO Products(ProductCode,ProductName,ProductDescription,CategoryID,ProductImageLocation,ProductQuantity,Productunit,ProductPrice)
@@ -343,17 +368,17 @@ GO
 
 --顧客ID 員工ID 產品ID 意見標題 內容 狀況 時間
 INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
-VALUES(1, N'到貨時間?', N'我今天買了溫溼度感應器，請問什麼時後到貨？', '20180825 12:00')
+VALUES(2, N'到貨時間?', N'我今天買了溫溼度感應器，請問什麼時後到貨？', '20180825 12:00')
 
 INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
-VALUES(2, N'產品怎麼操作?', N'我收到了貴公司的產品，可是沒有操作手冊，請問網站有沒有教學文件？', '20180826 15:00')
+VALUES(3, N'產品怎麼操作?', N'我收到了貴公司的產品，可是沒有操作手冊，請問網站有沒有教學文件？', '20180826 15:00')
 
 INSERT INTO Opinions(CustomerID, OpinionTitle, OpinionContent, OpinionDateTime)
-VALUES(3, N'要求退貨?', N'不好意思，我買錯商品，想要退貨，請問貴公司的退貨手續怎麼辦理？', '20180827 11:00')
+VALUES(4, N'要求退貨?', N'不好意思，我買錯商品，想要退貨，請問貴公司的退貨手續怎麼辦理？', '20180827 11:00')
 GO
 
 INSERT INTO Opinions(CustomerID, EmployeeID, OpinionTitle, OpinionContent, OpinionDateTime, OpinionStatus, OpinionFeedback, OpinionFeedbackTime)
-VALUES(4, 4, N'已回答範例', N'我想要退貨，請問要怎麼退？', '20180827 16:00', 1, N'謝謝您購買本公司產品，在本公司網站的最下方有FAQ，裏面第1項有提供相關訊息，謝謝您。', '20180828 09:30')
+VALUES(5, 4, N'已回答範例', N'我想要退貨，請問要怎麼退？', '20180827 16:00', 1, N'謝謝您購買本公司產品，在本公司網站的最下方有FAQ，裏面第1項有提供相關訊息，謝謝您。', '20180828 09:30')
 GO
 
 

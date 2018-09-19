@@ -19,6 +19,11 @@ namespace pet_box.Controllers {
                 TempData.Keep("itemList");
             }
 
+
+            if (Session["Customer"] == null) {
+                return RedirectToAction("", "Customer");
+            }
+
             OptionalItemViewModel viewM = new OptionalItemViewModel();
 
 
@@ -239,7 +244,7 @@ namespace pet_box.Controllers {
 
         public ActionResult DeliveryInfo() {
             //show member contact info, user can also modify here.
-
+            int customerIdInt = Convert.ToInt32(Session["CustomerID"]);
 
             // if the client is not a member. and do not want to be a member.
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
@@ -247,7 +252,7 @@ namespace pet_box.Controllers {
             TempData.Keep("itemList");
 
             // user use broser's previsous page from deilvery page or other situation
-            if (itemObjList.Count() == 0 || itemObjList == null) {
+            if (TempData["itemList"] == null) {
                 return RedirectToAction("", "Customer");
             }
 
@@ -258,8 +263,8 @@ namespace pet_box.Controllers {
             // assign unit price of each item
             foreach (ShoppingCartObjectModel item in itemObjList) {
                 Product queryProduct = (from o in db.Products
-                                       where o.ProductID == item.ProductID
-                                       select o).SingleOrDefault();
+                                        where o.ProductID == item.ProductID
+                                        select o).SingleOrDefault();
                 item.UnitPrice = queryProduct.ProductPrice;
             }
 
@@ -274,16 +279,16 @@ namespace pet_box.Controllers {
             // here should check if the member login in, 
             // temporary solution: here just use default value of `int` if no assignment,
             // 
-            if (itemObjList[0].CustomerID == 1) {
+            if (customerIdInt == 1) {
                 Customer newCustomer = new Customer();
                 viewM.customer = newCustomer;
                 return View(viewM);
             }
 
 
-            int customerId = itemObjList[0].CustomerID;
+            //int customerId = itemObjList[0].CustomerID;
             var query = from o in db.Customers
-                        where o.CustomerID == customerId
+                        where o.CustomerID == customerIdInt
                         select o;
 
             viewM.customer = query.SingleOrDefault();
@@ -300,16 +305,20 @@ namespace pet_box.Controllers {
             itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
             TempData.Keep("itemList");
 
+            int customerIdInt = Convert.ToInt32(Session["CustomerID"]);
+
             if (Request.Form["okOrCancel"] == "ok") {
+
+
 
                 // update Customers
                 // 1 is non-member. 
-                if (itemObjList[0].CustomerID != 1) {
-
-                    int myInt = itemObjList[0].CustomerID;
+                //if (itemObjList[0].CustomerID != 1) {
+                if (customerIdInt != 1) {
+                    //int myInt = Convert.ToInt32(Session["CustomerID"]);
 
                     var customerDatabase = db.Customers
-                        .Where(x => x.CustomerID == myInt)
+                        .Where(x => x.CustomerID == customerIdInt)
                         .FirstOrDefault();
                     customerDatabase.CustomerAddress = divm.customer.CustomerAddress;
                     customerDatabase.CustomerEmail = divm.customer.CustomerEmail;
@@ -325,7 +334,7 @@ namespace pet_box.Controllers {
                 // create Order
                 Order newOrder = new Order();
 
-                newOrder.CustomerID = divm.customer.CustomerID;
+                newOrder.CustomerID = customerIdInt;
                 newOrder.OrderDateTime = DateTime.Now.ToString("yyyyMMdd HH:mm");
                 newOrder.OrderShipAddress = divm.customer.CustomerAddress;
                 db.Orders.Add(newOrder);
@@ -460,6 +469,117 @@ namespace pet_box.Controllers {
             TempData.Keep("itemList");
 
             return RedirectToAction("ShoppingCart", "OptionalItem");
+        }
+
+
+        public ActionResult CategoryItem(int? id) {
+
+            TempData["shoppingURL"] = Request.Url.PathAndQuery;
+
+            if (TempData["itemList"] != null) {
+                //return Content("some some in temp data itemlist");
+                TempData.Keep("itemList");
+            }
+
+            CategoryItemViewModel viewM = new CategoryItemViewModel();
+            viewM.ProductList = new List<CategoryItemModel>();
+
+            var queryProduct = (from o in db.Products
+                                where o.ProductID > 1 && o.CategoryID == id
+                                select o).ToList();
+
+            foreach (Product item in queryProduct) {
+                CategoryItemModel tempInstance = new CategoryItemModel();
+                tempInstance.ImgLocation = item.ProductImageLocation;
+                tempInstance.ProductID = item.ProductID;
+                tempInstance.ProductName = item.ProductName;
+                tempInstance.UnitPrice = item.ProductPrice;
+                tempInstance.ProductDescription = item.ProductDescription;
+                tempInstance.QuantityInStock = (int)item.ProductQuantity;
+
+                viewM.ProductList.Add(tempInstance);
+            }
+
+
+            return View(viewM);
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult SingleBuyJavaScript(int id) {
+            List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
+
+
+            if (TempData["itemList"] == null) {
+
+                ShoppingCartObjectModel newItem = new ShoppingCartObjectModel();
+                // here should be the logined customer's id
+                newItem.CustomerID = Convert.ToInt32(Session["CustomerID"]);
+
+                newItem.ProductID = id;
+                newItem.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
+                itemObjList.Add(newItem);
+
+
+            } else {
+
+                itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
+
+                ShoppingCartObjectModel tempObj = itemObjList.Find(obj => id == obj.ProductID);
+
+                if (tempObj != null) {
+
+                    tempObj.Quantity += Convert.ToInt32(Request.Form["buyQuantity"]);
+
+                } else {
+
+                    ShoppingCartObjectModel addObj = new ShoppingCartObjectModel();
+                    addObj.CustomerID = Convert.ToInt32(Session["CustomerID"]);
+                    addObj.ProductID = id;
+                    addObj.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
+
+
+                    itemObjList.Add(addObj);
+                }
+
+            }
+
+            TempData["itemList"] = itemObjList;
+            TempData.Keep("itemList");
+
+            return RedirectToAction("CountShoppingCartItemTotal", "OptionalItem");
+
+        }
+
+        public ActionResult CountShoppingCartItemTotal() {
+            if (TempData["itemList"] != null) {
+                List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
+                itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
+                TempData.Keep("itemList");
+
+                int totalQuantity = 0;
+                foreach (ShoppingCartObjectModel item in itemObjList) {
+                    totalQuantity += item.Quantity;
+                }
+
+                return Content(totalQuantity.ToString());
+            }
+
+            return Content("0");
+        }
+
+
+        public ActionResult CheckCustomerLogin() {
+            if (TempData["itemList"] != null) {
+                //return Content("some some in temp data itemlist");
+                TempData.Keep("itemList");
+            }
+
+            // check if user login, probably use another session or other way.
+            //return Content(Session["CustomerID"].ToString());
+            return Content(Session["CustomerID"].ToString());
         }
 
     }

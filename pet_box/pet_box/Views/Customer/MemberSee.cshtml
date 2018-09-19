@@ -1,0 +1,32 @@
+﻿@model pet_box.Models.Opinion
+@{
+    ViewBag.Title = "MemberQA";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2 style="text-align:center;color:red">問題回應</h2>
+
+<br />
+
+<form method="post" style="text-align:center">
+
+    @Html.HiddenFor(model => model.OpinionID)
+    @Html.HiddenFor(model => model.OpinionDateTime)
+
+    <h4>標題:@Model.OpinionTitle"</h4><br />
+
+    <h4>回應:</h4>
+    <textarea readonly id="OpinionFeedback" name="OpinionFeedback" style="font-size:10px;border:2px solid black" placeholder="" rows="10" cols="100">@Model.OpinionFeedback</textarea><br />
+
+    <input type="hidden" name="OpinionStatus" value="1" />
+    <input type="hidden" name="EmployeeID" value="1" />
+
+    <input type="hidden" name="CustomerID" value="@Session["CustomerID"]" />
+    <input type="hidden" name="ProductID" value="1" />
+
+    <br />
+
+    <a href="http://localhost:49732/Customer/Memberselect/@Session["CustomerID"]" class="btn btn-success btn-lg">確定</a>
+    @*<input type="submit" class="btn btn-success btn-lg" value="確定" />*@
+
+</form>

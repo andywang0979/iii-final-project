@@ -9,102 +9,100 @@
 @model pet_box.ViewModels.DeliveryInfoViewModel
 
 
-<head>
-    <meta charset="UTF-8">
-</head>
 
-<body>
-    <div class="container">
-        <h2 style="text-align:center;">訂單明細</h2>
-        <table class="table table-striped">
-            <thead>
+<div class="container">
+    <h2 style="text-align:center;">訂單明細</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="font-size:20px;">商品名稱</th>
+                <th style="font-size:20px;">數量</th>
+                <th style="font-size:20px;">單價</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.itemList) {
                 <tr>
-                    <th style="font-size:20px;">商品名稱</th>
-                    <th style="font-size:20px;">數量</th>
-                    <th style="font-size:20px;">單價</th>
+                    <td style="font-size:20px;">@item.ProductName</td>
+                    <td style="font-size:20px;">@item.Quantity</td>
+                    <td style="font-size:20px;">@item.UnitPrice.ToString("F0")</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.itemList) {
-                    <tr>
-                        <td style="font-size:20px;">@item.ProductName</td>
-                        <td style="font-size:20px;">@item.Quantity</td>
-                        <td style="font-size:20px;">@item.UnitPrice</td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td style="font-size:20px;">總價： @Model.PriceTotal</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td style="font-size:20px;">總價： @Model.PriceTotal.ToString("F0")</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 
-    <form class="form-horizontal" method="post">
-        @*<input type="hidden" name="CustomerID" value="@Model.CustomerID" />*@
-        <input type="hidden" name="customer.CustomerID" value="@Model.customer.CustomerID" />
-        @*<input id="CustomerID" name="CustomerID" type="hidden" value="@Model.CustomerID">*@
-        <fieldset>
+<form class="form-horizontal" method="post">
+    @*<input type="hidden" name="CustomerID" value="@Model.CustomerID" />*@
+    <input type="hidden" name="customer.CustomerID" value="@Model.customer.CustomerID" />
+    @*<input id="CustomerID" name="CustomerID" type="hidden" value="@Model.CustomerID">*@
+    <fieldset>
 
-            <!-- Form Name -->
-            <legend>收件人聯絡資訊</legend>
+        <!-- Form Name -->
+        <legend>收件人聯絡資訊</legend>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">姓名</label>
-                <div class="col-md-4">
-                    <input id="textinput" name="customer.CustomerName" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerName" required>
-                    @*<span class="help-block">姓名</span>*@
-                </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">姓名</label>
+            <div class="col-md-4">
+                <input id="textinput" name="customer.CustomerName" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerName" required>
+                @*<span class="help-block">姓名</span>*@
             </div>
+        </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">地址</label>
-                <div class="col-md-4">
-                    <input id="textinput" name="customer.CustomerAddress" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerAddress" required>
-                    @*<span class="help-block">地址</span>*@
-                </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">地址</label>
+            <div class="col-md-4">
+                <input id="textinput" name="customer.CustomerAddress" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerAddress" required>
+                @*<span class="help-block">地址</span>*@
             </div>
+        </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">聯絡電話</label>
-                <div class="col-md-4">
-                    <input id="textinput" name="customer.CustomerMobilePhone" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerMobilePhone" required>
-                    @*<span class="help-block">聯絡電話</span>*@
-                </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">聯絡電話</label>
+            <div class="col-md-4">
+                <input id="textinput" name="customer.CustomerMobilePhone" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerMobilePhone" required>
+                @*<span class="help-block">聯絡電話</span>*@
             </div>
+        </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">電子郵件</label>
-                <div class="col-md-4">
-                    <input id="textinput" name="customer.CustomerEmail" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerEmail" required>
-                    @*<span class="help-block">電子郵件</span>*@
-                </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">電子郵件</label>
+            <div class="col-md-4">
+                <input id="textinput" name="customer.CustomerEmail" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerEmail" required>
+                @*<span class="help-block">電子郵件</span>*@
             </div>
+        </div>
 
-            <!-- Button (Double) -->
-            <div class="form-group">
-                @*<label class="col-md-4 control-label" for="button1id">Double Button</label>*@
-                <div class="col-md-8" style="text-align:center;">
-                    <button id="button2id" name="okOrCancel" class="btn btn-primary" value="backToshoppingCart" formnovalidate="formnovalidate"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</button>
-                    @*<a href="/Test/ShoppingCart" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</a>*@
-                    <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確認</button>
+        <!-- Button (Double) -->
+        <div class="form-group">
+            @*<label class="col-md-4 control-label" for="button1id">Double Button</label>*@
+            <div class="col-md-8" style="text-align:center;">
+                <button id="button2id" name="okOrCancel" class="btn btn-primary" value="backToshoppingCart" formnovalidate="formnovalidate"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</button>
+                @*<a href="/Test/ShoppingCart" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</a>*@
+                <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確認</button>
 
-                </div>
             </div>
+        </div>
 
-        </fieldset>
-    </form>
-
-
-
+    </fieldset>
+</form>
 
 
 
 
 
-</body>
+
+
+
+
+
+

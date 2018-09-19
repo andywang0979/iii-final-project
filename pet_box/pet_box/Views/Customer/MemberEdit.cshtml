@@ -1,0 +1,107 @@
+﻿@model pet_box.Models.Customer
+@{
+    ViewBag.Title = "MemberEdit";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<form method="post">
+
+    <div class="container">
+
+        <div class="col-lg-4" style="left:65px;top:20px;">
+
+            <h3 style="color:coral;color:coral">修改基本資料</h3>
+            <br />
+            <h4 style="color:red;">一 修改密碼 </h4>
+            <h4>建議會員，定期更換密碼</h4>
+            <br />
+            <h4 style="color:red;">二 完整會員資料 </h4>
+            <h4>擁有完整的會員資料，能更快速的處理問題</h4>
+            <br />
+
+            <img src="http://webservice.pfamily.com.tw/images/btn_member.jpg" width="250" height="200" />
+
+        </div>
+
+        <br />
+
+
+        <div style="text-align:center; left:80px;" class="col-lg-4">
+
+
+            <h3 style="text-align:center;color:red">修改基本資料</h3>
+
+            <br />
+
+            @Html.HiddenFor(model => model.CustomerID)
+
+            姓名:<input type="text" id="name" name="CustomerName" value="@Model.CustomerName" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+            信箱:<input type="text" id="email" name="CustomerEmail" value="@Model.CustomerEmail" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+            電話:<input type="text" id="phone" name="CustomerMobilePhone" value="@Model.CustomerMobilePhone" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+            區號:<input type="text" id="postCode" name="CustomerPostalCode" value="@Model.CustomerPostalCode" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+            地址:<input type="text" id="address" name="CustomerAddress" value="@Model.CustomerAddress" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+            國家:<input type="text" name="CustomerCountry" value="@Model.CustomerCountry" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+
+            <input type="submit" class="btn btn-success btn-lg" value="修改" />
+
+
+        </div>
+
+        <div class="col-lg-4" style="left:150px;">
+
+            <h3 style="color:coral;">會員專屬客製化設計</h3>
+
+            <h3 style="color:red;">一.專屬寵物屋</h3>
+            <br />
+
+            <img src="~/product_images/site_product/product/box_small.jpg" style="right;" width="250" height="200" />
+
+            <h3 style="color:red;">二.專屬客製化配備</h3>
+
+            <br />
+
+            <img src="~/product_images/site_product/product/cam_wide.jpg" style="right;" width="250" height="200" />
+
+
+        </div>
+
+    </div>
+
+</form>
+
+
+
+@*<form method="post" style="text-align:center;font-size:20px;">
+
+    @Html.HiddenFor(model => model.CustomerID)
+
+    姓名:<input type="text" id="name" name="CustomerName" value="@Model.CustomerName" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    信箱:<input type="text" id ="email" name="CustomerEmail" value="@Model.CustomerEmail" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    電話:<input type="text" id="phone" name="CustomerMobilePhone" value="@Model.CustomerMobilePhone" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    區號:<input type="text" id="postCode" name="CustomerPostalCode" value="@Model.CustomerPostalCode" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    地址:<input type="text" id="address" name="CustomerAddress" value="@Model.CustomerAddress" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+    國家:<input type="text" name="CustomerCountry" value="@Model.CustomerCountry" style="font-size:18px;border:2px solid black">&nbsp;<br /><br />
+
+    <input type="submit" class="btn btn-success btn-lg" value="修改" />
+
+</form>*@
+
+
+
+<button id="autoFillButton" class="myInvisibleButtionClass" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
+
+
+
+<script>
+        function OneKeyFillFun() {
+            document.getElementById("name").value = "王小美";
+            document.getElementById("email").value = "littleBeauty@domain.com";
+            //document.getElementById("username").value = "beauty";
+            //document.getElementById("password").value = "beauty";
+            document.getElementById("phone").value = "0423265860 ";
+            document.getElementById("address").value = "台中市公益路二段51號20樓";
+            document.getElementById("postCode").value = "406";
+        }
+
+
+</script>

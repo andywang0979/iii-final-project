@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -146,6 +147,9 @@
     <Content Include="product_images\optional_items\cube.jpg" />
     <Content Include="product_images\optional_items\feeder_small.png" />
     <Content Include="product_images\optional_items\sensor_humi_temp.png" />
+    <Content Include="product_images\site_images\shopping-cart-78019_128.png" />
+    <Content Include="product_images\site_images\shopping-cart-78019_64.jpg" />
+    <Content Include="product_images\site_images\shopping-cart-78019_64.png" />
     <Content Include="product_images\site_product\cover\a.jpg" />
     <Content Include="product_images\site_product\cover\b.jpg" />
     <Content Include="product_images\site_product\cover\c.jpg" />
@@ -162,7 +166,15 @@
     <Content Include="product_images\site_product\product\cam_wide.jpg" />
     <Content Include="product_images\site_product\product\feeder_median.jpg" />
     <Content Include="product_images\site_product\product\feeder_small.jpg" />
+    <Content Include="product_images\site_product\product\sensor_carbon dioxide.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Carbon monoxide.jpg" />
     <Content Include="product_images\site_product\product\sensor_humi_temp.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Light.jpg" />
+    <Content Include="product_images\site_product\product\sensor_smoke.jpg" />
+    <Content Include="product_images\site_product\product\sensor_sound.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Ultrasonic.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Ultraviolet light.jpg" />
+    <Content Include="product_images\site_product\product\sensor_Water level.jpg" />
     <Content Include="product_images\site_product\product\sensor_weight.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -195,6 +207,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryItemModel.cs" />
     <Compile Include="Models\CategoryProductModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>PetBoxModel.tt</DependentUpon>
@@ -239,6 +252,7 @@
       <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CategoryItemViewModel.cs" />
     <Compile Include="ViewModels\DeliveryInfoViewModel.cs" />
     <Compile Include="ViewModels\OptionalItemViewModel.cs" />
     <Compile Include="ViewModels\SingleBuyViewModel.cs" />
@@ -272,8 +286,16 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Index2.cshtml" />
     <Content Include="Views\Customer\Index3.cshtml" />
-    <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\Customer\Member.cshtml" />
+    <Content Include="Views\Customer\MemberEdit.cshtml" />
+    <Content Include="Views\Customer\MemberQA.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\OptionalItem\CategoryItem.cshtml" />
+    <Content Include="Views\Customer\MemberSee.cshtml" />
+    <Content Include="Views\Customer\Memberselect.cshtml" />
+    <Content Include="Views\Customer\MemberOrderTrack.cshtml" />
+    <Content Include="Views\Customer\RegisterOk.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -298,7 +320,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49732</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

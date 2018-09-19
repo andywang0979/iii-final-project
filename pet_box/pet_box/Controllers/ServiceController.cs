@@ -44,15 +44,34 @@ namespace pet_box.Controllers
 
         public ActionResult Customerservice()
         {
-            return View();
+            var query = from o in db.Opinions
+                        select o;
+            List<Opinion> result = query.ToList();
+            return View(result);
         }
 
-        public ActionResult Customerservice2()
+        public ActionResult Customerservice2(int? id)
         {
-            return View();
+
+            Opinion op = db.Opinions.Find(id);
+            if (op == null)
+            {
+                return RedirectToAction("Customerservice");
+            }
+
+            return View(op);
         }
 
+        [HttpPost]
+        public ActionResult Customerservice2(Opinion op)
+        {
+            
+            op.OpinionFeedbackTime = DateTime.Now.ToString("yyyyMMdd HH:mm");
+            db.Entry(op).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Customerservice");
 
+        }
 
 
     }

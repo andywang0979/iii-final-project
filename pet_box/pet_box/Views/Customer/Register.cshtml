@@ -1,121 +1,212 @@
-﻿
+﻿@model pet_box.Models.Customer
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-@{
-    ViewBag.Title = "Register";
-}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <!-- Website CSS style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+</head>
 
 <style>
-    .colorgraph {
-        height: 5px;
-        border-top: 0;
-        background: #c4e17f;
-        border-radius: 5px;
-        background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    body, html {
+        height: 100%;
+        background-repeat: no-repeat;
+        background-color: white;
+        font-family: 'Oxygen', sans-serif;
+    }
+
+    .main {
+        margin-top: 10px;
+    }
+
+    hr {
+        width: 10%;
+        color: #fff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-bottom: 15px;
+    }
+
+    input,
+    input::-webkit-input-placeholder {
+        font-size: 11px;
+        padding-top: 3px;
+    }
+
+    .main-login {
+        background-color: #fff;
+        /* shadows and rounded borders */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-center {
+        margin-top: 1px;
+        margin: 0 auto;
+        max-width: 330px;
+        padding: 1px 1px;
+    }
+
+    .login-button {
+        margin-top: 1px;
+    }
+
+    .login-register {
+        font-size: 11px;
+        text-align: center;
     }
 </style>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form" method="post">
-                <h2>請註冊 <small></small></h2>
-                <hr class="colorgraph">
-                <div class="row">
+<form method="post">
 
-                    <input type="hidden" name="CustomerRole" value="3" />
+    <div class="container">
 
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="CustomerName" id="CustomerName" class="form-control input-lg" placeholder="User Name" tabindex="2">
+        <div class="col-lg-4" style="left:65px;top:20px;">
+
+            <h3 style="color:coral;">歡迎註冊智慧寵物屋會員</h3>
+            <br />
+            <h4 style="color:red;">步驟一 註冊成為會員 </h4>
+            <h4>請於右方輸入框，輸入基本的資料</h4>
+            <br />
+            <h4 style="color:red;">步驟二 登入會員 </h4>
+            <h4>可以享受會員專屬客製化服務</h4>
+            <br />
+            <h4 style="color:red;">FAQ 聯絡客服人員 </h4>
+            <h4>有任何的問題，歡迎與客服人員聯絡</h4>
+            <br />
+
+            <img src="https://cdn2.ettoday.net/images/736/d736983.jpg" width="300" height="200" />
+
+        </div>
+
+        <div class="col-lg-4" style="left:100px;top:30px;">
+
+            <div class="main-login main-center">
+
+
+                <br />
+
+                <input type="hidden" name="CustomerRole" value="3" />
+
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">姓名 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="CustomerName" id="name" placeholder="" />
                         </div>
                     </div>
-
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="CustomerMobilePhone" id="CustomerMobilePhone" class="form-control input-lg" placeholder="MobilePhone Number" tabindex="1">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="CustomerLoginName" id="CustomerLoginName" class="form-control input-lg" placeholder="Account Number" tabindex="1">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="password" name="CustomerPassword" id="CustomerPassword" class="form-control input-lg" placeholder="Password" tabindex="5">
-                        </div>
-                    </div>
-
                 </div>
                 <div class="form-group">
-                    <input type="email" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="Email Address" tabindex="4">
-                </div>
-                <div class="row">
-
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                    <label for="email" class="cols-sm-2 control-label">信箱 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="CustomerEmail" id="email" placeholder="" />
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3">
-                        <span class="button-checkbox">
-
-                            <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-                        </span>
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">帳號 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="CustomerLoginName" id="username" placeholder="" />
+                        </div>
                     </div>
-                    <div class="col-xs-8 col-sm-9 col-md-9">
-
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">密碼 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="CustomerPassword" id="password" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">電話 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="CustomerMobilePhone" id="phone" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">地址 <span style="color:red"> *</span></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="CustomerAddress" id="address" placeholder="" />
+                        </div>
                     </div>
                 </div>
 
-                <hr class="colorgraph">
-                <div class="row">
-                    <div class="col-xs-12 col-md-6"><input type="submit" value="註冊" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                    <div class="col-xs-12 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">登入</a></div>
+                <div style="text-align:center;">
+                    <input type="submit" class="btn btn-success btn-lg" value="註冊" />
                 </div>
                 <div>
                     <h4 style="color:red">@ViewBag.Message </h4>
                     <h4 style="color:red">@ViewBag.Message2 </h4>
                     <h4 style="color:red">@ViewBag.Message3 </h4>
                 </div>
-            </form>
-        </div>
-    </div>
 
-    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                </div>
-                <div class="modal-footer">
 
-                </div>
             </div>
         </div>
+
+        <div class="col-lg-4" style="left:180px;top:50px;">
+
+            <h3 style="color:red"> *代表必填 </h3>
+
+        </div>
+
     </div>
-</div>
+
+</form>
 
 
+
+
+
+
+
+
+<button id="autoFillButton" class="myInvisibleButtionClass" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
+
+
+
+<script>
+        function OneKeyFillFun() {
+            document.getElementById("name").value = "王小美";
+            document.getElementById("email").value = "littleBeauty@domain.com";
+            document.getElementById("username").value = "beauty";
+            document.getElementById("password").value = "beauty";
+            document.getElementById("phone").value = "0423265860 ";
+            document.getElementById("address").value = "台中市公益路二段51號20樓";
+        }
+
+
+</script>

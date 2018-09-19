@@ -6,183 +6,209 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<style>
-    /*        position is based on the .myContainer*/
+@section OptionalItemTop{
+    <style>
+        /*        position is based on the .myContainer*/
 
-    #cube {
-        width: 450px;
-        position: absolute;
-        top: 0px;
-        z-index: 1;
+        #cube {
+            width: 450px;
+            position: absolute;
+            top: 0px;
+            z-index: 1;
+        }
+
+        #feeder_small {
+            width: 90px;
+            position: absolute;
+            top: 140px;
+            left: 190px;
+            z-index: 2;
+        }
+
+        #sensor_humi_temp {
+            width: 30px;
+            position: absolute;
+            top: 50px;
+            left: 30px;
+            z-index: 2;
+        }
+
+        #cam_wide {
+            width: 90px;
+            position: absolute;
+            top: 70px;
+            left: 250px;
+            z-index: 2;
+        }
+
+        /*        position of .myContainer is relative to the margin-top of fieldset*/
+
+        .myContainer {
+            position: relative;
+            top: -250px;
+            /*            width: 400px;*/
+            /*            margin: 0 auto;*/
+        }
+
+
+
+        #menuDivLeft {
+            margin-top: 00px;
+        }
+
+        #menuDivMiddle {
+            margin-top: 260px;
+        }
+
+        #menuDivRight {
+            margin-top: 260px;
+        }
+
+        .myImageClassItem {
+            /*            display: none;*/
+            visibility: hidden;
+        }
+
+
+        .myFieldsetMarginClass{
+            margin-bottom: 10px;
+        }
+
+        .myLegendMarginClass{
+     margin-bottom: 5px;
     }
+    </style>
 
-    #feeder_small {
-        width: 90px;
-        position: absolute;
-        top: 140px;
-        left: 190px;
-        z-index: 2;
-    }
+    
 
-    #sensor_humi_temp {
-        width: 30px;
-        position: absolute;
-        top: 50px;
-        left: 30px;
-        z-index: 2;
-    }
-
-    #cam_wide {
-        width: 90px;
-        position: absolute;
-        top: 70px;
-        left: 250px;
-        z-index: 2;
-    }
-
-    /*        position of .myContainer is relative to the margin-top of fieldset*/
-
-    .myContainer {
-        position: relative;
-        top: -250px;
-        /*            width: 400px;*/
-        /*            margin: 0 auto;*/
-    }
+}
 
 
-
-    #menuDivLeft {
-        margin-top: 00px;
-    }
-
-    #menuDivMiddle {
-        margin-top: 260px;
-    }
-
-    #menuDivRight {
-        margin-top: 260px;
-    }
-
-    .myImageClassItem {
-        /*            display: none;*/
-        visibility: hidden;
-    }
-</style>
 
 
 
 
 <div class="container">
     <div class="row">
-        <div id="menuDivLeft" class="col-sm-6">
-            <div class="container">
+        <div class="col-sm-12">
+            <form method="post">
                 <div class="row">
-
-
-                    <form method="post">
-
-
-
-                        @* dictionary <string, obj> *@
-                        <div id="ver04">
+                    <div id="menuDivLeft" class="col-sm-6">
+                        <div class="container">
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <fieldset>
 
-                                        <legend>@Model.CategoryProductModelDic["categoryId03"].CategoryName</legend>
-                                        @foreach (var item in Model.CategoryProductModelDic["categoryId03"].Products) {
+                                @* dictionary <string, obj> *@
+                                <div id="ver04">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <fieldset class="myFieldsetMarginClass">
 
-                                            <div>
-                                                <input type="checkbox"
-                                                       id=@item.ProductID
-                                                       name="boxItem"
-                                                       value=@item.ProductID
-                                                       data-productCode=@item.ProductCode
-                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                <label for="catFeader">@item.ProductName</label>
-                                            </div>
-                                        }
+                                                <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId03"].CategoryName</legend>
+                                                @foreach (var item in Model.CategoryProductModelDic["categoryId03"].Products) {
+
+                                                    <div>
+                                                        <input type="checkbox"
+                                                               id=@item.ProductID
+                                                               name="boxItem"
+                                                               value=@item.ProductID
+                                                               data-productCode=@item.ProductCode
+                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                        <label for="catFeader">@item.ProductName</label>
+                                                    </div>
+                                                }
 
 
-                                    </fieldset>
-                                </div>
-                                <div class="col-sm-6"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <fieldset>
+                                            </fieldset>
+                                        </div>
 
-                                        <legend>@Model.CategoryProductModelDic["categoryId04"].CategoryName</legend>
-                                        @foreach (var item in @Model.CategoryProductModelDic["categoryId04"].Products) {
-
-                                            <div>
-                                                <input type="checkbox"
-                                                       id=@item.ProductID
-                                                       name="boxItem"
-                                                       value=@item.ProductID
-                                                       data-productCode=@item.ProductCode
-                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                <label for="catFeader">@item.ProductName</label>
-                                            </div>
-                                        }
-
-                                    </fieldset>
-                                </div>
-                                <div class="col-sm-6"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <fieldset>
-                                        <legend>@Model.CategoryProductModelDic["categoryId05"].CategoryName</legend>
-                                        @foreach (var item in Model.CategoryProductModelDic["categoryId05"].Products) {
-
-                                            <div>
-                                                <input type="checkbox"
-                                                       id=@item.ProductID
-                                                       name="boxItem"
-                                                       value=@item.ProductID
-                                                       data-productCode=@item.ProductCode
-                                                       onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                <label for="catFeader">@item.ProductName</label>
-                                            </div>
-                                        }
-
-                                    </fieldset>
-                                </div>
-                                <div class="col-sm-6"></div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <fieldset>
-
-                                <div class="form-group">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-8">
-                                        <button id="button2id" name="okOrCancel" class="btn btn-info" value="continue"><span class="glyphicon glyphicon-arrow-left"></span> 回購物頁</button>
-                                        <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確定</button>
-                                        
+                                        <div class="col-sm-6"></div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <fieldset class="myFieldsetMarginClass">
+
+                                                <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId04"].CategoryName</legend>
+                                                @foreach (var item in @Model.CategoryProductModelDic["categoryId04"].Products) {
+
+                                                    <div>
+                                                        <input type="checkbox"
+                                                               id=@item.ProductID
+                                                               name="boxItem"
+                                                               value=@item.ProductID
+                                                               data-productCode=@item.ProductCode
+                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                        <label for="catFeader">@item.ProductName</label>
+                                                    </div>
+                                                }
+
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-sm-6"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <fieldset class="myFieldsetMarginClass">
+                                                <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId05"].CategoryName</legend>
+                                                @foreach (var item in Model.CategoryProductModelDic["categoryId05"].Products) {
+
+                                                    <div>
+                                                        <input type="checkbox"
+                                                               id=@item.ProductID
+                                                               name="boxItem"
+                                                               value=@item.ProductID
+                                                               data-productCode=@item.ProductCode
+                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                        <label for="catFeader">@item.ProductName</label>
+                                                    </div>
+                                                }
+
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-sm-6"></div>
+                                    </div>
+
                                 </div>
 
-                            </fieldset>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menuDivRight" class="col-sm-6">
+                        <div class="myContainer">
+                            <img src="/product_images/optional_items/cube.jpg" class="myImageClass" id="cube">
+
+                            <img src="/product_images/optional_items/feeder_small.png" class="myImageClassItem" id="feeder_small">
+                            <img src="/product_images/optional_items/sensor_humi_temp.png" class="myImageClassItem" id="sensor_humi_temp">
+                            <img src="/product_images/optional_items/cam_wide.png" class="myImageClassItem" id="cam_wide">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <fieldset>
+
+                        <div class="form-group">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 text-center">
+                                <button id="button2id" name="okOrCancel" class="btn btn-info" value="continue"><span class="glyphicon glyphicon-arrow-left"></span> 回購物頁</button>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok"> <span class="glyphicon glyphicon-ok"></span> 確定</button>
+
+                            </div>
+                            <div class="col-md-3"></div>
                         </div>
 
-                        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                    </form>
+                    </fieldset>
                 </div>
-            </div>
-        </div>
-        <div id="menuDivRight" class="col-sm-6">
-            <div class="myContainer">
-                <img src="/product_images/optional_items/cube.jpg" class="myImageClass" id="cube">
+            </form>
 
-                <img src="/product_images/optional_items/feeder_small.png" class="myImageClassItem" id="feeder_small">
-                <img src="/product_images/optional_items/sensor_humi_temp.png" class="myImageClassItem" id="sensor_humi_temp">
-                <img src="/product_images/optional_items/cam_wide.png" class="myImageClassItem" id="cam_wide">
-            </div>
         </div>
+
+
 
     </div>
 </div>

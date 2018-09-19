@@ -50,11 +50,11 @@ namespace pet_box.Controllers
             }
            
             
-            if (Session["Customer"] == null)
-            {
-                return View("Index", "_Layout", viewM);
+            //if (Session["Customer"] == null)
+            //{
+            //    return View("Index", "_Layout", viewM);
                 
-            }
+            //}
             return View("Index", "_Layout2", viewM);
         }
 
@@ -64,33 +64,37 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string CustomerLoginName, string CustomerPassword)
+        public ActionResult Login(string LoginName, string Password)
         {
             var Customer = db.Customers
-                .Where(c => c.CustomerLoginName == CustomerLoginName && c.CustomerPassword == CustomerPassword)
+                .Where(c => c.CustomerLoginName == LoginName && c.CustomerPassword == Password)
                 .FirstOrDefault();
 
-            if (Customer == null)
-            {
-                ViewBag.Message = "帳密錯誤 登入失敗";
-                return View();
-            }
+            var Employee = db.Employees
+                .Where(e => e.EmployeeLoginName == LoginName && e.EmployeePassword == Password)
+                .FirstOrDefault();
 
-            // user is not a member
-            // not use yet, because the parameter is string, and the value of 
-            // non-member customer is null.
-            if (Customer.CustomerRole == 2) {
-                ViewBag.Message = "您未註冊為會員";
+            if (Customer != null)
+            {
+                Session["Welcome"] = Customer.CustomerName + " " + "歡迎光臨";
+                Session["Customer"] = Customer;
+                Session["CustomerID"] = Customer.CustomerID;
                 return RedirectToAction("Index");
             }
+            else if (Employee != null)
+            {
+                Session["Welcome"] = Employee.EmployeeLoginName + " " + "管理員";
+                Session["Employee"] = Employee;
+                Session["EmployeeID"] = Employee.EmployeeID;
+                return RedirectToAction("Workdistinction", "Service");
+            }
+            else
+            {
+                ViewBag.Message = "帳密輸入錯誤";
+            }
 
+            return View();
 
-
-            Session["Welcome"] = Customer.CustomerName + " " + "歡迎光臨";
-            Session["Customer"] = Customer;
-            Session["CustomerID"] = Customer.CustomerID;
-
-            return RedirectToAction("Index");
         }
 
         public ActionResult Logout()
@@ -156,9 +160,90 @@ namespace pet_box.Controllers
             {
                 db.Customers.Add(cus);
                 db.SaveChanges();
-                return RedirectToAction("Login");
+                return RedirectToAction("RegisterOk",cus);
             }
             ViewBag.Message = "此帳號己有人使用，註冊失敗";
+            return View();
+        }
+
+        public ActionResult RegisterOk()
+        {
+            return View();
+        }
+
+        public ActionResult Member()
+        {
+            int customerID = Convert.ToInt32(Session["CustomerID"]);
+            Customer cus = (from o in db.Customers
+                            where o.CustomerID == customerID
+                            select o).Single();
+            //Convert.ToInt32(Session["CustomerID"].ToString())
+            return View(cus);
+        }
+
+        [HttpPost]
+        public ActionResult Member(Customer cus)
+        {
+            return View();
+        }
+
+        public ActionResult MemberEdit(int? id)
+        {
+            Customer cus = db.Customers.Find(id);
+            //if (cus == null) { return RedirectToAction("Member"); }
+            return View(cus);
+        }
+
+        [HttpPost]
+        public ActionResult MemberEdit(Customer cus)
+        {
+            db.Entry(cus).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Member");
+        }
+
+        public ActionResult MemberQA()
+        {
+            Opinion op = new Opinion();
+            return View(op);
+        }
+
+        [HttpPost]
+        public ActionResult MemberQA(Opinion op)
+        {
+            op.OpinionDateTime = DateTime.Now.ToString("yyyyMMdd HH:mm");
+            db.Opinions.Add(op);
+            db.SaveChanges();
+            return RedirectToAction("Member");
+        }
+
+        public ActionResult Memberselect(int? id)
+        {
+
+            var query = from o in db.Opinions
+                        where o.CustomerID == id
+                        select o;
+            List<Opinion> op = query.ToList();
+
+
+            return View(op);
+        }
+
+        public ActionResult MemberSee(int? id)
+        {
+
+            Opinion op = db.Opinions.Find(id);
+
+            if (op == null)
+            {
+                return RedirectToAction("Member");
+            }
+
+            return View(op);
+        }
+
+        public ActionResult MemberOrderTrack()
+        {
             return View();
         }
 
