@@ -10,6 +10,10 @@
 @section IndexTop{
     <style>
 
+        .myColMarginClass{
+            margin-bottom: 10px;
+        }
+
   .myShoppingIconClass{
       width: 140%;
   }
@@ -94,14 +98,14 @@
                 top: 1%;
                 width: 50px;
                 height: 50px;
-                
+
                 padding-left: 1px;
                 padding-right: 0px;
                 padding-bottom:1px;
                 padding-top: 9px;
                 margin-right:-10px;
                 /*margin-left:2vh;*/
-                /* for different broswer*/
+                /* for different browser*/
                 /* the format is animationName animationDuration ??? iterationNumber*/
                 -webkit-animation: pulse 1s linear 2;
                 animation: pulse 1s linear 2;
@@ -114,15 +118,15 @@
                 }
 
 
-                
+
 
                 .myMarginTop{
                     margin-top:10pt;
                 }
 
                 .myCategoryMenuClass{
-                    position: sticky; 
-                    top: 10px; 
+                    position: sticky;
+                    top: 10px;
                 }
     </style>
 }
@@ -150,7 +154,7 @@
     <div class="row myMarginTop">
 
         <div class="col-md-3 myCategoryMenuClass">
-            
+
 
             <div class="list-group">
 
@@ -182,11 +186,11 @@
         </div>
 
         <div class="col-md-9 myCategoryItemClass ">
-            
+
             <div class="row">
                 <div id="categoryItemsDiv">
 
-                   
+
 
                 </div>
             </div>
@@ -220,11 +224,11 @@
     // accept the user data and pass it along to the server.
     // we include our data as a parameter in the call to httpRequest.send()
     function makeRequest(url) {
-        
-        
+
+
             httpRequestCategory = new XMLHttpRequest();
-            
-        
+
+
 
         if (!httpRequestCategory) {
             alert('Giving up : Cannot create an XMLHTTP instance');
@@ -268,10 +272,10 @@
 
     function buyRequest(productID) {
         //
-       
+
             httpRequestBuy = new XMLHttpRequest();
-            
-        
+
+
         //----
 
         if (!httpRequestBuy) {
@@ -404,10 +408,10 @@
 
     function getTotal() {
         //
-        
+
             httpRequestTotal = new XMLHttpRequest();
-            
-        
+
+
         //----
 
         if (!httpRequestTotal) {

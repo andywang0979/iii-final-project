@@ -205,7 +205,7 @@ namespace pet_box.Controllers {
 
             if (Request.Form["okOrCancel"] == "ok") {
 
-                // copy the quantity from the model posted from delete button, 
+                // copy the quantity from the model posted from delete button,
                 // to the itemList, then save the new quantity to tempData.
                 foreach (ShoppingCartObjectModel item in itemObjList) {
                     PartialListItemModel itemToCopy = partialModelList.PartialList.SingleOrDefault(r => r.PartialListProductId == item.ProductID);
@@ -276,9 +276,9 @@ namespace pet_box.Controllers {
             }
 
 
-            // here should check if the member login in, 
+            // here should check if the member login in,
             // temporary solution: here just use default value of `int` if no assignment,
-            // 
+            //
             if (customerIdInt == 1) {
                 Customer newCustomer = new Customer();
                 viewM.customer = newCustomer;
@@ -312,7 +312,7 @@ namespace pet_box.Controllers {
 
 
                 // update Customers
-                // 1 is non-member. 
+                // 1 is non-member.
                 //if (itemObjList[0].CustomerID != 1) {
                 if (customerIdInt != 1) {
                     //int myInt = Convert.ToInt32(Session["CustomerID"]);
@@ -388,7 +388,7 @@ namespace pet_box.Controllers {
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="id"> ProductID</param>
         /// <returns></returns>
@@ -411,7 +411,7 @@ namespace pet_box.Controllers {
                 partialModelList.PartialList.Remove(itemToRemoveFromPartialModel);
             }
 
-            // copy the quantity from the model posted from delete button, 
+            // copy the quantity from the model posted from delete button,
             // to the itemList, then save the new quantity to tempData.
             foreach (ShoppingCartObjectModel item in itemObjList) {
                 PartialListItemModel itemToCopy = partialModelList.PartialList.SingleOrDefault(r => r.PartialListProductId == item.ProductID);
@@ -494,7 +494,15 @@ namespace pet_box.Controllers {
                 tempInstance.ProductID = item.ProductID;
                 tempInstance.ProductName = item.ProductName;
                 tempInstance.UnitPrice = item.ProductPrice;
-                tempInstance.ProductDescription = item.ProductDescription;
+
+                if (item.ProductDescription.Length > 12) {
+                    tempInstance.ProductDescription = item.ProductDescription.Substring(0, 12) + "⋯";
+                }
+                else {
+                    tempInstance.ProductDescription = item.ProductDescription;
+                }
+
+
                 tempInstance.QuantityInStock = (int)item.ProductQuantity;
 
                 viewM.ProductList.Add(tempInstance);

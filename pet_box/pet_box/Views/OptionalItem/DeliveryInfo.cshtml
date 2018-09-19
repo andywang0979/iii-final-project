@@ -51,7 +51,7 @@
             <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">姓名</label>
             <div class="col-md-4">
                 <input id="textinput" name="customer.CustomerName" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerName" required>
-                @*<span class="help-block">姓名</span>*@
+
             </div>
         </div>
 
@@ -60,7 +60,7 @@
             <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">地址</label>
             <div class="col-md-4">
                 <input id="textinput" name="customer.CustomerAddress" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerAddress" required>
-                @*<span class="help-block">地址</span>*@
+
             </div>
         </div>
 
@@ -69,7 +69,7 @@
             <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">聯絡電話</label>
             <div class="col-md-4">
                 <input id="textinput" name="customer.CustomerMobilePhone" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerMobilePhone" required>
-                @*<span class="help-block">聯絡電話</span>*@
+
             </div>
         </div>
 
@@ -78,17 +78,17 @@
             <label class="col-md-4 control-label" for="textinput" style="font-size:20px;">電子郵件</label>
             <div class="col-md-4">
                 <input id="textinput" name="customer.CustomerEmail" type="text" placeholder="placeholder" class="form-control input-md" value="@Model.customer.CustomerEmail" required>
-                @*<span class="help-block">電子郵件</span>*@
+
             </div>
         </div>
 
         <!-- Button (Double) -->
         <div class="form-group">
-            @*<label class="col-md-4 control-label" for="button1id">Double Button</label>*@
-            <div class="col-md-8" style="text-align:center;">
+
+            <div class="col-md-12" style="text-align:center">
                 <button id="button2id" name="okOrCancel" class="btn btn-primary" value="backToshoppingCart" formnovalidate="formnovalidate"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</button>
-                @*<a href="/Test/ShoppingCart" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-arrow-left"></span> 回購物車</a>*@
-                <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">確認</button>
+                &nbsp;
+                <button id="button1id" name="okOrCancel" class="btn btn-success" value="ok">購買</button>
 
             </div>
         </div>
