@@ -6,105 +6,30 @@
 
 
 
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <!-- Website CSS style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <!-- Website Font style -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-    <!-- Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-</head>
-
-<style>
-    body, html {
-        height: 100%;
-        background-repeat: no-repeat;
-        background-color: white;
-        font-family: 'Oxygen', sans-serif;
-    }
-
-    .main {
-        margin-top: 10px;
-    }
-
-    hr {
-        width: 10%;
-        color: #fff;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    label {
-        margin-bottom: 15px;
-    }
-
-    input,
-    input::-webkit-input-placeholder {
-        font-size: 11px;
-        padding-top: 3px;
-    }
-
-    .main-login {
-        background-color: #fff;
-        /* shadows and rounded borders */
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    .main-center {
-        margin-top: 1px;
-        margin: 0 auto;
-        max-width: 330px;
-        padding: 1px 1px;
-    }
-
-    .login-button {
-        margin-top: 1px;
-    }
-
-    .login-register {
-        font-size: 11px;
-        text-align: center;
-    }
-</style>
-
 <form method="post">
 
     <div class="container">
 
-        <div class="col-lg-4" style="left:65px;top:20px;">
+        <div class="col-lg-3" style="left:10px;top:20px;">
 
-            <h3 style="color:coral;color:coral">聯絡客服</h3>
-            <br />
-            <h4 style="color:red;">步驟一 問題發問 </h4>
-            <h4>向客服人員，提出目前的問題</h4>
-            <br />
-            <h4 style="color:red;">步驟二 等待客服回應 </h4>
-            <h4>於聯絡客服查看，目前問題是否處理</h4>
-            <br />
-            <h4 style="color:red;">三 查看回應 </h4>
-            <h4>查看客服回應問題的狀況</h4>
+            <h2 style="color:coral">會員專區</h2>
             <br />
 
-            <img src="https://cdn2.ettoday.net/images/736/d736983.jpg" width="300" height="200" />
+            <a href="/Customer/MemberEdit/@Model.CustomerID" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;<span style="font-size:20px;">修改資料</span></a><br />
+            <br />
+            <a href="/Customer/MemberQA" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<span style="font-size:20px;">聯絡客服</span></a>
+            <br />
+            <br />
+            <a href="/Customer/Memberselect/@Model.CustomerID" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<span style="font-size:20px;">查看回應</span></a>
+            @*<a href="/Customer/MemberSee/@Model.CustomerID" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<span style="font-size:20px;">查看回應</span></a>*@
+
 
         </div>
 
         <br />
 
 
-        <div style="text-align:center; left:80px;" class="col-lg-4">
+        <div style="text-align:center; left:100px;" class="col-lg-3">
 
 
             <h2 style="text-align:center;color:red">聯絡客服</h2>
@@ -132,20 +57,21 @@
 
         </div>
 
-        <div class="col-lg-4" style="left:150px;">
+        <div class="col-lg-4" style="left:250px;">
 
-            <h3 style="color:coral;">會員專屬客製化設計</h3>
-
-            <h3 style="color:red;">一.專屬寵物屋</h3>
+            <h3 style="color:coral;color:coral">聯絡客服</h3>
+            <br />
+            <h4 style="color:red;">步驟一 問題發問 </h4>
+            <h4>向客服人員，提出目前的問題</h4>
+            <br />
+            <h4 style="color:red;">步驟二 等待客服回應 </h4>
+            <h4>於聯絡客服查看，目前問題是否處理</h4>
+            <br />
+            <h4 style="color:red;">三 查看回應 </h4>
+            <h4>查看客服回應問題的狀況</h4>
             <br />
 
-            <img src="~/product_images/site_product/product/box_small.jpg" style="right;" width="250" height="200" />
-
-            <h3 style="color:red;">二.專屬客製化配備</h3>
-
-            <br />
-
-            <img src="~/product_images/site_product/product/cam_wide.jpg" style="right;" width="250" height="200" />
+            <img src="~/product_images/site_product/product/service.jpg" width="300" height="200" />
 
 
         </div>
@@ -155,7 +81,7 @@
 </form>
 
 
-<button id="autoFillButton" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
+<button id="autoFillButton" class="myInvisibleButtionClass" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
 
 
 
@@ -174,30 +100,3 @@
 
 
 
-
-@*<h2 style="text-align:center">聯絡客服</h2>
-
-    <br />
-
-    <form method="post" style="text-align:center">
-
-        @Html.HiddenFor(model => model.OpinionID)
-        @Html.HiddenFor(model => model.OpinionDateTime)
-
-        <h4> 問題標題:</h4><input type="text" name="OpinionTitle" style="font-size:30px;border:2px inset black" /><br />
-
-        <br />
-        <h4>請輸入內容:</h4>
-        <textarea id="OpinionContent" name="OpinionContent" style="font-size:10px;border:2px solid black" placeholder="" rows="10" cols="100"></textarea><br />
-
-        <input type="hidden" name="OpinionStatus" value="0" />
-        <input type="hidden" name="EmployeeID" value="1" />
-
-        <input type="hidden" name="CustomerID" value="@Session["CustomerID"]" />
-        <input type="hidden" name="ProductID" value="1" />
-
-        <br />
-
-        <input type="submit" class="btn btn-success btn-lg" value="送出" />
-
-    </form>*@

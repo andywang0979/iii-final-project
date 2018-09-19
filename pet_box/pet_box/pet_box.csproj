@@ -167,6 +167,7 @@
     <Content Include="product_images\site_product\product\cam_wide.jpg" />
     <Content Include="product_images\site_product\product\feeder_median.jpg" />
     <Content Include="product_images\site_product\product\feeder_small.jpg" />
+    <Content Include="product_images\site_product\product\member.jpg" />
     <Content Include="product_images\site_product\product\sensor_carbon dioxide.jpg" />
     <Content Include="product_images\site_product\product\sensor_Carbon monoxide.jpg" />
     <Content Include="product_images\site_product\product\sensor_humi_temp.jpg" />
@@ -177,6 +178,7 @@
     <Content Include="product_images\site_product\product\sensor_Ultraviolet light.jpg" />
     <Content Include="product_images\site_product\product\sensor_Water level.jpg" />
     <Content Include="product_images\site_product\product\sensor_weight.jpg" />
+    <Content Include="product_images\site_product\product\service.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
