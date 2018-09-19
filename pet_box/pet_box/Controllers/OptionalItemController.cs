@@ -426,52 +426,6 @@ namespace pet_box.Controllers {
 
         }
 
-
-        [HttpPost]
-        public ActionResult SingleBuy(int id) {
-            List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
-
-
-            if (TempData["itemList"] == null) {
-
-                ShoppingCartObjectModel newItem = new ShoppingCartObjectModel();
-                // here should be the logined customer's id
-                newItem.CustomerID = Convert.ToInt32(Session["CustomerID"]);
-                newItem.ProductID = id;
-                newItem.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
-                itemObjList.Add(newItem);
-
-
-            } else {
-
-                itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
-
-                ShoppingCartObjectModel tempObj = itemObjList.Find(obj => id == obj.ProductID);
-
-                if (tempObj != null) {
-
-                    tempObj.Quantity += Convert.ToInt32(Request.Form["buyQuantity"]);
-
-                } else {
-
-                    ShoppingCartObjectModel addObj = new ShoppingCartObjectModel();
-                    addObj.CustomerID = Convert.ToInt32(Session["CustomerID"]);
-                    addObj.ProductID = id;
-                    addObj.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
-
-                    //shopCartItemList.shopCartObjList.Add(instance);
-                    itemObjList.Add(addObj);
-                }
-
-            }
-
-            TempData["itemList"] = itemObjList;
-            TempData.Keep("itemList");
-
-            return RedirectToAction("ShoppingCart", "OptionalItem");
-        }
-
-
         public ActionResult CategoryItem(int? id) {
 
             TempData["shoppingURL"] = Request.Url.PathAndQuery;
@@ -497,8 +451,7 @@ namespace pet_box.Controllers {
 
                 if (item.ProductDescription.Length > 12) {
                     tempInstance.ProductDescription = item.ProductDescription.Substring(0, 12) + "⋯";
-                }
-                else {
+                } else {
                     tempInstance.ProductDescription = item.ProductDescription;
                 }
 
@@ -576,18 +529,6 @@ namespace pet_box.Controllers {
             }
 
             return Content("0");
-        }
-
-
-        public ActionResult CheckCustomerLogin() {
-            if (TempData["itemList"] != null) {
-                //return Content("some some in temp data itemlist");
-                TempData.Keep("itemList");
-            }
-
-            // check if user login, probably use another session or other way.
-            //return Content(Session["CustomerID"].ToString());
-            return Content(Session["CustomerID"].ToString());
         }
 
     }
