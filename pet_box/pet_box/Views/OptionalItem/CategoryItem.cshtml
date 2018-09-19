@@ -9,6 +9,13 @@
 @using pet_box.Models;
 
 
+<style>
+    input[type="number"]{
+  width: 5em;
+}
+</style>
+
+
 <div class="row">
 
     @foreach (CategoryItemModel item in Model.ProductList) {
@@ -21,8 +28,9 @@
                         <a href="#">@item.ProductName</a>
                     </h4>
                     <p>@item.ProductDescription</p>
-                    <div class="ratings">
-                        <span>數量</span>
+                    <div class="">
+                        <span >數量</span>
+                        &nbsp;
                         <input type="number" id="@(item.ProductID + "quantity")" name="buyQuantity"
                                placeholder="please input quantity" step="1" min="1" max="@item.QuantityInStock"
                                value="1" />

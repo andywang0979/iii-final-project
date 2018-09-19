@@ -7,6 +7,28 @@
 @model pet_box.Models.PartialListModel
 
 
+
+
+<style>
+    .myImageClass {
+        height: 100px;
+    }
+
+
+    .col-sm-7 {
+        width: auto;
+    }
+
+    .table > tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    input[type="number"] {
+        width: 5em;
+    }
+</style>
+
+
 <h2>您的購買清單</h2>
 
 <form class="form-horizontal" method="post">
@@ -16,43 +38,39 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th class="col-sm-4">產品名稱</th>
-                    <th class="col-sm-2">數量</th>
+                    <th class="col-sm-2">產品</th>
+                    <th class="col-sm-3">縮圖</th>
+                    <th class="col-sm-7"><div class="col-sm-3">數量</div></th>
 
                 </tr>
             </thead>
             <tbody>
 
                 @for (int i = 0; i < Model.PartialList.Count; i++) {
-
-                    @*@Html.HiddenFor(m => m.PartialList[i].PartialListProductImgLocation)
-                        @Html.HiddenFor(m => m.PartialList[i].PartialListProductName)
-                        @Html.HiddenFor(m => m.PartialList[i].PartialListProductId)
-                        @Html.HiddenFor(m => m.PartialList[i].PartialListProductBuyQuantity)*@
-
-
                     <input type="hidden" name="PartialList[@i].PartialListProductImgLocation" value="@Model.PartialList[i].PartialListProductImgLocation" />
                     <input type="hidden" name="PartialList[@i].PartialListProductName" value="@Model.PartialList[i].PartialListProductName" />
                     <input type="hidden" name="PartialList[@i].PartialListProductId" value="@Model.PartialList[i].PartialListProductId" />
                     <input type="hidden" name="PartialList[@i].PartialListProductUnitPrice" value="@Model.PartialList[i].PartialListProductUnitPrice" />
-                    @*<input type="hidden" name="PartialList[@i].PartialListProductBuyQuantity" value="@Model.PartialList[i].PartialListProductBuyQuantity" />*@
 
 
-                    <tr>
-                        @*<td class="col-sm-4">@item.PartialListProductName</td>*@
-                        <td class="col-sm-4">@Model.PartialList[i].PartialListProductName</td>
-                        <td class="col-sm-6">
-                            <span class="col-sm-3">
-                                @*<label for="quantity">Height (metres):</label>*@
-                                @*yourmodelprefix[0].PlanID*@
+
+                    <tr class="">
+                        <td class="col-sm-2">
+                            @Model.PartialList[i].PartialListProductName
+                        </td>
+                        <td class="col-sm-3">
+                            <img class="myImageClass" src="@Model.PartialList[i].PartialListProductImgLocation" />
+                        </td>
+                        <td class="col-sm-7">
+                            <div class="col-sm-3 myInputNumberClass">
+
                                 <input type="number" id="quantity" name="PartialList[@i].PartialListProductBuyQuantity"
                                        placeholder="" step="1" min="1" max=""
-                                       value="@Model.PartialList[i].PartialListProductBuyQuantity" />
+                                       value="@Model.PartialList[i].PartialListProductBuyQuantity"
+                                       size="10" />
 
-                            </span>
-                            <span class="col-sm-9">
-
-                                @*<a class="btn btn-danger glyphicon glyphicon-remove" href="/Test/CartItemDelete/@item.PartialListProductId"> 刪除</a>*@
+                            </div>
+                            <span class="col-sm-7">
                                 <button id="deleteItem" name="deleteBtn" class="btn btn-danger" value="@Model.PartialList[i].PartialListProductId" formaction="/OptionalItem/CartItemDelete/@Model.PartialList[i].PartialListProductId" formmethod="post">刪除</button>
                             </span>
                         </td>
