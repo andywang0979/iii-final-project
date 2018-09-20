@@ -12,7 +12,7 @@
 
     <div class="container">
 
-        <div class="col-lg-4" style="left:65px;top:20px;">
+        <div class="col-lg-4" style="left:10px;top:20px;">
 
             <h3 style="color:coral;">客服人員 回應步驟</h3>
             <br />
@@ -30,7 +30,7 @@
 
         </div>
 
-        <div class="col-lg-4" style="left:120px;top:15px;font-size:20px;">
+        <div class="col-lg-4" style="left:100px;top:15px;font-size:20px;">
 
 
             @Html.HiddenFor(model => model.OpinionID)
@@ -87,14 +87,14 @@
 
 
 
-<button id="autoFillButton" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
+<button id="autoFillButton" class="myInvisibleButtionClass" type="button" onclick="OneKeyFillFun();">一鍵搞定</button>
 
 
 
 <script>
         function OneKeyFillFun() {
 
-            document.getElementById("OpinionFeedback").value = "小美你好，目前商品已被下架，請先參考其他產品";
+            document.getElementById("OpinionFeedback").value = "目前貨物正在配送中，需要一至兩個工作天，即可送達";
 
         }
 
