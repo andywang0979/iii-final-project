@@ -11,7 +11,19 @@
 
         body {
             padding-top: 1px;
+            font-size:18px;
         }
+
+            
+#logo{
+    left:55px;
+    font-size:30px;
+}
+
+.lititle{
+    font-size:24px;
+    left:60px;
+}
 
         .myInvisibleButtionClass {
             background: transparent;
@@ -48,7 +60,7 @@
     @*custom css style*@
     @RenderSection("IndexTop", required: false)
     @RenderSection("OptionalItemTop", required: false)
-
+    @RenderSection("ShoppingCartTop", required: false)
 
 </head>
 <body>
@@ -63,7 +75,7 @@
                     </button>
                     @*@Html.ActionLink("智慧寵物屋", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })*@
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("智慧寵物屋", "Index", "Customer")</li>
+                        <li id="logo">@Html.ActionLink("智慧寵物屋", "Index", "Customer")</li>
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse">
@@ -74,23 +86,23 @@
 
 
                         @if (Session["Customer"] == null && Session["Employee"] == null) {
-                            <li>@Html.ActionLink("註冊", "Register", "Customer")</li>
-                            <li>@Html.ActionLink("登入", "Login", "Customer")</li>
-                            <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
+                            <li class="lititle">@Html.ActionLink("註冊", "Register", "Customer")</li>
+                            <li class="lititle">@Html.ActionLink("登入", "Login", "Customer")</li>
+                            <li class="lititle">@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
                         }
 
                         @if (Session["Customer"] != null) {
-                            <li>@Html.ActionLink("產品列表", "Index", "Customer")</li>
-                            <li>@Html.ActionLink("客製化", "Index", "OptionalItem")</li>
-                            <li>@Html.ActionLink("會員專區", "Member", "Customer")</li>
-                            <li><a href="#">@Session["Welcome"]</a> </li>
-                            <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
-                            <li>@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
+                            <li class="lititle">@Html.ActionLink("產品列表", "Index", "Customer")</li>
+                            <li class="lititle">@Html.ActionLink("客製化", "Index", "OptionalItem")</li>
+                            <li class="lititle">@Html.ActionLink("會員專區", "Member", "Customer")</li>
+                            <li class="lititle"><a href="#">@Session["Welcome"]</a> </li>
+                            <li class="lititle">@Html.ActionLink("登出", "Logout", "Customer")</li>
+                            <li class="lititle">@Html.ActionLink("購物車", "ShoppingCart", "OptionalItem")</li>
                         }
 
                         @if (Session["Employee"] != null) {
-                            <li><a href="#">@Session["Welcome"]</a> </li>
-                            <li>@Html.ActionLink("登出", "Logout", "Customer")</li>
+                            <li class="lititle"><a href="#">@Session["Welcome"]</a> </li>
+                            <li class="lititle">@Html.ActionLink("登出", "Logout", "Customer")</li>
                         }
 
 
@@ -101,7 +113,7 @@
 
         </div>
         <div class="col-sm-1"></div>
-        
+
     </div>
 
 
@@ -138,5 +150,6 @@
     <script src="~/scripts/jquery-1.10.2.min.js"></script>
     <script src="~/scripts/bootstrap.min.js"></script>
     @RenderSection("IndexBottom", required: false)
+    @RenderSection("OptionalItemBottom", required: false)
 </body>
 </html>

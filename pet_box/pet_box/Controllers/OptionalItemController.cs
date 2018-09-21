@@ -53,6 +53,7 @@ namespace pet_box.Controllers {
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(int? id) {
 
             if (Request.Form["okOrCancel"] == "ok") {
@@ -197,6 +198,7 @@ namespace pet_box.Controllers {
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ShoppingCart(int? id, PartialListModel partialModelList) {
 
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
@@ -205,7 +207,7 @@ namespace pet_box.Controllers {
 
             if (Request.Form["okOrCancel"] == "ok") {
 
-                // copy the quantity from the model posted from delete button, 
+                // copy the quantity from the model posted from delete button,
                 // to the itemList, then save the new quantity to tempData.
                 foreach (ShoppingCartObjectModel item in itemObjList) {
                     PartialListItemModel itemToCopy = partialModelList.PartialList.SingleOrDefault(r => r.PartialListProductId == item.ProductID);
@@ -276,9 +278,9 @@ namespace pet_box.Controllers {
             }
 
 
-            // here should check if the member login in, 
+            // here should check if the member login in,
             // temporary solution: here just use default value of `int` if no assignment,
-            // 
+            //
             if (customerIdInt == 1) {
                 Customer newCustomer = new Customer();
                 viewM.customer = newCustomer;
@@ -298,6 +300,7 @@ namespace pet_box.Controllers {
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeliveryInfo(DeliveryInfoViewModel divm) {
 
             // check the list passed
@@ -312,7 +315,7 @@ namespace pet_box.Controllers {
 
 
                 // update Customers
-                // 1 is non-member. 
+                // 1 is non-member.
                 //if (itemObjList[0].CustomerID != 1) {
                 if (customerIdInt != 1) {
                     //int myInt = Convert.ToInt32(Session["CustomerID"]);
@@ -388,12 +391,13 @@ namespace pet_box.Controllers {
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="id"> ProductID</param>
         /// <returns></returns>
         // CartItemDelete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CartItemDelete(int? id, PartialListModel partialModelList) {
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
             itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
@@ -411,7 +415,7 @@ namespace pet_box.Controllers {
                 partialModelList.PartialList.Remove(itemToRemoveFromPartialModel);
             }
 
-            // copy the quantity from the model posted from delete button, 
+            // copy the quantity from the model posted from delete button,
             // to the itemList, then save the new quantity to tempData.
             foreach (ShoppingCartObjectModel item in itemObjList) {
                 PartialListItemModel itemToCopy = partialModelList.PartialList.SingleOrDefault(r => r.PartialListProductId == item.ProductID);
@@ -425,52 +429,6 @@ namespace pet_box.Controllers {
             return RedirectToAction("ShoppingCart");
 
         }
-
-
-        [HttpPost]
-        public ActionResult SingleBuy(int id) {
-            List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
-
-
-            if (TempData["itemList"] == null) {
-
-                ShoppingCartObjectModel newItem = new ShoppingCartObjectModel();
-                // here should be the logined customer's id
-                newItem.CustomerID = Convert.ToInt32(Session["CustomerID"]);
-                newItem.ProductID = id;
-                newItem.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
-                itemObjList.Add(newItem);
-
-
-            } else {
-
-                itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;
-
-                ShoppingCartObjectModel tempObj = itemObjList.Find(obj => id == obj.ProductID);
-
-                if (tempObj != null) {
-
-                    tempObj.Quantity += Convert.ToInt32(Request.Form["buyQuantity"]);
-
-                } else {
-
-                    ShoppingCartObjectModel addObj = new ShoppingCartObjectModel();
-                    addObj.CustomerID = Convert.ToInt32(Session["CustomerID"]);
-                    addObj.ProductID = id;
-                    addObj.Quantity = Convert.ToInt32(Request.Form["buyQuantity"]);
-
-                    //shopCartItemList.shopCartObjList.Add(instance);
-                    itemObjList.Add(addObj);
-                }
-
-            }
-
-            TempData["itemList"] = itemObjList;
-            TempData.Keep("itemList");
-
-            return RedirectToAction("ShoppingCart", "OptionalItem");
-        }
-
 
         public ActionResult CategoryItem(int? id) {
 
@@ -494,7 +452,14 @@ namespace pet_box.Controllers {
                 tempInstance.ProductID = item.ProductID;
                 tempInstance.ProductName = item.ProductName;
                 tempInstance.UnitPrice = item.ProductPrice;
-                tempInstance.ProductDescription = item.ProductDescription;
+
+                if (item.ProductDescription.Length > 12) {
+                    tempInstance.ProductDescription = item.ProductDescription.Substring(0, 12) + "⋯";
+                } else {
+                    tempInstance.ProductDescription = item.ProductDescription;
+                }
+
+
                 tempInstance.QuantityInStock = (int)item.ProductQuantity;
 
                 viewM.ProductList.Add(tempInstance);
@@ -507,6 +472,7 @@ namespace pet_box.Controllers {
         }
 
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult SingleBuyJavaScript(int id) {
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
@@ -568,18 +534,6 @@ namespace pet_box.Controllers {
             }
 
             return Content("0");
-        }
-
-
-        public ActionResult CheckCustomerLogin() {
-            if (TempData["itemList"] != null) {
-                //return Content("some some in temp data itemlist");
-                TempData.Keep("itemList");
-            }
-
-            // check if user login, probably use another session or other way.
-            //return Content(Session["CustomerID"].ToString());
-            return Content(Session["CustomerID"].ToString());
         }
 
     }

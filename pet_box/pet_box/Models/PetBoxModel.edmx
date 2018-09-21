@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PetBoxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PetBoxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -23,6 +23,7 @@
           <Property Name="CustomerName" Type="nvarchar" MaxLength="30" />
           <Property Name="CustomerEmail" Type="varchar" MaxLength="255" />
           <Property Name="CustomerPassword" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerGuid" Type="uniqueidentifier" />
           <Property Name="CustomerMobilePhone" Type="nvarchar" MaxLength="24" />
           <Property Name="CustomerAddress" Type="nvarchar" MaxLength="255" />
           <Property Name="CustomerPostalCode" Type="nvarchar" MaxLength="10" />
@@ -36,6 +37,7 @@
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeLoginName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="EmployeePassword" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmployeeGuid" Type="uniqueidentifier" />
           <Property Name="EmployeeRole" Type="int" />
         </EntityType>
         <EntityType Name="Opinions">
@@ -292,8 +294,7 @@
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PetBoxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -324,6 +325,7 @@
           <NavigationProperty Name="UserRole" Relationship="Self.FK_Customers_UserRoles" FromRole="Customers" ToRole="UserRoles" />
           <NavigationProperty Name="Opinions" Relationship="Self.FK_Opinions_Customers" FromRole="Customers" ToRole="Opinions" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+          <Property Name="CustomerGuid" Type="Guid" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -335,6 +337,7 @@
           <Property Name="EmployeeRole" Type="Int32" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK_Employees_UserRoles" FromRole="Employees" ToRole="UserRoles" />
           <NavigationProperty Name="Opinions" Relationship="Self.FK_Opinions_Employees" FromRole="Employees" ToRole="Opinions" />
+          <Property Name="EmployeeGuid" Type="Guid" />
         </EntityType>
         <EntityType Name="Opinion">
           <Key>
@@ -623,6 +626,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="PetBoxModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerGuid" ColumnName="CustomerGuid" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="CustomerLoginName" ColumnName="CustomerLoginName" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
@@ -639,6 +643,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="PetBoxModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeGuid" ColumnName="EmployeeGuid" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="EmployeeLoginName" ColumnName="EmployeeLoginName" />
                 <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />

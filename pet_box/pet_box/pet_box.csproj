@@ -17,7 +17,7 @@
     <AssemblyName>pet_box</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44310</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -166,6 +166,7 @@
     <Content Include="product_images\site_product\product\cam_wide.jpg" />
     <Content Include="product_images\site_product\product\feeder_median.jpg" />
     <Content Include="product_images\site_product\product\feeder_small.jpg" />
+    <Content Include="product_images\site_product\product\member.jpg" />
     <Content Include="product_images\site_product\product\sensor_carbon dioxide.jpg" />
     <Content Include="product_images\site_product\product\sensor_Carbon monoxide.jpg" />
     <Content Include="product_images\site_product\product\sensor_humi_temp.jpg" />
@@ -176,6 +177,7 @@
     <Content Include="product_images\site_product\product\sensor_Ultraviolet light.jpg" />
     <Content Include="product_images\site_product\product\sensor_Water level.jpg" />
     <Content Include="product_images\site_product\product\sensor_weight.jpg" />
+    <Content Include="product_images\site_product\product\service.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -248,10 +250,12 @@
       <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingCartObjectModel.cs" />
+    <Compile Include="Models\UserPasswordModel.cs" />
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>PetBoxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\PasswordSecurity.cs" />
     <Compile Include="ViewModels\CategoryItemViewModel.cs" />
     <Compile Include="ViewModels\DeliveryInfoViewModel.cs" />
     <Compile Include="ViewModels\OptionalItemViewModel.cs" />
@@ -320,11 +324,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49732</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49732/</IISUrl>
+          <IISUrl>https://localhost:44310/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

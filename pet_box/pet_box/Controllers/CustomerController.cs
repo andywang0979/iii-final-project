@@ -5,17 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using pet_box.Models;
 using pet_box.ViewModels;
+using pet_box.Security;
 
 namespace pet_box.Controllers
 {
     public class CustomerController : Controller
     {
-        
+
         PetBoxEntities1 db = new PetBoxEntities1();
 
         public ActionResult Index()
         {
-            
+
             TempData["shoppingURL"] = Request.Url.PathAndQuery;
 
             if (TempData["itemList"] != null) {
@@ -24,9 +25,9 @@ namespace pet_box.Controllers
 
 
             SingleBuyViewModel viewM = new SingleBuyViewModel();
-            
+
             Dictionary<string, CategoryProductModel> dummy = new Dictionary<string, CategoryProductModel>();
-            
+
             viewM.CategoryProductModelDic = dummy;
             // loop
             int? CategoryIdMax = db.Categories.Max(u => (int?)u.CategoryID);
@@ -39,7 +40,7 @@ namespace pet_box.Controllers
                                            where o.ProductID > 1 && o.CategoryID == i
                                            select o).ToList();
 
-                
+
                 CategoryProductModel tempObj = new CategoryProductModel();
 
                 tempObj.CategoryID = queryProductDynamic[0].CategoryID;
@@ -48,13 +49,7 @@ namespace pet_box.Controllers
 
                 viewM.CategoryProductModelDic[s] = tempObj;
             }
-           
-            
-            //if (Session["Customer"] == null)
-            //{
-            //    return View("Index", "_Layout", viewM);
-                
-            //}
+
             return View("Index", "_Layout2", viewM);
         }
 
@@ -64,18 +59,23 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(string LoginName, string Password)
         {
-            var Customer = db.Customers
-                .Where(c => c.CustomerLoginName == LoginName && c.CustomerPassword == Password)
-                .FirstOrDefault();
+            //var Customer = db.Customers
+            //    .Where(c => c.CustomerLoginName == LoginName && c.CustomerPassword == Password)
+            //    .FirstOrDefault();
+
+            int customerHashCheckId = PasswordSecurity.GetUserIdByUsernameAndHashedSaltedPassword(LoginName, Password);
 
             var Employee = db.Employees
                 .Where(e => e.EmployeeLoginName == LoginName && e.EmployeePassword == Password)
                 .FirstOrDefault();
 
-            if (Customer != null)
+            if (customerHashCheckId != 1)
             {
+                var Customer = db.Customers.Find(customerHashCheckId);
+                //return Content(customerHashCheckId.ToString());
                 Session["Welcome"] = Customer.CustomerName + " " + "歡迎光臨";
                 Session["Customer"] = Customer;
                 Session["CustomerID"] = Customer.CustomerID;
@@ -100,9 +100,9 @@ namespace pet_box.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            // clear 
+            // clear
             if (TempData["itemList"] != null) {
-                
+
                 TempData["itemList"] = null;
             }
 
@@ -113,7 +113,7 @@ namespace pet_box.Controllers
 
         public ActionResult Index2()
         {
-            
+
             if (Session["Customer"] == null)
             {
                 return View("Index2", "_Layout");
@@ -123,7 +123,7 @@ namespace pet_box.Controllers
 
         public ActionResult Index3()
         {
-           
+
             if (Session["Customer"] == null)
             {
                 return View("Index3", "_Layout");
@@ -139,6 +139,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(Customer cus)
         {
             if (string.IsNullOrEmpty(cus.CustomerLoginName))
@@ -158,6 +159,10 @@ namespace pet_box.Controllers
 
             if (Customer == null)
             {
+                Guid userGuid = Guid.NewGuid();
+                cus.CustomerGuid = userGuid;
+                cus.CustomerPassword = PasswordSecurity.HashSHA1(cus.CustomerPassword + userGuid);
+
                 db.Customers.Add(cus);
                 db.SaveChanges();
                 return RedirectToAction("RegisterOk",cus);
@@ -182,6 +187,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Member(Customer cus)
         {
             return View();
@@ -195,6 +201,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MemberEdit(Customer cus)
         {
             db.Entry(cus).State = System.Data.Entity.EntityState.Modified;
@@ -208,7 +215,9 @@ namespace pet_box.Controllers
             return View(op);
         }
 
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MemberQA(Opinion op)
         {
             op.OpinionDateTime = DateTime.Now.ToString("yyyyMMdd HH:mm");

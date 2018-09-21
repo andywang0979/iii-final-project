@@ -8,78 +8,82 @@
 
 @section OptionalItemTop{
     <style>
-        /*        position is based on the .myContainer*/
+            /*        position is based on the .myContainer*/
 
-        #cube {
-            width: 450px;
-            position: absolute;
-            top: 0px;
-            z-index: 1;
+            .myBoxImageClass{
+                box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+            }
+
+            #cube {
+                width: 450px;
+                position: absolute;
+                top: 0px;
+                z-index: 1;
+            }
+
+            #feeder_small {
+                width: 90px;
+                position: absolute;
+                top: 240px;
+                left: 190px;
+                z-index: 2;
+            }
+
+            #sensor_humi_temp {
+                width: 30px;
+                position: absolute;
+                top: 50px;
+                left: 30px;
+                z-index: 2;
+            }
+
+            #cam_wide {
+                width: 90px;
+                position: absolute;
+                top: 70px;
+                left: 250px;
+                z-index: 2;
+            }
+
+            /*        position of .myContainer is relative to the margin-top of fieldset*/
+
+            .myContainer {
+                position: relative;
+                top: -250px;
+                /*            width: 400px;*/
+                /*            margin: 0 auto;*/
+            }
+
+
+
+            #menuDivLeft {
+                margin-top: 00px;
+            }
+
+            #menuDivMiddle {
+                margin-top: 260px;
+            }
+
+            #menuDivRight {
+                margin-top: 260px;
+            }
+
+            .myImageClassItem {
+                /*            display: none;*/
+                visibility: hidden;
+            }
+
+
+            .myFieldsetMarginClass{
+                margin-bottom: 10px;
+            }
+
+            .myLegendMarginClass{
+         margin-bottom: 5px;
         }
-
-        #feeder_small {
-            width: 90px;
-            position: absolute;
-            top: 140px;
-            left: 190px;
-            z-index: 2;
-        }
-
-        #sensor_humi_temp {
-            width: 30px;
-            position: absolute;
-            top: 50px;
-            left: 30px;
-            z-index: 2;
-        }
-
-        #cam_wide {
-            width: 90px;
-            position: absolute;
-            top: 70px;
-            left: 250px;
-            z-index: 2;
-        }
-
-        /*        position of .myContainer is relative to the margin-top of fieldset*/
-
-        .myContainer {
-            position: relative;
-            top: -250px;
-            /*            width: 400px;*/
-            /*            margin: 0 auto;*/
-        }
-
-
-
-        #menuDivLeft {
-            margin-top: 00px;
-        }
-
-        #menuDivMiddle {
-            margin-top: 260px;
-        }
-
-        #menuDivRight {
-            margin-top: 260px;
-        }
-
-        .myImageClassItem {
-            /*            display: none;*/
-            visibility: hidden;
-        }
-
-
-        .myFieldsetMarginClass{
-            margin-bottom: 10px;
-        }
-
-        .myLegendMarginClass{
-     margin-bottom: 5px;
-    }
     </style>
 
-    
+
 
 }
 
@@ -92,6 +96,7 @@
     <div class="row">
         <div class="col-sm-12">
             <form method="post">
+                @Html.AntiForgeryToken()
                 <div class="row">
                     <div id="menuDivLeft" class="col-sm-6">
                         <div class="container">
@@ -106,15 +111,15 @@
                                                 <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId03"].CategoryName</legend>
                                                 @foreach (var item in Model.CategoryProductModelDic["categoryId03"].Products) {
 
-                                                    <div>
-                                                        <input type="checkbox"
-                                                               id=@item.ProductID
-                                                               name="boxItem"
-                                                               value=@item.ProductID
-                                                               data-productCode=@item.ProductCode
-                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                        <label for="catFeader">@item.ProductName</label>
-                                                    </div>
+                                                <div>
+                                                    <input type="checkbox"
+                                                           id=@item.ProductID
+                                                           name="boxItem"
+                                                           value=@item.ProductID
+                                                           data-productCode=@item.ProductCode
+                                                           onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                    <label for="catFeader">@item.ProductName</label>
+                                                </div>
                                                 }
 
 
@@ -130,15 +135,15 @@
                                                 <legend class="myLegendMarginClass">@Model.CategoryProductModelDic["categoryId04"].CategoryName</legend>
                                                 @foreach (var item in @Model.CategoryProductModelDic["categoryId04"].Products) {
 
-                                                    <div>
-                                                        <input type="checkbox"
-                                                               id=@item.ProductID
-                                                               name="boxItem"
-                                                               value=@item.ProductID
-                                                               data-productCode=@item.ProductCode
-                                                               onclick="handleClick(this, this.getAttribute('data-productCode'));" />
-                                                        <label for="catFeader">@item.ProductName</label>
-                                                    </div>
+                                                <div>
+                                                    <input type="checkbox"
+                                                           id=@item.ProductID
+                                                           name="boxItem"
+                                                           value=@item.ProductID
+                                                           data-productCode=@item.ProductCode
+                                                           onclick="handleClick(this, this.getAttribute('data-productCode'));" />
+                                                    <label for="catFeader">@item.ProductName</label>
+                                                </div>
                                                 }
 
                                             </fieldset>
@@ -178,7 +183,7 @@
                     </div>
                     <div id="menuDivRight" class="col-sm-6">
                         <div class="myContainer">
-                            <img src="/product_images/optional_items/cube.jpg" class="myImageClass" id="cube">
+                            <img src="/product_images/optional_items/cube.jpg" class="myImageClass myBoxImageClass" id="cube">
 
                             <img src="/product_images/optional_items/feeder_small.png" class="myImageClassItem" id="feeder_small">
                             <img src="/product_images/optional_items/sensor_humi_temp.png" class="myImageClassItem" id="sensor_humi_temp">
@@ -218,24 +223,24 @@
 
 
 
+@section OptionalItemBottom{
+    <script>
+        function handleClick(cb, cbValue) {
 
-<script>
-    function handleClick(cb, cbValue) {
+            if (cb.checked == true) {
+                document.querySelector("#" + cbValue).style.visibility = "visible";
+            } else {
+                document.querySelector("#" + cbValue).style.visibility = "hidden";
+            }
 
-        if (cb.checked == true) {
-            document.querySelector("#" + cbValue).style.visibility = "visible";
-        } else {
-            document.querySelector("#" + cbValue).style.visibility = "hidden";
+
         }
 
+        function display(msg) {
+            var p = document.createElement('p');
+            p.innerHTML = msg;
+            document.body.appendChild(p);
+        }
 
-    }
-
-    function display(msg) {
-        var p = document.createElement('p');
-        p.innerHTML = msg;
-        document.body.appendChild(p);
-    }
-
-</script>
-
+    </script>
+}
