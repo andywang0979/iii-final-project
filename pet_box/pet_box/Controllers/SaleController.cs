@@ -29,6 +29,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddItem(Product pro)
         {
             if (Request["OkOrCancel"] == "Cancel")
@@ -81,6 +82,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditItem(Product pro, FormCollection frm)
         {
             if (Request["OkOrCancel"] == "Cancel")

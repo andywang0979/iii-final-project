@@ -53,6 +53,7 @@ namespace pet_box.Controllers {
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(int? id) {
 
             if (Request.Form["okOrCancel"] == "ok") {
@@ -197,6 +198,7 @@ namespace pet_box.Controllers {
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ShoppingCart(int? id, PartialListModel partialModelList) {
 
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
@@ -298,6 +300,7 @@ namespace pet_box.Controllers {
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeliveryInfo(DeliveryInfoViewModel divm) {
 
             // check the list passed
@@ -394,6 +397,7 @@ namespace pet_box.Controllers {
         /// <returns></returns>
         // CartItemDelete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CartItemDelete(int? id, PartialListModel partialModelList) {
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
             itemObjList = TempData["itemList"] as List<ShoppingCartObjectModel>;

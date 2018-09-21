@@ -59,6 +59,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(string LoginName, string Password)
         {
             //var Customer = db.Customers
@@ -138,6 +139,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(Customer cus)
         {
             if (string.IsNullOrEmpty(cus.CustomerLoginName))
@@ -185,6 +187,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Member(Customer cus)
         {
             return View();
@@ -198,6 +201,7 @@ namespace pet_box.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MemberEdit(Customer cus)
         {
             db.Entry(cus).State = System.Data.Entity.EntityState.Modified;
@@ -211,7 +215,9 @@ namespace pet_box.Controllers
             return View(op);
         }
 
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MemberQA(Opinion op)
         {
             op.OpinionDateTime = DateTime.Now.ToString("yyyyMMdd HH:mm");

@@ -38,6 +38,7 @@
 </div>
 
 <form class="form-horizontal" method="post">
+    @Html.AntiForgeryToken()
     @*<input type="hidden" name="CustomerID" value="@Model.CustomerID" />*@
     <input type="hidden" name="customer.CustomerID" value="@Model.customer.CustomerID" />
     @*<input id="CustomerID" name="CustomerID" type="hidden" value="@Model.CustomerID">*@

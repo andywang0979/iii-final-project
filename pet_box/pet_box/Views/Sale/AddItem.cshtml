@@ -9,7 +9,7 @@
 <h2>新增</h2>
 
 <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
-
+    @Html.AntiForgeryToken()
     <div class="form-group">
         <label class="col-md-4 control-label" for="ProductCode">產品代碼</label>
         <div class="col-md-4">

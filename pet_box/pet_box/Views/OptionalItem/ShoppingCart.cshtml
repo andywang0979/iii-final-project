@@ -32,6 +32,7 @@
 <h2>您的購買清單</h2>
 
 <form class="form-horizontal" method="post">
+    @Html.AntiForgeryToken()
     <input id="prodId" name="returnUrl" type="hidden" value="@this.Request.UrlReferrer.PathAndQuery">
 
     <div>

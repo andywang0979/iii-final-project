@@ -10,7 +10,7 @@
 <h2>商品檢視</h2>
 
 <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
-
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ProductID)
 
     <div class="form-group">
