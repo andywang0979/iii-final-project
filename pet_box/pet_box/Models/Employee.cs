@@ -24,6 +24,7 @@ namespace pet_box.Models
         public string EmployeeLoginName { get; set; }
         public string EmployeePassword { get; set; }
         public Nullable<int> EmployeeRole { get; set; }
+        public Nullable<System.Guid> EmployeeGuid { get; set; }
     
         public virtual UserRole UserRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

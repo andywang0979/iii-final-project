@@ -31,6 +31,7 @@ namespace pet_box.Models
         public string CustomerPostalCode { get; set; }
         public string CustomerCountry { get; set; }
         public Nullable<int> CustomerRole { get; set; }
+        public Nullable<System.Guid> CustomerGuid { get; set; }
     
         public virtual UserRole UserRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

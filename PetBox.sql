@@ -16,6 +16,7 @@ CustomerLoginName VARCHAR(20),
 CustomerName NVARCHAR(30),
 CustomerEmail VARCHAR(255),
 CustomerPassword VARCHAR(255),
+CustomerGuid UNIQUEIDENTIFIER,
 CustomerMobilePhone NVARCHAR(24),
 CustomerAddress NVARCHAR(255),
 CustomerPostalCode NVARCHAR(10),
@@ -75,6 +76,7 @@ CREATE TABLE Employees (
     EmployeeID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	EmployeeLoginName VARCHAR(20) NOT NULL,
 	EmployeePassword VARCHAR(20) NOT NULL,
+	EmployeeGuid UNIQUEIDENTIFIER,
 	EmployeeRole INT DEFAULT 1
 );
 

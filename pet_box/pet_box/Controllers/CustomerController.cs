@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using pet_box.Models;
 using pet_box.ViewModels;
+using pet_box.Security;
 
 namespace pet_box.Controllers
 {
@@ -60,16 +61,20 @@ namespace pet_box.Controllers
         [HttpPost]
         public ActionResult Login(string LoginName, string Password)
         {
-            var Customer = db.Customers
-                .Where(c => c.CustomerLoginName == LoginName && c.CustomerPassword == Password)
-                .FirstOrDefault();
+            //var Customer = db.Customers
+            //    .Where(c => c.CustomerLoginName == LoginName && c.CustomerPassword == Password)
+            //    .FirstOrDefault();
+
+            int customerHashCheckId = PasswordSecurity.GetUserIdByUsernameAndHashedSaltedPassword(LoginName, Password);
 
             var Employee = db.Employees
                 .Where(e => e.EmployeeLoginName == LoginName && e.EmployeePassword == Password)
                 .FirstOrDefault();
 
-            if (Customer != null)
+            if (customerHashCheckId != 1)
             {
+                var Customer = db.Customers.Find(customerHashCheckId);
+                //return Content(customerHashCheckId.ToString());
                 Session["Welcome"] = Customer.CustomerName + " " + "歡迎光臨";
                 Session["Customer"] = Customer;
                 Session["CustomerID"] = Customer.CustomerID;
@@ -152,6 +157,10 @@ namespace pet_box.Controllers
 
             if (Customer == null)
             {
+                Guid userGuid = Guid.NewGuid();
+                cus.CustomerGuid = userGuid;
+                cus.CustomerPassword = PasswordSecurity.HashSHA1(cus.CustomerPassword + userGuid);
+
                 db.Customers.Add(cus);
                 db.SaveChanges();
                 return RedirectToAction("RegisterOk",cus);
