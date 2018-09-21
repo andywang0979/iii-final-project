@@ -210,11 +210,12 @@
 
 </div>
 
-
+@Html.AntiForgeryToken()
 
 
 @section IndexBottom{
     <script>
+
 
         getTotal()
 
@@ -299,8 +300,12 @@
             // send as a form post?
             httpRequestBuy.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
+
+            var tokenForJavascript = document.getElementsByName("__RequestVerificationToken")[0].value
+
+
             // send as a form post, assing `name` attribute
-            httpRequestBuy.send('buyQuantity=' + encodeURIComponent(buyQuantity));
+            httpRequestBuy.send('buyQuantity=' + encodeURIComponent(buyQuantity) + "&" + "__RequestVerificationToken=" + tokenForJavascript);
         }
 
 

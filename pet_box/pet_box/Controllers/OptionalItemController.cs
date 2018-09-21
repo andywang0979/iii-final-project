@@ -468,6 +468,7 @@ namespace pet_box.Controllers {
         }
 
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult SingleBuyJavaScript(int id) {
             List<ShoppingCartObjectModel> itemObjList = new List<ShoppingCartObjectModel>();
